@@ -11,11 +11,15 @@ import { environment } from '../environments/environment';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ProductdetailsComponent } from './productdetails/productdetails.component';
+import { ItemComponent } from './item/item.component';
 // firebase imports ends here
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ProductdetailsComponent,
+    ItemComponent,
   ],
   imports: [
     BrowserModule,
@@ -23,7 +27,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFirestoreModule.enablePersistence(),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

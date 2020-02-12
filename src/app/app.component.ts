@@ -7,6 +7,9 @@ import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument 
 import { Observable } from 'rxjs';
 //endhere
 
+import { setTheme } from 'ngx-bootstrap/utils';
+
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -32,8 +35,9 @@ export class AppComponent {
 
   constructor(db: AngularFireDatabase, private angularFS: AngularFirestore){
     // I don't know if that {{db: AngularFireDatabase}} is important
-    this.items = this.angularFS.collection('products').valueChanges();
+    this.items = this.angularFS.collection('products').valueChanges({ idField: 'id' });
     this.itemCollection = this.angularFS.collection('products');
+    setTheme('bs4'); // or 'bs4'
   }
 
   ngOnInit(){
@@ -41,6 +45,9 @@ export class AppComponent {
       console.log(items);
       this.test = items;
     })
+
+
+
   }
   
   getItems(){
