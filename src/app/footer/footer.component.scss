@@ -1,0 +1,40 @@
+.footer{
+    width: 100%;
+
+    &-inner{
+        width: 90%;
+        margin: 0 auto;
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+
+        &_about, &_contact, &_help{
+            width: 24%;
+            text-transform: uppercase;
+
+            li{
+                list-style: none;
+            }
+        }
+
+        &_newsletter{
+            ul{
+                display: flex;
+                align-items: center;
+
+                li{
+                    list-style: none; 
+                    margin-right: 2rem; 
+                }
+
+                li:last-child{
+                    margin-right: 0;
+                }
+            }
+        }
+
+        p{
+            text-transform: capitalize;
+        }
+    }
+}

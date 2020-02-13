@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -10,12 +12,14 @@ import { environment } from '../environments/environment';
 // import { environment } from '../environments/environment.prod';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+// firebase imports ends here
+
 import { ProductdetailsComponent } from './productdetails/productdetails.component';
 import { ItemComponent } from './item/item.component';
 import { BtntocartComponent } from './btntocart/btntocart.component';
-
 // firebase imports ends here
+import { NavbarComponent } from './navbar/navbar.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +27,9 @@ import { BtntocartComponent } from './btntocart/btntocart.component';
     ProductdetailsComponent,
     ItemComponent,
     BtntocartComponent,
+
+    NavbarComponent,
+    FooterComponent,
 
   ],
   imports: [
@@ -32,6 +39,7 @@ import { BtntocartComponent } from './btntocart/btntocart.component';
     AngularFireDatabaseModule,
     AngularFirestoreModule.enablePersistence(),
     BrowserAnimationsModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
