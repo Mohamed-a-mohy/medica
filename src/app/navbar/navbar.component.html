@@ -1,0 +1,30 @@
+<nav class="navbar">
+    <section class="navbar-nav">
+        <section class="navbar-nav_left">
+            <ul class="navbar-nav_left-ul">
+                <li><a><img src="https://via.placeholder.com/90x80" alt="medica logo"></a></li>
+                <li><a>العربية</a></li>
+            </ul>
+        </section>
+        <section class="navbar-nav_mid">
+            <ul class="navbar-nav_mid-ul">
+                <li><a>home</a></li>
+                <li><a>categories</a></li>
+                <li><a>about us</a></li>
+            </ul>
+        </section>
+        <section class="navbar-nav_right">
+            <ul class="navbar-nav_right-ul">
+                <li>
+                    <i class="far fa-bell"></i>
+                    <span *ngIf = "notification > 0">{{notification}}</span>
+                </li>
+                <li>
+                    <i class="fas fa-shopping-bag"></i>
+                    <span *ngIf = "counter > 0">{{counter}}</span>
+                </li>
+                <li><button class="navbar-nav_right-ul--profile"><i class="far fa-user"></i></button></li>
+            </ul>
+        </section>
+    </section>
+</nav>
