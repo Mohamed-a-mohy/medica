@@ -13,6 +13,7 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProductdetailsComponent } from './productdetails/productdetails.component';
 import { ItemComponent } from './item/item.component';
+
 // firebase imports ends here
 
 @NgModule({
@@ -20,6 +21,7 @@ import { ItemComponent } from './item/item.component';
     AppComponent,
     ProductdetailsComponent,
     ItemComponent,
+
   ],
   imports: [
     BrowserModule,
