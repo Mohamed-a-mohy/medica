@@ -29,7 +29,9 @@
             <form id="subscribe" [formGroup]="subscribeForm" (ngSubmit)="onSubmit(subscribeForm)">
                 <input id="emailInput" type="text" formControlName="email" placeholder="Email Address">
                 <button type = 'submit' [disabled]="subscribeForm.invalid">Subscribe</button>
-                <p *ngIf="subscribeForm.get('email').hasError('pattern')">Your email not valid</p>
+                <span class="d-inline-block" data-toggle="popover" data-content="Disabled popover">
+                    <button class="btn btn-primary" style="pointer-events: none;" type="button" disabled>Disabled button</button>
+                </span>
             </form>
             <ul class="footer-inner_newsletter-ul">
                 <li><a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
