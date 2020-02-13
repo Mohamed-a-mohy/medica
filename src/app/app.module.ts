@@ -13,6 +13,7 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProductdetailsComponent } from './productdetails/productdetails.component';
 import { ItemComponent } from './item/item.component';
+import { BtntocartComponent } from './btntocart/btntocart.component';
 
 // firebase imports ends here
 
@@ -21,6 +22,7 @@ import { ItemComponent } from './item/item.component';
     AppComponent,
     ProductdetailsComponent,
     ItemComponent,
+    BtntocartComponent,
 
   ],
   imports: [

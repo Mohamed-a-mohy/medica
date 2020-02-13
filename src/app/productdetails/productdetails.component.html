@@ -28,7 +28,7 @@
 
     <div class="row">
       <p class="">
-        <a class="colps" data-toggle="collapse" href="#collapse1" role="button" aria-expanded="false" aria-controls="collapse1" (click)="checkcolps()">
+        <a class="colps" data-toggle="collapse" href="#collapse1" role="button" aria-expanded="false" aria-controls="collapse1" >
           Link with href
         </a>
       </p>
@@ -76,9 +76,16 @@
     </div>
 
 
+
+   <!--  <span class="d-inline-block" data-toggle="popover" data-content="Disabled popover">
+      <button class="btn btn-primary" style="pointer-events: none;" type="button" disabled>Disabled button</button>
+    </span> -->
+
+
   <div class="container">
     <h2>Alternatives</h2>
-  <app-item></app-item>
+
+  <app-item *ngFor="let item of arrOfItems" [item]="item"></app-item>
 
   </div>
 

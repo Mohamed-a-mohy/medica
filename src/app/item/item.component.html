@@ -1,10 +1,10 @@
 <div class="card" style="width: 15rem;">
     <img src="https://via.placeholder.com/50x50" class="card-img-top" alt="...">
     <div class="card-body">
-      <p class="card-title">Name</p>
+      <p class="card-title">{{item.name}}</p>
       <div class="d-flex justify-content-around align-items-baseline">
-        <p class="card-text">Price</p>
-        <a href="#" class="btn btn-primary">Add to cart</a>
+        <p class="card-text">{{item.price}}</p>
+        <app-btntocart></app-btntocart>
       </div>
     </div>
   </div>
