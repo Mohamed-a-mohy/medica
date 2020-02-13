@@ -1,0 +1,26 @@
+<div class="container">
+    <div *ngFor="let item of itemsInCart" class="row">
+        <div class="col"><img src="https://via.placeholder.com/250x250" alt=""></div>
+        <div class="col">
+          <h3>item name holder</h3>
+          <div>
+            <h5>Concentration</h5>
+            <p>500ml</p>
+          </div>
+          <div>
+            <h5>Quantity</h5>
+            <ul>
+              <li><button class="btn btn-info" (click)="decrement()">-</button></li>
+              <li class="quantity">{{item.quantity}}</li>
+              <li><button class="btn btn-info" (click)="increment()">+</button></li>
+            </ul>
+          </div>
+        </div>
+  
+        <div class="col">
+          <h3>Total price holder</h3>
+          <p> price / item</p>
+  
+          <button class="btn btn-dark addToCart">Add to cart</button>
+        </div>
+    </div>

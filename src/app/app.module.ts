@@ -20,6 +20,7 @@ import { BtntocartComponent } from './btntocart/btntocart.component';
 // firebase imports ends here
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
+import { CartviewComponent } from './cartview/cartview.component';
 
 @NgModule({
   declarations: [
@@ -27,10 +28,9 @@ import { FooterComponent } from './footer/footer.component';
     ProductdetailsComponent,
     ItemComponent,
     BtntocartComponent,
-
     NavbarComponent,
     FooterComponent,
-
+    CartviewComponent,
   ],
   imports: [
     BrowserModule,
