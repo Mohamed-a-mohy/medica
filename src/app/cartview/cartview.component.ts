@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,Input} from '@angular/core';
 import { AddtocartService } from "../addtocart.service"
 
 
@@ -8,13 +8,13 @@ import { AddtocartService } from "../addtocart.service"
   styleUrls: ['./cartview.component.scss']
 })
 export class CartviewComponent implements OnInit {
-
+  @Input() item ;
   itemsInCart;
   constructor(private service :AddtocartService) { }
 
   ngOnInit() {
 
-    this.service.cartItems.subscribe(items=>{
+      this.service.cartItems.subscribe(items=>{
       this.itemsInCart=items
     })
   }

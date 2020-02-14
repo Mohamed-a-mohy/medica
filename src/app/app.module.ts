@@ -21,6 +21,7 @@ import { BtntocartComponent } from './btntocart/btntocart.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { CartviewComponent } from './cartview/cartview.component';
+import { QuantityComponent } from './quantity/quantity.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { CartviewComponent } from './cartview/cartview.component';
     NavbarComponent,
     FooterComponent,
     CartviewComponent,
+    QuantityComponent,
   ],
   imports: [
     BrowserModule,

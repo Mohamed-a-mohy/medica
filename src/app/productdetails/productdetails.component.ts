@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Input } from '@angular/core';
 // firebase imports starts here
 import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
@@ -11,6 +11,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./productdetails.component.scss']
 })
 export class ProductdetailsComponent implements OnInit {
+  @Input() item
   quantity;
   collapse1;
   collapse2;
@@ -31,6 +32,7 @@ export class ProductdetailsComponent implements OnInit {
     this.collapse3=document.getElementById("collapse3")
     this.collapse4=document.getElementById("collapse4")
     console.log(this.collapse1);
+    console.log(this.item);
 
 
     this.getItems().subscribe(items =>{
@@ -39,16 +41,7 @@ export class ProductdetailsComponent implements OnInit {
     })
   }
 
-  increment(){
-      this.quantity++
-      console.log(this.arrOfItems)
-  }
 
-  decrement(){
-    if(this.quantity > 0){
-      this.quantity--;
-    }
-  }
 
 
   getItems(){
