@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { AddtocartService } from "../addtocart.service";
+import { Component, OnInit, Input } from '@angular/core';
+import { QuantityService } from '../quantity.service';
 
 
 @Component({
@@ -9,18 +9,11 @@ import { AddtocartService } from "../addtocart.service";
 })
 export class QuantityComponent implements OnInit {
   quantity;
-  items;
-/*   item; */
-
-  constructor(private service :AddtocartService) { }
-  /* quantity; */
+  constructor(private quantityService: QuantityService) {}
   ngOnInit() {
-    
-
-      this.service.cartItems.subscribe(items=>{
-      this.items=items
+    this.quantityService.quantityCounter.subscribe(count=>{
+      this.quantity = count;
     })
-    
   }
 
 

@@ -1,5 +1,6 @@
 import { Component, OnInit ,Input} from '@angular/core';
-import { AddtocartService } from "../addtocart.service"
+import { AddtocartService } from "../addtocart.service";
+import { QuantityService } from '../quantity.service';
 
 
 @Component({
@@ -10,12 +11,18 @@ import { AddtocartService } from "../addtocart.service"
 export class CartviewComponent implements OnInit {
   @Input() item ;
   itemsInCart;
-  constructor(private service :AddtocartService) { }
+  quantityArr;
+  constructor(private service :AddtocartService, private quantityService: QuantityService) { }
 
   ngOnInit() {
-
       this.service.cartItems.subscribe(items=>{
-      this.itemsInCart=items
+      this.itemsInCart=items;
+      if(this.itemsInCart[0]){
+        this.quantityArr = this.itemsInCart;
+        for(let i = 0; i<this.itemsInCart.length; i++){
+          console.log("this.itemsInCart[i].quantity: ", this.itemsInCart[i].quantity)
+        }
+      }
     })
   }
 
