@@ -16,17 +16,23 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 
 import { ProductdetailsComponent } from './productdetails/productdetails.component';
 import { ItemComponent } from './item/item.component';
+import { BtntocartComponent } from './btntocart/btntocart.component';
+// firebase imports ends here
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
+import { CartviewComponent } from './cartview/cartview.component';
+import { QuantityComponent } from './quantity/quantity.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProductdetailsComponent,
     ItemComponent,
+    BtntocartComponent,
     NavbarComponent,
     FooterComponent,
-
+    CartviewComponent,
+    QuantityComponent,
   ],
   imports: [
     BrowserModule,

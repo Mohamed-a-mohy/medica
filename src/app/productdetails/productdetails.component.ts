@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Input } from '@angular/core';
+// firebase imports starts here
+import { AngularFireDatabase } from 'angularfire2/database';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
+import { Observable } from 'rxjs';
+//endhere
 
 @Component({
   selector: 'app-productdetails',
@@ -6,12 +11,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./productdetails.component.scss']
 })
 export class ProductdetailsComponent implements OnInit {
+  @Input() item
   quantity;
   collapse1;
   collapse2;
   collapse3;
   collapse4;
-  constructor() { }
+  items;
+  itemCollection;
+  arrOfItems;
+  constructor(private angularFS: AngularFirestore) { 
+    this.items = this.angularFS.collection('products').valueChanges({ idField: 'id' });
+    this.itemCollection = this.angularFS.collection('products');
+  }
 
   ngOnInit() {
     this.quantity = 2;
@@ -20,30 +32,41 @@ export class ProductdetailsComponent implements OnInit {
     this.collapse3=document.getElementById("collapse3")
     this.collapse4=document.getElementById("collapse4")
     console.log(this.collapse1);
+    console.log(this.item);
 
-    
+
+    this.getItems().subscribe(items =>{
+      console.log(items);
+      this.arrOfItems = items;
+    })
   }
 
-  increment(){
-      this.quantity++
+
+
+
+  getItems(){
+    return this.items;
   }
 
-  decrement(){
-    if(this.quantity > 0){
-      this.quantity--;
-    }
-  }
-
-  checkcolps(){
-   if(this.collapse1.className=="show"){
-      this.collapse2.classList.remove("show");
-      this.collapse3.classList.remove("show");
-      this.collapse4.classList.remove("show");
+ /*  checkcolps(){
+   if(this.collapse1.className=="collapse show"){
+      this.collapse2.classList="collapse";
+      this.collapse3.classList="collapse";
+      this.collapse4.classList="collapse";
       
-    }
+      console.log("if")
+    }else{
+      console.log("else");
+      
+    } */
     /*   className.replace(" active", "") */
-    console.log("hi");
+ /*    console.log("hi");}
+                           */
     
-  }
+  
 }
+
+
+/* $('#example').popover(options) */
+
 
