@@ -22,6 +22,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { CartviewComponent } from './cartview/cartview.component';
 import { QuantityComponent } from './quantity/quantity.component';
+import { ProductsComponent } from './products/products.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { QuantityComponent } from './quantity/quantity.component';
     FooterComponent,
     CartviewComponent,
     QuantityComponent,
+    ProductsComponent,
   ],
   imports: [
     BrowserModule,

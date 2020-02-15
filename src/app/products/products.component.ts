@@ -1,10 +1,9 @@
 import { Component, OnInit,Input } from '@angular/core';
+
 // firebase imports starts here
 import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
-import { Observable } from 'rxjs';
 //endhere
-
 // route import
 import { ActivatedRoute } from '@angular/router';
 
@@ -13,20 +12,16 @@ import { AddtocartService } from '../addtocart.service';
 import { QuantityService } from '../quantity.service';
 
 @Component({
-  selector: 'app-productdetails',
-  templateUrl: './productdetails.component.html',
-  styleUrls: ['./productdetails.component.scss']
+  selector: 'app-products',
+  templateUrl: './products.component.html',
+  styleUrls: ['./products.component.scss']
 })
-export class ProductdetailsComponent implements OnInit {
-  @Input() item
-  collapse1;
-  collapse2;
-  collapse3;
-  collapse4;
-  items;
+export class ProductsComponent implements OnInit {
+  @Input() item;
   itemCollection;
   arrOfItems;
-
+  items;
+  
 
   // properties of route code
   product;
@@ -36,14 +31,11 @@ export class ProductdetailsComponent implements OnInit {
   itemsInCart;
   index;
   flag;
-
-
   constructor(private angularFS: AngularFirestore,
     private route: ActivatedRoute,
     private service: AddtocartService,
     private quantityService: QuantityService) { 
-
-    this.items = this.angularFS.collection('products').valueChanges({ idField: 'id' });
+      this.items = this.angularFS.collection('products').valueChanges({ idField: 'id' });
     this.itemCollection = this.angularFS.collection('products');
 
         // route code
@@ -70,51 +62,22 @@ export class ProductdetailsComponent implements OnInit {
           }
         })
         });
-  }
+    }
+
+    
 
   ngOnInit() {
-    // this.quantity = 2;
-    this.collapse1=document.getElementById("collapse1")
-    this.collapse2=document.getElementById("collapse2")
-    this.collapse3=document.getElementById("collapse3")
-    this.collapse4=document.getElementById("collapse4")
-    console.log(this.collapse1);
-    console.log(this.item);
-
+  
 
     this.getItems().subscribe(items =>{
       console.log(items);
       this.arrOfItems = items;
     })
-
   }
-
-
 
 
   getItems(){
-    return this.items;
+  return this.items;
   }
-
- /*  checkcolps(){
-   if(this.collapse1.className=="collapse show"){
-      this.collapse2.classList="collapse";
-      this.collapse3.classList="collapse";
-      this.collapse4.classList="collapse";
-      
-      console.log("if")
-    }else{
-      console.log("else");
-      
-    } */
-    /*   className.replace(" active", "") */
- /*    console.log("hi");}
-                           */
-    
-  
 }
-
-
-/* $('#example').popover(options) */
-
 
