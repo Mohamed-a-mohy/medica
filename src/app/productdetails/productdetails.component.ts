@@ -1,9 +1,4 @@
 import { Component, OnInit,Input } from '@angular/core';
-// firebase imports starts here
-import { AngularFireDatabase } from 'angularfire2/database';
-import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
-import { Observable, from } from 'rxjs';
-//endhere
 
 // route import
 import { ActivatedRoute } from '@angular/router';
@@ -12,13 +7,13 @@ import { Location } from '@angular/common';
 
 // serve import
 import { AddtocartService } from '../addtocart.service';
-import { QuantityService } from '../quantity.service';
 
 @Component({
   selector: 'app-productdetails',
   templateUrl: './productdetails.component.html',
   styleUrls: ['./productdetails.component.scss']
 })
+
 export class ProductdetailsComponent implements OnInit {
   @Input() item
   collapse1;
@@ -46,25 +41,18 @@ export class ProductdetailsComponent implements OnInit {
   flag;
 
 
-  constructor(private angularFS: AngularFirestore,
+  constructor(
     private route: ActivatedRoute,
     private service: AddtocartService,
-    private quantityService: QuantityService,
     private router: Router,
     location: Location) { 
 
-    this.items = this.angularFS.collection('products').valueChanges({ idField: 'id' });
-    this.itemCollection = this.angularFS.collection('products');
-
-    console.log('from constructor: the url is : ', this.router.url)
-      this.quantity = 0;
     router.events.subscribe((val) => {
       if(location.path() != ''){
         this.routeLink = location.path();
       } else {
         this.routeLink = 'Home'
       }
-      console.log('productdetails component --> the this.route = ', this.routeLink)
 
       if(this.routeLink.includes("products")){
         if(this.routeLink.includes("products/")){
