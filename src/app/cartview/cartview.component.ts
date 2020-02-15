@@ -11,18 +11,11 @@ import { QuantityService } from '../quantity.service';
 export class CartviewComponent implements OnInit {
   @Input() item ;
   itemsInCart;
-  quantityArr;
-  constructor(private service :AddtocartService, private quantityService: QuantityService) { }
+  constructor(private service :AddtocartService) { }
 
   ngOnInit() {
       this.service.cartItems.subscribe(items=>{
       this.itemsInCart=items;
-      if(this.itemsInCart[0]){
-        this.quantityArr = this.itemsInCart;
-        for(let i = 0; i<this.itemsInCart.length; i++){
-          console.log("this.itemsInCart[i].quantity: ", this.itemsInCart[i].quantity)
-        }
-      }
     })
   }
 

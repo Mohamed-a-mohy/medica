@@ -17,7 +17,7 @@ import { setTheme } from 'ngx-bootstrap/utils';
 })
 export class AppComponent {
   title = 'medica';
-
+  ancores;
 
  itemCollection: AngularFirestoreCollection;
   items;
@@ -33,14 +33,16 @@ export class AppComponent {
     phones: [990]
   }
 
+
   constructor(db: AngularFireDatabase, private angularFS: AngularFirestore){
     // I don't know if that {{db: AngularFireDatabase}} is important
     this.items = this.angularFS.collection('products').valueChanges({ idField: 'id' });
     this.itemCollection = this.angularFS.collection('products');
-    setTheme('bs4'); // or 'bs4'
+    setTheme('bs4'); // or 'bs4';
   }
 
   ngOnInit(){
+
     this.getItems().subscribe(items =>{
       console.log(items);
       this.test = items;
