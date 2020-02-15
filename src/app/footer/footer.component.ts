@@ -76,10 +76,4 @@ export class FooterComponent implements OnInit {
   addItem(emailToadd) {
     this.emailsCollection.add(emailToadd);
   }
-
-  // click on a link
-  handleGetUrl(e){
-    console.log('hi, you clicked on an ancore');
-    this.service.geturl();
-  }
 }

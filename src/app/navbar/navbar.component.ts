@@ -17,10 +17,4 @@ export class NavbarComponent implements OnInit {
      this.counter=arrLength
    })
   }
-
-  // click on a link
-  handleGetUrl(e){
-    console.log('hi, you clicked on an ancore');
-    this.service.geturl();
-  }
 }

@@ -2,30 +2,28 @@
     <div class="row">
         <div class="col"><img src="https://via.placeholder.com/250x250" alt=""></div>
         <div class="col">
-          <h3>item name holder</h3>
+          <h3>{{itemObj.name}}</h3>
           <div>
             <h5>Concentration</h5>
-            <p>500ml</p>
+            <p>{{itemObj.conc}}</p>
           </div>
           <div>
             <h5>Quantity</h5>
-            <app-quantity [itemId] = 'productID'></app-quantity>
-            <!-- <app-quantity [quantity] = 'quantity'></app-quantity> -->
+            <app-quantity [item] = 'itemObj'></app-quantity>
           </div>
         </div>
   
         <div class="col">
-          <h3>Total price holder</h3>
-          <p> price / item</p>
-  
-          <app-btntocart></app-btntocart>
+          <h3>{{itemObj.price * itemObj.quantity}}LE</h3>
+          <p> {{itemObj.price}}LE / item</p>
+          <app-btntocart [item] = 'itemObj'></app-btntocart>
         </div>
   
     </div>
 
     <div class="row">
       <p class="">
-        <a (click)="handleGetUrl($event)" class="colps" data-toggle="collapse" href="#collapse1" role="button" aria-expanded="false" aria-controls="collapse1" >
+        <a  class="colps" data-toggle="collapse" href="#collapse1" role="button" aria-expanded="false" aria-controls="collapse1" >
           Link with href
         </a>
       </p>
@@ -37,7 +35,7 @@
     </div>
     <div class="row">
       <p class="">
-        <a (click)="handleGetUrl($event)" class="colps" data-toggle="collapse" href="#collapse2" role="button" aria-expanded="false" aria-controls="collapse2">
+        <a  class="colps" data-toggle="collapse" href="#collapse2" role="button" aria-expanded="false" aria-controls="collapse2">
           Link with href
         </a>
       </p>
@@ -49,7 +47,7 @@
     </div>
     <div class="row">
       <p class="">
-        <a (click)="handleGetUrl($event)" class="colps" data-toggle="collapse" href="#collapse3" role="button" aria-expanded="false" aria-controls="collapse3">
+        <a  class="colps" data-toggle="collapse" href="#collapse3" role="button" aria-expanded="false" aria-controls="collapse3">
           Link with href
         </a>
       </p>
@@ -61,7 +59,7 @@
     </div>
     <div class="row">
       <p class="">
-        <a (click)="handleGetUrl($event)" class="colps" data-toggle="collapse" href="#collapse4" role="button" aria-expanded="false" aria-controls="collapse4">
+        <a  class="colps" data-toggle="collapse" href="#collapse4" role="button" aria-expanded="false" aria-controls="collapse4">
           Link with href
         </a>
       </p>
@@ -81,11 +79,9 @@
 
   <div class="container">
     <h2>Alternatives</h2>
-
-  <div class="cont">
-    <app-item *ngFor="let item of arrOfItems" [item]="item"></app-item>
-  </div>
+    <app-products></app-products>
 
   </div>
+
 
   

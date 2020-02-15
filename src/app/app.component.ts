@@ -1,4 +1,5 @@
 import { Component,OnInit } from '@angular/core';
+import { AddtocartService } from './addtocart.service';
 
 
 // firebase imports starts here
@@ -7,9 +8,6 @@ import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument 
 import { Observable } from 'rxjs';
 //endhere
 
-import { setTheme } from 'ngx-bootstrap/utils';
-
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -17,60 +15,35 @@ import { setTheme } from 'ngx-bootstrap/utils';
 })
 export class AppComponent {
   title = 'medica';
-  ancores;
-
- itemCollection: AngularFirestoreCollection;
+  itemCollection;
+  arrOfItems;
   items;
-  test;
-  itemDoc: AngularFirestoreDocument;
 
-  // objects to test with them
-  itemToadd = {
-    phones: [666, 777]
-  }
-
-  itemToEdit = {
-    phones: [990]
-  }
-
-
-  constructor(db: AngularFireDatabase, private angularFS: AngularFirestore){
-    // I don't know if that {{db: AngularFireDatabase}} is important
-    this.items = this.angularFS.collection('products').valueChanges({ idField: 'id' });
+  constructor(db: AngularFireDatabase,
+    private angularFS: AngularFirestore,
+    private service: AddtocartService){
+    // get data from database
+    this.items = this.angularFS.collection('products').valueChanges({idField: 'id'});
     this.itemCollection = this.angularFS.collection('products');
-    setTheme('bs4'); // or 'bs4';
+        // get data from database
+        this.getItems().subscribe(items =>{
+          this.arrOfItems = items;
+          this.addQuantityProp();
+          // store data in service
+          this.service.dbData = items;
+          console.log('data with quantity property from app component: ', this.arrOfItems)
+        })
   }
+  ngOnInit(){}
 
-  ngOnInit(){
-
-    this.getItems().subscribe(items =>{
-      console.log(items);
-      this.test = items;
-    })
-
-
-
-  }
-  
   getItems(){
     return this.items;
-  }
-
-  addItem(itemToadd){
-    this.itemCollection.add(itemToadd)
+    }
   
-  }
-
-  deleteItem(){
-    this.itemDoc = this.angularFS.doc('products/0');
-    // test above == collection name
-    // D7KqHhKUvTx9EsfcGFy6 is id of document
-    this.itemDoc.delete();
-  }
-
-  updateItem(){
-    this.itemDoc = this.angularFS.doc('products/0');
-    this.itemDoc.update(this.itemToEdit);
-  }
+    addQuantityProp(){
+      for(let i = 0; i< this.arrOfItems.length; i++){
+        this.arrOfItems[i].quantity = 0;
+      }
+    }
 
 }
