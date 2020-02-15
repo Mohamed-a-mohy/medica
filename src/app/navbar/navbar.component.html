@@ -2,15 +2,15 @@
     <section class="navbar-nav">
         <section class="navbar-nav_left">
             <ul class="navbar-nav_left-ul">
-                <li><a><img src="https://via.placeholder.com/90x80" alt="medica logo"></a></li>
-                <li><a>العربية</a></li>
+                <li><a (click)="handleGetUrl($event)" ><img src="https://via.placeholder.com/90x80" alt="medica logo"></a></li>
+                <li><a (click)="handleGetUrl($event)" >العربية</a></li>
             </ul>
         </section>
         <section class="navbar-nav_mid">
             <ul class="navbar-nav_mid-ul">
-                <li><a routerLink="/products">products</a></li>
-                <li><a routerLink="/shop">shop</a></li>
-                <li><a>about us</a></li>
+                <li><a (click)="handleGetUrl($event)"  routerLink="/products">products</a></li>
+                <li><a (click)="handleGetUrl($event)"  routerLink="/shop">shop</a></li>
+                <li><a (click)="handleGetUrl($event)" >about us</a></li>
             </ul>
         </section>
         <section class="navbar-nav_right">

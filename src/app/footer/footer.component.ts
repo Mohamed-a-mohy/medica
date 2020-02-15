@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { Observable } from 'rxjs';
+import { AddtocartService } from '../addtocart.service';
 
 @Component({
   selector: 'app-footer',
@@ -22,7 +23,8 @@ export class FooterComponent implements OnInit {
 
   // constructor function
   constructor(private fBuilder: FormBuilder,
-    private angularFS: AngularFirestore) {
+    private angularFS: AngularFirestore,
+    private service: AddtocartService) {
 
     this.emails = this.angularFS.collection('subscribeEmails').valueChanges();
     this.emailsCollection = this.angularFS.collection('subscribeEmails');
@@ -73,5 +75,11 @@ export class FooterComponent implements OnInit {
 
   addItem(emailToadd) {
     this.emailsCollection.add(emailToadd);
+  }
+
+  // click on a link
+  handleGetUrl(e){
+    console.log('hi, you clicked on an ancore');
+    this.service.geturl();
   }
 }

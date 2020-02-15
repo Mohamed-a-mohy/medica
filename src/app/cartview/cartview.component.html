@@ -9,11 +9,13 @@
           </div>
           <div>
             <h5>Quantity</h5>
-            <ul>
+            <!--<ul>
               <li><button class="btn btn-info" (click)="decrement()">-</button></li>
               <li class="quantity">{{item.quantity}}</li>
               <li><button class="btn btn-info" (click)="increment()">+</button></li>
-            </ul>
+            </ul> -->
+
+            <app-quantity [itemId] = 'item.id'></app-quantity>
           </div>
         </div>
   

@@ -1,13 +1,34 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { Router } from '@angular/router';
+import { Location } from '@angular/common';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AddtocartService {
-  constructor(){
+  route;
+  count = 0;
+  constructor(location: Location, router: Router) {
+    router.events.subscribe((val) => {
+      if(location.path() != ''){
+        this.route = location.path();
+      } else {
+        this.route = 'Home'
+      }
+      // console.log(this.route)
+    });
   }
 
+
+private routerBehavior = new BehaviorSubject(this.route) 
+  routeUrl = this.routerBehavior.asObservable()
+
+  geturl(){
+    this.routerBehavior.next(this.route);
+    console.log('from service: this.router.url = ', this.route);
+  }
 
 
   counterArr=[]
