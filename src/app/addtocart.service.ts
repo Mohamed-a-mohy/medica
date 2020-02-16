@@ -22,8 +22,11 @@ export class AddtocartService {
 
   // store data from databasse
   dbData = [];
+  getDataBehavior;
+  getData;
 
   //itemObj which will be sent to product details page
+  id;
   itemObj;
 
   constructor() {
@@ -53,6 +56,12 @@ export class AddtocartService {
       console.log('this.cartArr', this.cartArr)
     }
     this.cartItems = this.cartBehavior.asObservable();
+
+
+    // observable for get data from database 
+    this.getDataBehavior = new BehaviorSubject([]);
+    this.getData = this.getDataBehavior.asObservable();
+    this.itemObj 
   }
 
   viewCartLength(obj) {
@@ -133,17 +142,27 @@ export class AddtocartService {
   }
 
   // observable to track id changes in "product details" component and find the item that match this id
-  private updateIdBehavior = new BehaviorSubject('');
+
+  /* private */ 
+  
+  
+  updateIdBehavior = new BehaviorSubject('');
   updateId = this.updateIdBehavior.asObservable();
   trackIdChanges(id) {
+    
     this.updateIdBehavior.next(id);
-    if (this.dbData[0]) {
-      for (let i = 0; i < this.dbData.length; i++) {
-        if (this.dbData[i].id == id) {
-          this.itemObj = this.dbData[i];
-        }
-      }
-    }
+    this.id = id;
+    console.log(this.dbData);
+      // if (this.dbData[0]) {
+      //   for (let i = 0; i < this.dbData.length; i++) {
+      //     if (this.dbData[i].id == id) {
+      //       this.itemObj = this.dbData[i];
+      //     }
+      //   }
+      //   console.log("inside the if od this.dbData[0]")
+      // }
+    console.log("dpData ",this.dbData,"updatedID" ,this.updateId,"itemobj" , this.itemObj);
+    
   }
 
   // cancel an item from cart
@@ -172,5 +191,15 @@ export class AddtocartService {
     }
     this.cartBehavior.next(this.cartArr);
     sessionStorage.setItem('cartView', JSON.stringify(this.cartArr));
+  }
+
+
+  //when data came function
+
+  dataCame(arr){
+    this.getDataBehavior.next(arr);
+    
+    console.log(arr)
+    console.log(this.itemObj)
   }
 }

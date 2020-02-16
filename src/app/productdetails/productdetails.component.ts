@@ -44,10 +44,28 @@ export class ProductdetailsComponent implements OnInit {
           this.productID = this.cutString(this.routeLink, this.indexOflastSlash);
           console.log('ya rb', this.productID);
           this.service.trackIdChanges(this.productID);
-          this.itemObj = this.service.itemObj;
+          this.itemObj = this.service.itemObj
+          console.log(this.itemObj,this.service.itemObj)
+          /* this.itemObj = this.service.itemObj; */
+          
+          /* this.itemObj = this.service.updateId */
         }
       }
+      console.log(this.itemObj , "hiiii from itemOBJ",this.service.itemObj);
+      
     });
+    this.service.getData.subscribe(items=>{
+      for(let i = 0 ; i < items.length; i++){
+        console.log(this.productID)
+        if(this.productID == items[i].id){
+          this.itemObj = items[i]
+          console.log(this.productID , items)
+        }
+      }
+      
+    });
+
+    
   }
 
   ngOnInit() { }
