@@ -6,134 +6,171 @@ import { BehaviorSubject } from 'rxjs';
 })
 
 export class AddtocartService {
-
-  constructor() { }
+  // Behavior properties
 
   // the observable of array length
   // this array.length used in "cart" icon counter
+  private CounterBehavior;
+  counterArr;
+  cartCounter;
 
-  counterArr=[];
-  private CounterBehavior = new BehaviorSubject(0);
-  cartCounter = this.CounterBehavior.asObservable();
-  viewCartLength(obj){
+  // the observable of cart items
+  // this array used in "cart view"
+  private cartBehavior;
+  cartArr;
+  cartItems;
+
+  // store data from databasse
+  dbData = [];
+
+  //itemObj which will be sent to product details page
+  itemObj;
+
+  constructor() {
+    // save data of the cart in sessionStorage
+
+     // the observable of array length
+    // this array.length used in "cart" icon counter
+    if (!sessionStorage.getItem('counterArray')) {
+      sessionStorage.setItem('counterArray', '[]');
+      this.CounterBehavior = new BehaviorSubject(0);
+      this.counterArr = [];
+    }else {
+      this.counterArr = JSON.parse(sessionStorage.getItem('counterArray'));
+      this.CounterBehavior = new BehaviorSubject(this.counterArr.length);
+    }
+    this.cartCounter = this.CounterBehavior.asObservable();
+
+    // the observable of cart items
+    // this array used in "cart view"
+    if (!sessionStorage.getItem('cartView')) {
+      sessionStorage.setItem('cartView', '[]');
+      this.cartBehavior = new BehaviorSubject([]);
+      this.cartArr = [];
+    }else {
+      this.cartBehavior = new BehaviorSubject(JSON.parse(sessionStorage.getItem('cartView')));
+      this.cartArr = JSON.parse(sessionStorage.getItem('cartView'));
+      console.log('this.cartArr', this.cartArr)
+    }
+    this.cartItems = this.cartBehavior.asObservable();
+  }
+
+  viewCartLength(obj) {
     // get the array length to view in cart icon 
     this.counterArr.push(obj);
     this.CounterBehavior.next(this.counterArr.length);
+    sessionStorage.setItem('counterArray', JSON.stringify(this.counterArr));
   }
-  removeFromCartLength(obj){
+
+  removeFromCartLength(obj) {
     let flag = false;
     let index;
-    for(let i = this.counterArr.length - 1; i>=0; i--){
-      if(obj.id == this.counterArr[i].id){
+    for (let i = this.counterArr.length - 1; i >= 0; i--) {
+      if (obj.id == this.counterArr[i].id) {
         flag = true;
         index = i;
       }
     }
-    if(flag){
-      this.counterArr.splice(index,1);
+    if (flag) {
+      this.counterArr.splice(index, 1);
       this.CounterBehavior.next(this.counterArr.length);
+      sessionStorage.setItem('counterArray', JSON.stringify(this.counterArr));
     }
   }
 
-  // the observable of cart items
-  // this array used in "cart view"
-
-  cartArr=[];
-  private cartBehavior = new BehaviorSubject([]);
-  cartItems = this.cartBehavior.asObservable();
-  viewCartItems(obj){
+  viewCartItems(obj) {
     //if to check if array exist
-    if(this.cartArr[0]){
+    if (this.cartArr[0]) {
       let flag = false;
       let index;
       // search for item in the array
-      for(let i = 0 ; i<this.cartArr.length ; i ++){
-        if(this.cartArr[i].id==obj.id){
+      for (let i = 0; i < this.cartArr.length; i++) {
+        if (this.cartArr[i].id == obj.id) {
           flag = true;
           index = i;
         }
       }
 
-      if(flag){ // if the item exist in the array
+      if (flag) { // if the item exist in the array
         this.cartArr[index].quantity++;
-      }else{ // if the item not exist un the array
+      } else { // if the item not exist un the array
         obj.quantity++;
         this.cartArr.push(obj);
       }
       //if the arry not exist push 1st item in it 
-    }else{
+    } else {
       obj.quantity++;
       this.cartArr.push(obj);
     }
     // update observable
     this.cartBehavior.next(this.cartArr);
-   }
+    sessionStorage.setItem('cartView', JSON.stringify(this.cartArr));
+  }
 
-   decreaseViewCartItem(obj){
-     //if to check if array exist
-    if(this.cartArr[0]){
+  decreaseViewCartItem(obj) {
+    //if to check if array exist
+    if (this.cartArr[0]) {
       let flag = false;
       let index;
       // search for item in the array
-      for(let i = this.cartArr.length - 1 ; i>=0 ; i--){
-        if(this.cartArr[i].id==obj.id){
+      for (let i = this.cartArr.length - 1; i >= 0; i--) {
+        if (this.cartArr[i].id == obj.id) {
           flag = true;
           index = i;
         }
       }
-      if(flag){ // if the item exist in the array
+      if (flag && this.cartArr[index].quantity > 0) { // if the item exist in the array
         this.cartArr[index].quantity--;
+        if (this.cartArr[index].quantity == 0) {
+          this.cartArr.splice(index, 1);
+        }
         // update observable
-       this.cartBehavior.next(this.cartArr);
+        this.cartBehavior.next(this.cartArr);
+        sessionStorage.setItem('cartView', JSON.stringify(this.cartArr));
       }
     }
 
-   }
-  
+  }
 
-   // store data from databasse
-   dbData = [];
-
-   //itemObj which will be sent to product details page
-   itemObj;
-
-   // observable to track id changes in "product details" component and find the item that match this id
-   private updateIdBehavior = new BehaviorSubject('');
-   updateId = this.updateIdBehavior.asObservable();
-   trackIdChanges(id){
-     this.updateIdBehavior.next(id);
-     if(this.dbData[0]){
-       for(let i = 0; i<this.dbData.length; i++){
-         if(this.dbData[i].id == id){
+  // observable to track id changes in "product details" component and find the item that match this id
+  private updateIdBehavior = new BehaviorSubject('');
+  updateId = this.updateIdBehavior.asObservable();
+  trackIdChanges(id) {
+    this.updateIdBehavior.next(id);
+    if (this.dbData[0]) {
+      for (let i = 0; i < this.dbData.length; i++) {
+        if (this.dbData[i].id == id) {
           this.itemObj = this.dbData[i];
-         }
-       }
-     }
-   }
+        }
+      }
+    }
+  }
 
-   // cancel an item from cart
-   cancelOrderFromCart(obj){
-     // update array.length which use in cart counter
+  // cancel an item from cart
+  cancelOrderFromCart(obj) {
+    // update array.length which use in cart counter
     let indexes = [];
-    for(let i = this.counterArr.length - 1; i>=0 ; i--){
-      if(obj.id == this.counterArr[i].id){
+    for (let i = this.counterArr.length - 1; i >= 0; i--) {
+      if (obj.id == this.counterArr[i].id) {
         indexes.push(i);
       }
     }
-    for(let i = 0; i < indexes.length ; i++){
+    for (let i = 0; i < indexes.length; i++) {
       let j = indexes[i];
-      this.counterArr.splice(j,1);
+      this.counterArr.splice(j, 1);
     }
     this.CounterBehavior.next(this.counterArr.length);
-
+    sessionStorage.setItem('counterArray', JSON.stringify(this.counterArr));
+    
     // update the item quantity in the arr of items in cart
 
-    for(let i = 0; i < this.cartArr.length; i++){
-      if(obj.id == this.cartArr[i].id){
+    for (let i = 0; i < this.cartArr.length; i++) {
+      if (obj.id == this.cartArr[i].id) {
         obj.quantity = 0;
-        this.cartArr.splice(i,1);
+        this.cartArr.splice(i, 1);
       }
     }
     this.cartBehavior.next(this.cartArr);
-   }
+    sessionStorage.setItem('cartView', JSON.stringify(this.cartArr));
+  }
 }
