@@ -53,25 +53,25 @@ export class AddtocartService {
     // this array.length used in "cart" icon counter
     if (!sessionStorage.getItem('counterArray')) {
       // sessionStorage.setItem('counterArray', '[]');
-      this.CounterBehavior = new BehaviorSubject(0);
-      this.counterArr = [];
     }else {
       // this.counterArr = JSON.parse(sessionStorage.getItem('counterArray'));
       // this.CounterBehavior = new BehaviorSubject(this.counterArr.length);
     }
+    this.CounterBehavior = new BehaviorSubject(0);
+    this.counterArr = [];
     this.cartCounter = this.CounterBehavior.asObservable();
 
     // the observable of cart items
     // this array used in "cart view"
     if (!sessionStorage.getItem('cartView')) {
       // sessionStorage.setItem('cartView', '[]');
-      this.cartBehavior = new BehaviorSubject([]);
-      this.cartArr = [];
     }else {
       // this.cartBehavior = new BehaviorSubject(JSON.parse(sessionStorage.getItem('cartView')));
       // this.cartArr = JSON.parse(sessionStorage.getItem('cartView'));
       // console.log('this.cartArr', this.cartArr)
     }
+    this.cartBehavior = new BehaviorSubject([]);
+    this.cartArr = [];
     this.cartItems = this.cartBehavior.asObservable();
 
 
@@ -175,7 +175,7 @@ export class AddtocartService {
     
     this.updateIdBehavior.next(id);
     this.id = id;
-    console.log(this.dbData);
+    // console.log(this.dbData);
       // if (this.dbData[0]) {
       //   for (let i = 0; i < this.dbData.length; i++) {
       //     if (this.dbData[i].id == id) {
@@ -184,7 +184,7 @@ export class AddtocartService {
       //   }
       //   console.log("inside the if od this.dbData[0]")
       // }
-    console.log("dpData ",this.dbData,"updatedID" ,this.updateId,"itemobj" , this.itemObj);
+    // console.log("dpData ",this.dbData,"updatedID" ,this.updateId,"itemobj" , this.itemObj);
     
   }
 
@@ -221,8 +221,7 @@ export class AddtocartService {
 
   dataCame(arr){
     this.getDataBehavior.next(arr);
-    
     console.log(arr)
-    console.log(this.itemObj)
+    // console.log(this.itemObj)
   }
 }
