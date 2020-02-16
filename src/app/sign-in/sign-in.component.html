@@ -1,0 +1,18 @@
+<label id="sinIn-Lbl">Sign In</label>
+<a routerLink='/signUp' id="signUP-btn">Sign Up</a>
+<form action="" [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)">
+    <section class="input-feild">
+        <input type="email" formControlName="email" placeholder="Email">
+        <span>@</span>
+    </section>
+    <section class="input-feild">
+        <input type="password" formControlName="password" placeholder="Password">
+        <span>@</span>
+    </section>
+
+    <span class="mesError" ></span>
+    <span class="mesError"></span>
+    <button  id="submit-btn" type="submit" >Sign In</button>
+
+
+</form>

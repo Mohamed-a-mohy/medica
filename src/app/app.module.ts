@@ -24,6 +24,8 @@ import { CartviewComponent } from './cartview/cartview.component';
 import { QuantityComponent } from './quantity/quantity.component';
 import { ProductsComponent } from './products/products.component';
 import { CancelfromcartComponent } from './cancelfromcart/cancelfromcart.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
+import { SignInComponent } from './sign-in/sign-in.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,8 @@ import { CancelfromcartComponent } from './cancelfromcart/cancelfromcart.compone
     QuantityComponent,
     ProductsComponent,
     CancelfromcartComponent,
+    SignUpComponent,
+    SignInComponent,
   ],
   imports: [
     BrowserModule,
