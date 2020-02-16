@@ -1,5 +1,9 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+// route import
+import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -24,33 +28,47 @@ export class AddtocartService {
   dbData = [];
 
   //itemObj which will be sent to product details page
+  id;
   itemObj;
 
-  constructor() {
-    // save data of the cart in sessionStorage
+  //track changes of url
+  routeLink;
 
+  constructor(private route: ActivatedRoute,
+    private router: Router,
+    location: Location) {
+      // track changes of url
+    router.events.subscribe((val) => {
+      if (location.path() != '') {
+        this.routeLink = location.path();
+      } else {
+        this.routeLink = 'Home'
+      }
+    });
+
+    // save data of the cart in sessionStorage
      // the observable of array length
     // this array.length used in "cart" icon counter
     if (!sessionStorage.getItem('counterArray')) {
-      sessionStorage.setItem('counterArray', '[]');
+      // sessionStorage.setItem('counterArray', '[]');
       this.CounterBehavior = new BehaviorSubject(0);
       this.counterArr = [];
     }else {
-      this.counterArr = JSON.parse(sessionStorage.getItem('counterArray'));
-      this.CounterBehavior = new BehaviorSubject(this.counterArr.length);
+      // this.counterArr = JSON.parse(sessionStorage.getItem('counterArray'));
+      // this.CounterBehavior = new BehaviorSubject(this.counterArr.length);
     }
     this.cartCounter = this.CounterBehavior.asObservable();
 
     // the observable of cart items
     // this array used in "cart view"
     if (!sessionStorage.getItem('cartView')) {
-      sessionStorage.setItem('cartView', '[]');
+      // sessionStorage.setItem('cartView', '[]');
       this.cartBehavior = new BehaviorSubject([]);
       this.cartArr = [];
     }else {
-      this.cartBehavior = new BehaviorSubject(JSON.parse(sessionStorage.getItem('cartView')));
-      this.cartArr = JSON.parse(sessionStorage.getItem('cartView'));
-      console.log('this.cartArr', this.cartArr)
+      // this.cartBehavior = new BehaviorSubject(JSON.parse(sessionStorage.getItem('cartView')));
+      // this.cartArr = JSON.parse(sessionStorage.getItem('cartView'));
+      // console.log('this.cartArr', this.cartArr)
     }
     this.cartItems = this.cartBehavior.asObservable();
   }
@@ -59,7 +77,7 @@ export class AddtocartService {
     // get the array length to view in cart icon 
     this.counterArr.push(obj);
     this.CounterBehavior.next(this.counterArr.length);
-    sessionStorage.setItem('counterArray', JSON.stringify(this.counterArr));
+    // sessionStorage.setItem('counterArray', JSON.stringify(this.counterArr));
   }
 
   removeFromCartLength(obj) {
@@ -71,10 +89,14 @@ export class AddtocartService {
         index = i;
       }
     }
-    if (flag) {
+    if (flag && this.routeLink.includes("product/") && this.cartArr[index].quantity > 0) {
       this.counterArr.splice(index, 1);
       this.CounterBehavior.next(this.counterArr.length);
-      sessionStorage.setItem('counterArray', JSON.stringify(this.counterArr));
+      // sessionStorage.setItem('counterArray', JSON.stringify(this.counterArr));
+    }else if(flag && this.routeLink.includes("shop") && this.cartArr[index].quantity > 1){
+      this.counterArr.splice(index, 1);
+      this.CounterBehavior.next(this.counterArr.length);
+      // sessionStorage.setItem('counterArray', JSON.stringify(this.counterArr));
     }
   }
 
@@ -104,7 +126,7 @@ export class AddtocartService {
     }
     // update observable
     this.cartBehavior.next(this.cartArr);
-    sessionStorage.setItem('cartView', JSON.stringify(this.cartArr));
+    // sessionStorage.setItem('cartView', JSON.stringify(this.cartArr));
   }
 
   decreaseViewCartItem(obj) {
@@ -119,15 +141,17 @@ export class AddtocartService {
           index = i;
         }
       }
-      if (flag && this.cartArr[index].quantity > 0) { // if the item exist in the array
-        this.cartArr[index].quantity--;
-        if (this.cartArr[index].quantity == 0) {
-          this.cartArr.splice(index, 1);
+        if(flag && this.routeLink.includes("shop") && this.cartArr[index].quantity > 1){
+          this.cartArr[index].quantity--;
+        }else if(flag && this.routeLink.includes("product/") && this.cartArr[index].quantity > 0){
+          this.cartArr[index].quantity--;
+          if(this.cartArr[index].quantity == 0){
+            this.cartArr.splice(index, 1);
+          }
         }
         // update observable
         this.cartBehavior.next(this.cartArr);
-        sessionStorage.setItem('cartView', JSON.stringify(this.cartArr));
-      }
+        // sessionStorage.setItem('cartView', JSON.stringify(this.cartArr));
     }
 
   }
@@ -160,8 +184,8 @@ export class AddtocartService {
       this.counterArr.splice(j, 1);
     }
     this.CounterBehavior.next(this.counterArr.length);
-    sessionStorage.setItem('counterArray', JSON.stringify(this.counterArr));
-    
+    // sessionStorage.setItem('counterArray', JSON.stringify(this.counterArr));
+
     // update the item quantity in the arr of items in cart
 
     for (let i = 0; i < this.cartArr.length; i++) {
@@ -171,6 +195,6 @@ export class AddtocartService {
       }
     }
     this.cartBehavior.next(this.cartArr);
-    sessionStorage.setItem('cartView', JSON.stringify(this.cartArr));
+    // sessionStorage.setItem('cartView', JSON.stringify(this.cartArr));
   }
 }
