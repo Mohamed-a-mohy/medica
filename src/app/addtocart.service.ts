@@ -157,6 +157,8 @@ export class AddtocartService {
             this.cartArr.splice(index, 1);
           }
         }
+
+      
         // update observable
         this.cartBehavior.next(this.cartArr);
         // sessionStorage.setItem('cartView', JSON.stringify(this.cartArr));
