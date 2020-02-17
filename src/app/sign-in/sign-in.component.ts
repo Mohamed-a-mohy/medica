@@ -46,6 +46,7 @@ export class SignInComponent implements OnInit {
       document.getElementsByClassName("mesError")[0].innerHTML =""
       document.getElementsByClassName("mesError")[1].innerHTML = "please enter your email and password";
     }
+    localStorage.setItem("checkLogin", "true");
   }
 }
 

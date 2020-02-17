@@ -1,0 +1,55 @@
+<!-- Button trigger modal -->
+<a type="button" data-toggle="modal" data-target="#exampleModalCenter">
+    <i class="fas fa-camera"></i>
+</a>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header border-0">
+                <h5 class="modal-title" id="exampleModalLongTitle">Order with Roshetta</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="roshettaForm">
+                    <section id="imageUpload" class="input-feild border-bottom pb-1 pt-3 w-100 m-3">
+                        <i id="imageIcon" class="fas fa-camera">Upload Roshetta</i>
+                        <input class="w-75" type="file" formControlName="roshettaImage" (change)="readURL($event)">
+                    </section>
+                    <section class="input-feild border-bottom pb-1 pt-3 w-100 m-3">
+                        <input class="w-75 border-0" type="text" formControlName="roshettaNotes"
+                            placeholder="Additional Notes">
+                    </section>
+                    <div class="custom-control custom-checkbox m-3">
+                        <input type="checkbox" class="custom-control-input" id="customCheck1"
+                            formControlName="schedualCheck" #schedualCheck>
+                        <label class="custom-control-label" for="customCheck1">Click here if you
+                            want to make this order schedual</label>
+                    </div>
+                    <section class="schedualArea m-3" *ngIf="schedualCheck.checked">
+                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                            <label class="btn active">
+                                <input type="radio" name="schedualCheck" id="weeklyCheck" autocomplete="off" value="week"> weekly
+                            </label>
+                            <label class="btn">
+                                <input type="radio" name="schedualCheck" id="twoWeeksCheck" autocomplete="off" value="2weeks"> 2 weeks
+                            </label>
+                            <label class="btn">
+                                <input type="radio" name="schedualCheck" id="monthlyCheck" autocomplete="off" value="month"> monthly
+                            </label>
+                        </div>
+                        
+                    </section>
+                </form>
+            </div>
+            <div class="modal-footer border-0 justify-content-center">
+                <button type="button" class="btn border" data-dismiss="modal">continue shopping</button>
+                <button type="button" class="btn border">checkout</button>
+            </div>
+        </div>
+    </div>
+</div>
