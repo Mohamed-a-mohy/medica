@@ -1,30 +1,27 @@
-<div class="container">
-    <div *ngFor="let item of itemsInCart" class="row">
-        <div class="col"><img src="https://via.placeholder.com/250x250" alt=""></div>
-        <div class="col">
-          <h3>{{item.name}}</h3>
-          <div>
-            <h5>Concentration</h5>
-            <p>{{item.conc}}</p>
-          </div>
-          <div>
-            <h5>Quantity</h5>
-            <!--<ul>
-              <li><button class="btn btn-info" (click)="decrement()">-</button></li>
-              <li class="quantity">{{item.quantity}}</li>
-              <li><button class="btn btn-info" (click)="increment()">+</button></li>
-            </ul> -->
-
-            <app-quantity [item] = 'item'></app-quantity>
-          </div>
-        </div>
-  
-        <div class="col">
-          <h3>{{item.price * item.quantity}}LE</h3>
-          <p> {{item.price}} LE/ item</p>
-  
-          <!-- <button class="btn btn-dark addToCart">Add to cart</button>-->
-          <app-btntocart [item] = 'item'></app-btntocart>
-          <app-cancelfromcart [item] = 'item'></app-cancelfromcart>
-                </div>
+<div class="container" *ngIf='itemsInCart[0] else elseBlock'>
+  <div *ngFor="let item of itemsInCart" class="row">
+    <div class="col"><img src="https://via.placeholder.com/250x250" alt=""></div>
+    <div class="col">
+      <h3>{{item.name}}</h3>
+      <div>
+        <h5>Concentration</h5>
+        <p>{{item.conc}}</p>
+      </div>
+      <div>
+        <h5>Quantity</h5>
+        <app-quantity [item]='item'></app-quantity>
+      </div>
     </div>
+
+    <div class="col">
+      <h3>{{item.price * item.quantity}}LE</h3>
+      <p> {{item.price}} LE/ item</p>
+      <app-btntocart [item]='item'></app-btntocart>
+      <app-cancelfromcart [item]='item'></app-cancelfromcart>
+    </div>
+  </div>
+</div>
+
+<ng-template #elseBlock>
+  <p style="font-size: 100px;">I'm empty</p>
+</ng-template>

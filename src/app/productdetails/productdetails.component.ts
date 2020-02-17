@@ -24,6 +24,9 @@ export class ProductdetailsComponent implements OnInit {
 
   // itemObj which hold item info
   itemObj;
+  itemsInCart;
+
+  flag = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -44,30 +47,41 @@ export class ProductdetailsComponent implements OnInit {
           this.productID = this.cutString(this.routeLink, this.indexOflastSlash);
           console.log('ya rb', this.productID);
           this.service.trackIdChanges(this.productID);
-        /*   this.itemObj = this.service.itemObj
-          console.log(this.itemObj,this.service.itemObj) */
-          /* this.itemObj = this.service.itemObj; */
-          
-          /* this.itemObj = this.service.updateId */
         }
       }
-/*       console.log(this.itemObj , "hiiii from itemOBJ",this.service.itemObj); 
- */    });
-
-    this.service.getData.subscribe(items=>{
-      for(let i = 0 ; i < items.length; i++){
-        console.log(this.productID)
-        if(this.productID == items[i].id){
-          this.itemObj = items[i]
-          console.log(this.productID , items)
-        }
-      }
-    });
+  });
 
     
   }
 
-  ngOnInit() { }
+  ngOnInit() {  
+
+    this.service.getData.subscribe(items=>{
+      for(let i = 0 ; i < items.length; i++){
+        if(this.productID == items[i].id){
+          this.itemObj = items[i]
+          console.log(this.productID,"items array" , items)
+        }
+      }
+    });
+
+    this.service.cartItems.subscribe(items=>{
+      this.itemsInCart=items;
+      if(this.itemsInCart[0]){
+        console.log(this.itemObj.id)
+        console.log(this.itemsInCart)
+        for(let i = 0; i< this.itemsInCart.length; i++){
+          if(this.itemsInCart[i].id == this.itemObj.id){
+            this.flag = true;
+            this.itemObj.quantity = this.itemsInCart[i].quantity;
+          }
+        }
+        if(this.flag == false){
+          this.itemObj.quantity = 0;
+        }
+      }
+    })
+   }
 
 
   cutString(str, index) {

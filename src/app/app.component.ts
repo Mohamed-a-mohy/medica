@@ -1,4 +1,4 @@
-import { Component,OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AddtocartService } from './addtocart.service';
 
 
@@ -21,32 +21,41 @@ export class AppComponent {
 
   constructor(db: AngularFireDatabase,
     private angularFS: AngularFirestore,
-    private service: AddtocartService){
+    private service: AddtocartService) {
     // get data from database
-    this.items = this.angularFS.collection('products').valueChanges({idField: 'id'});
+    this.items = this.angularFS.collection('products').valueChanges({ idField: 'id' });
     this.itemCollection = this.angularFS.collection('products');
-        // get data from database
-        this.getItems().subscribe(items =>{
-          this.arrOfItems = items;
-          this.addQuantityProp();
-          // store data in service
+    this.getItems().subscribe(items => {
+      // check sesttion storage
+      if (sessionStorage.getItem('allData')) { // if data already exist
+        // send data to service and store it in behavour subject
+        this.arrOfItems = JSON.parse(sessionStorage.getItem('allData'));
+        this.service.dataCame(this.arrOfItems);
+      }else{ // if data not exist
 
-          
-          // this.service.dbData = items;
-          this.service.dataCame(items)
-          console.log('data with quantity property from app component: ', this.arrOfItems)
-        })
-  }
-  ngOnInit(){}
-
-  getItems(){
-    return this.items;
-    }
-  
-    addQuantityProp(){
-      for(let i = 0; i< this.arrOfItems.length; i++){
-        this.arrOfItems[i].quantity = 0;
+        /* 1- add quantity proparty to each item = 0;
+        2- send data to service and store it in behavour subject */
+        this.arrOfItems = this.addQuantityProp(items);
+        this.service.dataCame(this.arrOfItems);
       }
-    }
 
+      if (!sessionStorage.getItem('cartView')) {
+        sessionStorage.setItem('cartView', '[]');
+      } else {
+        this.service.getCartView(JSON.parse(sessionStorage.getItem('cartView')));
+      }
+    })
+  }
+  ngOnInit() { }
+
+  getItems() {
+    return this.items;
+  }
+
+  addQuantityProp(arr) {
+    for (let i = 0; i < arr.length; i++) {
+      arr[i].quantity = 0;
+    }
+    return arr;
+  }
 }

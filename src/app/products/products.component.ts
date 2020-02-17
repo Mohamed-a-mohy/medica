@@ -20,10 +20,7 @@ export class ProductsComponent implements OnInit {
 
   
   constructor(private angularFS: AngularFirestore,
-    private service: AddtocartService) { 
-
-      /* this.arrOfData = this.service.dbData;*/
-      
+    private service: AddtocartService) {       
       
     }
 

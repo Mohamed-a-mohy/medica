@@ -13,8 +13,7 @@ export class BtntocartComponent implements OnInit {
   }
 
   addToCart(){
-    this.service.viewCartLength(this.item)
-    this.service.viewCartItems(this.item)
+    this.service.viewCartItems(this.item);
   }
 
 }
