@@ -17,12 +17,19 @@ import { AddtocartService } from '../addtocart.service';
 export class ProductsComponent implements OnInit {
   // @Input() item;
   arrOfData;
+
   
   constructor(private angularFS: AngularFirestore,
-    private service: AddtocartService) { 
-      this.arrOfData = this.service.dbData;
+    private service: AddtocartService) {       
+      
     }
 
-  ngOnInit() {}
+  ngOnInit() {
+
+      this.service.getData.subscribe(items=>{
+      this.arrOfData=items;
+      console.log("hiiii" , this.arrOfData) 
+    });
+  }
 }
 

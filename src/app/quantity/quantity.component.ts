@@ -15,12 +15,10 @@ export class QuantityComponent implements OnInit {
   ngOnInit() { }
 
   addToCart(){
-    this.service.viewCartLength(this.item);
     this.service.viewCartItems(this.item);
-  }
+    }
 
   removeFromCart(){
-    this.service.removeFromCartLength(this.item);
     this.service.decreaseViewCartItem(this.item);
   }
 }
