@@ -46,7 +46,8 @@ export class AppComponent {
       }
     })
   }
-  ngOnInit() { }
+  ngOnInit() {
+   }
 
   getItems() {
     return this.items;
