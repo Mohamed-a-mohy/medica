@@ -26,6 +26,7 @@ import { ProductsComponent } from './products/products.component';
 import { CancelfromcartComponent } from './cancelfromcart/cancelfromcart.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { SignInComponent } from './sign-in/sign-in.component';
+import { RoshettaFormComponent } from './roshetta-form/roshetta-form.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { SignInComponent } from './sign-in/sign-in.component';
     CancelfromcartComponent,
     SignUpComponent,
     SignInComponent,
+    RoshettaFormComponent,
   ],
   imports: [
     BrowserModule,
