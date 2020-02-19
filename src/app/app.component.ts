@@ -19,6 +19,10 @@ export class AppComponent {
   arrOfItems;
   items;
 
+  conflict;
+  confCollection;
+  conflictArr;
+
   constructor(db: AngularFireDatabase,
     private angularFS: AngularFirestore,
     private service: AddtocartService) {
@@ -45,12 +49,25 @@ export class AppComponent {
         this.service.getCartView(JSON.parse(sessionStorage.getItem('cartView')));
       }
     })
+
+    // get data of conflict from database
+    this.conflict = this.angularFS.collection('interactions').valueChanges({ idField: 'id' });
+    this.confCollection = this.angularFS.collection('interactions');
+    this.getConfliict().subscribe(items => {
+      this.conflictArr = items;
+      this.service.getConflictData(items);
+    });
+
   }
   ngOnInit() {
    }
 
   getItems() {
     return this.items;
+  }
+
+  getConfliict() {
+    return this.conflict;
   }
 
   addQuantityProp(arr) {

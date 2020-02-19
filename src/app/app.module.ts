@@ -27,6 +27,7 @@ import { CancelfromcartComponent } from './cancelfromcart/cancelfromcart.compone
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { RoshettaFormComponent } from './roshetta-form/roshetta-form.component';
+import { WarningModalComponent } from './warning-modal/warning-modal.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { RoshettaFormComponent } from './roshetta-form/roshetta-form.component';
     SignUpComponent,
     SignInComponent,
     RoshettaFormComponent,
+    WarningModalComponent,
   ],
   imports: [
     BrowserModule,
