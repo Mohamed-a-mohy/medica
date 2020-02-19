@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable,EventEmitter } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 // route import
@@ -6,16 +6,28 @@ import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 
+
+
+//////try   to call func fro manother component  Event emitter ^^^^^^
+import { Subscription } from 'rxjs/internal/Subscription';  
+
 @Injectable({
   providedIn: 'root'
 })
 
 export class AddtocartService {
+/////////////////
+///try//////////
+invokeFirstComponentFunction = new EventEmitter();    
+  subsVar: Subscription;
+
+
 
   // store data from databasse
   dbData = [];
   getDataBehavior;
   getData;
+ 
   
   //itemObj which will be sent to product details page
   id;
@@ -68,6 +80,10 @@ export class AddtocartService {
     // observable for get data of products from database 
     this.getDataBehavior = new BehaviorSubject([]);
     this.getData = this.getDataBehavior.asObservable();
+
+
+
+
 
     // ----------------------------------------------------------------
     // observables of cart functionanilty
@@ -281,5 +297,13 @@ export class AddtocartService {
       this.updateIdBehavior.next(id);
       this.id = id;
     }
+
+
+
+
+    ///////////tryyy
+    onFirstComponentButtonClick() {    
+      this.invokeFirstComponentFunction.emit();    
+    }    
 
 }

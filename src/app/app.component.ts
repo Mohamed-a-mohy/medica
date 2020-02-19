@@ -22,6 +22,7 @@ export class AppComponent {
   conflict;
   confCollection;
   conflictArr;
+  navProduct;
 
   constructor(db: AngularFireDatabase,
     private angularFS: AngularFirestore,
@@ -75,5 +76,9 @@ export class AppComponent {
       arr[i].quantity = 0;
     }
     return arr;
+  }
+
+  callAnotherFunc(e){
+    this.navProduct = "done"
   }
 }

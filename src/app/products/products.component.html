@@ -1,10 +1,10 @@
 <section>
     <div>
         <ul class=" list-group list-group-horizontal-sm d-flex flex-row">
-             <li *ngFor="let cat of category"  (click)="isChecked(checkedInput)" (click)="categorySelector(cat)" (click)="filterGeneration(newArr)" class="list-group-item" ><a>{{cat}}</a></li>
+             <li *ngFor="let cat of category"  (click)="isChecked(checkedInput)" (click)="categorySelector(cat)" (click)="filterGeneration(newArr)" class="list-group-item"  (click)="sortCheck()"><a>{{cat}}</a></li>
         </ul>
         <ul *ngIf="activeCategory" class=" list-group list-group-horizontal d-flex flex-row">
-            <li *ngFor="let sCat of subCatObj[activeCategory]" class="list-group-item "  (click)="isChecked(checkedInput)" (click)="subCategorySelector(sCat)" (click)="filterGeneration(newArr)" > <a> {{sCat}}</a> </li>
+            <li *ngFor="let sCat of subCatObj[activeCategory]" class="list-group-item "  (click)="isChecked(checkedInput)" (click)="subCategorySelector(sCat)" (click)="filterGeneration(newArr)" (click)="sortCheck()" > <a> {{sCat}}</a> </li>
         </ul>
         <div class="dropdown">
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
@@ -57,7 +57,7 @@
         </div>
             <!-- ---------------brand_filter--------------- -->
 
-    <!-- <div *ngIf="activeCategory!='medicine'" > -->
+    <div *ngIf="activeCategory!='medicine'">
         <div *ngIf="typeFilterArray.length>0">
             <div class="brand_filter">
                 <h4>Brands</h4>
@@ -67,7 +67,7 @@
                 </div>
             </div>
         </div>
-    <!-- </div> -->
+     </div>
      
     </section>
     <section class="main">
@@ -88,13 +88,11 @@
                     <app-item *ngFor="let item of listOfProducts" [item]="item"></app-item>
                 </div>
             </div>
-            <ng-template #elseBlock>
+            <!-- <ng-template #elseBlock>
                 <div class="cont">
                     <app-item *ngFor="let item of arrOfData " [item]="item"></app-item>
                 </div>
-            </ng-template>
-
-            
-        </div>arrOfData
+            </ng-template>  -->
+        </div>
     </section>
 </section>
