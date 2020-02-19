@@ -8,10 +8,6 @@ import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument 
 // serve import
 import { AddtocartService } from '../addtocart.service';
 
-// route import
-import { Router } from '@angular/router';
-import { Location, JsonPipe } from '@angular/common';
-import { element } from 'protractor';
 
 @Component({
   selector: 'app-products',
@@ -28,12 +24,12 @@ export class ProductsComponent implements OnInit {
   
   constructor(
     private angularFS: AngularFirestore,
-    private service: AddtocartService,
-    private router: Router,location: Location) {}
+    private service: AddtocartService,) {}
 
   // @Input() item;
   arrOfData;
   newArr = [];
+
 
   /////list of products after filtering
 
@@ -50,6 +46,7 @@ export class ProductsComponent implements OnInit {
   checkedInput=document.getElementsByClassName("checkedInput")
 
   ////price range variables////
+
 
   arrayOfPrice: number[] = [];
   maxPrice: number;

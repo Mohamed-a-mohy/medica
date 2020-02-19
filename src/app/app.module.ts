@@ -27,10 +27,11 @@ import { CancelfromcartComponent } from './cancelfromcart/cancelfromcart.compone
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { AlternativeComponent } from './alternative/alternative.component';
-
 //pagination
 import { JwPaginationComponent } from 'jw-angular-pagination';
 import { OrdersummeryComponent } from './ordersummery/ordersummery.component';
+import { RoshettaFormComponent } from './roshetta-form/roshetta-form.component';
+import { WarningModalComponent } from './warning-modal/warning-modal.component';
 
 
 @NgModule({
@@ -50,6 +51,8 @@ import { OrdersummeryComponent } from './ordersummery/ordersummery.component';
     AlternativeComponent,
     JwPaginationComponent,
     OrdersummeryComponent,
+    RoshettaFormComponent,
+    WarningModalComponent,
   ],
   imports: [
     BrowserModule,

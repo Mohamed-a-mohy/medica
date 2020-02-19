@@ -1,5 +1,4 @@
 import { Component, OnInit } from "@angular/core";
-import { AngularFireDatabase } from "angularfire2/database";
 import { AngularFirestore, AngularFirestoreCollection} from "angularfire2/firestore";
 import { FormBuilder, FormGroup, NgForm, Validators } from "@angular/forms";
 
@@ -76,6 +75,7 @@ export class SignUpComponent implements OnInit {
         image: this.myForm.value.image,
         role: "user"
       });
+      localStorage.setItem("checkLogin", "true");
     } else {
       document.getElementsByClassName("mesError")[1].innerHTML = "*user is already exist";
     }
@@ -87,12 +87,12 @@ export class SignUpComponent implements OnInit {
     this.preview();
   }
   preview() {
-    var mimeType = this.fileData.type;
+    let mimeType = this.fileData.type;
     if (mimeType.match(/image\/*/) == null) {
       return;
     }
 
-    var reader = new FileReader();
+    let reader = new FileReader();
     reader.readAsDataURL(this.fileData);
     reader.onload = _event => {
       this.image = reader.result;

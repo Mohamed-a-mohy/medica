@@ -8,6 +8,7 @@ import { AddtocartService } from '../addtocart.service';
 })
 export class ItemComponent implements OnInit {
 @Input()item
+
   constructor(private service: AddtocartService) { }
 
   ngOnInit() {
