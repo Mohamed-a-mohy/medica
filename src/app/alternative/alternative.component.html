@@ -1,0 +1,34 @@
+<div class="card" style="width: 15rem;">
+    <img src="https://via.placeholder.com/50x50" class="card-img-top" alt="...">
+    <div class="card-body">
+      <a [routerLink]="['/product',item.id]">
+      <p class="card-title">{{item.name}}</p></a>
+      <div class="d-flex justify-content-around align-items-baseline">
+        <p class="card-text">{{item.price}}</p>
+        <app-btntocart [item]="item"></app-btntocart>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <div class="card" style="width: 15rem;">
+    <div class="alt-img">
+        <div class="alt-img-text">
+            <h5>product name</h5>
+            <p>price</p>
+        </div>
+        <img src="https://via.placeholder.com/50x50" alt=".."></div>
+    <div class="card-body">
+        <div class="alt-p-tex">
+            <h5>alt product name</h5>
+            <p>price</p>
+        </div>
+        <div>
+            <img src="https://via.placeholder.com/20x20" alt="">
+        </div>
+        
+
+    </div>
+  </div>

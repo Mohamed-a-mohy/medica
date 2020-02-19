@@ -26,6 +26,12 @@ import { ProductsComponent } from './products/products.component';
 import { CancelfromcartComponent } from './cancelfromcart/cancelfromcart.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { SignInComponent } from './sign-in/sign-in.component';
+import { AlternativeComponent } from './alternative/alternative.component';
+
+//pagination
+import { JwPaginationComponent } from 'jw-angular-pagination';
+import { OrdersummeryComponent } from './ordersummery/ordersummery.component';
+
 
 @NgModule({
   declarations: [
@@ -41,6 +47,9 @@ import { SignInComponent } from './sign-in/sign-in.component';
     CancelfromcartComponent,
     SignUpComponent,
     SignInComponent,
+    AlternativeComponent,
+    JwPaginationComponent,
+    OrdersummeryComponent,
   ],
   imports: [
     BrowserModule,

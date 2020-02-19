@@ -44,6 +44,7 @@ export class ProductdetailsComponent implements OnInit {
           this.productID = this.cutString(this.routeLink, this.indexOflastSlash);
           console.log('ya rb', this.productID);
           this.service.trackIdChanges(this.productID);
+
         /*   this.itemObj = this.service.itemObj
           console.log(this.itemObj,this.service.itemObj) */
           /* this.itemObj = this.service.itemObj; */
@@ -54,7 +55,12 @@ export class ProductdetailsComponent implements OnInit {
 /*       console.log(this.itemObj , "hiiii from itemOBJ",this.service.itemObj); 
  */    });
 
+    
+  }
+
+  ngOnInit() {
     this.service.getData.subscribe(items=>{
+      console.log("outside the for loop")
       for(let i = 0 ; i < items.length; i++){
         console.log(this.productID)
         if(this.productID == items[i].id){
@@ -63,11 +69,7 @@ export class ProductdetailsComponent implements OnInit {
         }
       }
     });
-
-    
-  }
-
-  ngOnInit() { }
+   }
 
 
   cutString(str, index) {

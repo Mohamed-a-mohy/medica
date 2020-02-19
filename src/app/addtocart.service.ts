@@ -98,12 +98,16 @@ export class AddtocartService {
       }
     }
     if (flag && this.routeLink.includes("product/") && this.cartArr[index].quantity > 0) {
+
       this.counterArr.splice(index, 1);
       this.CounterBehavior.next(this.counterArr.length);
+      console.log("inside if ")
       // sessionStorage.setItem('counterArray', JSON.stringify(this.counterArr));
     }else if(flag && this.routeLink.includes("shop") && this.cartArr[index].quantity > 1){
       this.counterArr.splice(index, 1);
       this.CounterBehavior.next(this.counterArr.length);
+      console.log("inside if ")
+
       // sessionStorage.setItem('counterArray', JSON.stringify(this.counterArr));
     }
   }

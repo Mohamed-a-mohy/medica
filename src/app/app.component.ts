@@ -30,8 +30,6 @@ export class AppComponent {
           this.arrOfItems = items;
           this.addQuantityProp();
           // store data in service
-
-          
           // this.service.dbData = items;
           this.service.dataCame(items)
           console.log('data with quantity property from app component: ', this.arrOfItems)

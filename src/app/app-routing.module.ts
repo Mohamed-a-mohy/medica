@@ -10,10 +10,12 @@ import { SignInComponent } from './sign-in/sign-in.component';
 
 const routes: Routes = [
   {path: "products", component: ProductsComponent},
-  { path: "product/:id", component: ProductdetailsComponent },
   {path: "shop", component: CartviewComponent},
   {path:"signUp", component: SignUpComponent},
-  {path:"sigIn", component: SignInComponent}
+  {path:"sigIn", component: SignInComponent},
+  {path: "product/:id", component: ProductdetailsComponent},
+  // {path:"product/category/:cat", component:ProductsComponent},
+  // {path:"product/category/:cat/:sCat", component:ProductsComponent},
 
 ];
 
