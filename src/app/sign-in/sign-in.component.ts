@@ -31,7 +31,6 @@ export class SignInComponent implements OnInit {
     for (let user of this.users) {
       if (user["email"] == this.myForm.value.email && user["password"] == this.myForm.value.password) {
         this.user = user;
-        console.log(user);
         return;
       }
     }
