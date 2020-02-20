@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { NgModule }      from '@angular/core';
+import * as $ from 'jquery'
 
 // firebase imports starts here
 import { AngularFireDatabase } from 'angularfire2/database';
@@ -10,6 +11,7 @@ import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument 
 import { AddtocartService } from '../addtocart.service';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { element } from 'protractor';
 
 
 @Component({
@@ -38,6 +40,8 @@ export class ProductsComponent implements OnInit {
   checkedType: object = {};
   checkedTypeAll: object = {};
   checkedBrandAll: object = {};
+  filterProductsByType: any[] = [];
+  filterProductsByBrand: any[] = [];
   checkedInput = document.getElementsByClassName("checkedInput");
 
   ////price range variables////
@@ -116,7 +120,7 @@ export class ProductsComponent implements OnInit {
           this.subCatObj[this.arrOfData[i].category] = []
         }
       }
-
+// $('.')
       ///SubCat here
       for (let i = 0; i < this.arrOfData.length; i++) {
         if (this.subCat[0]) {
@@ -262,18 +266,37 @@ export class ProductsComponent implements OnInit {
       this.filterList(this.newArr, this.checkedBrand, this.checkedType)
     }
   }
+   
   ////filter list by price , brand and type
   filterList(products, brandObject, typeObject) {
-    for (let element of products) {
-      for (let brandKey in brandObject) {
-        for (let typeKey in typeObject) {
-          if (element.brand == brandKey && element.type == typeKey && element.price <= this.selectedPrice) {
-            console.log(this.selectedPrice)
-            this.listOfProducts.push(element)
-          }
+    this.filterProductsByType = [];
+    this.filterProductsByBrand= [];
+    for(let element of products){
+      for(let brandKey in brandObject){
+        if(element.brand==brandKey){
+          this.filterProductsByBrand.push(element)
         }
       }
     }
+    for(let element of this.filterProductsByBrand ){
+      for(let typeKey in typeObject){
+        if(element.type==typeKey){
+          this.filterProductsByType.push(element)
+        }
+      }
+    }
+    this.listOfProducts=this.filterProductsByType.filter(element=> element.price <= this.selectedPrice);
+    // for (let element of products) {
+    //   for (let brandKey in brandObject) {
+    //     for (let typeKey in typeObject) {
+    //       if (element.brand == brandKey && element.type == typeKey && element.price <= this.selectedPrice) {
+    //         console.log(this.selectedPrice)
+    //         this.listOfProducts.push(element)
+    //       }
+    //     }
+    //   }
+    // }
+
     ///////////
     //sortcheck
     /////////////
