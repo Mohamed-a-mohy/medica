@@ -1,4 +1,4 @@
-import { Injectable,EventEmitter } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 // route import
@@ -9,30 +9,36 @@ import { Location } from '@angular/common';
 
 
 //////try   to call func fro manother component  Event emitter ^^^^^^
-import { Subscription } from 'rxjs/internal/Subscription';  
+import { Subscription } from 'rxjs/internal/Subscription';
+import { element } from 'protractor';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class AddtocartService {
-/////////////////
-///try//////////
-invokeFirstComponentFunction = new EventEmitter();    
+  /////////////////
+  ///try//////////
+  invokeFirstComponentFunction = new EventEmitter();
   subsVar: Subscription;
 
+
+  ////////
+  flagMedicin;
+  medicinBehavior;
+  medicinUpdata;
 
 
   // store data from databasse
   dbData = [];
   getDataBehavior;
   getData;
- 
-  
+
+
   //itemObj which will be sent to product details page
   id;
   itemObj;
-  
+
   //track changes of url
   routeLink;
 
@@ -62,6 +68,7 @@ invokeFirstComponentFunction = new EventEmitter();
   // send the current item to the warning component
   warnningBehavior;
   warnningUpdate;
+  medicineArray: any[];
 
 
   constructor(private route: ActivatedRoute,
@@ -76,6 +83,11 @@ invokeFirstComponentFunction = new EventEmitter();
         this.routeLink = 'Home'
       }
     });
+
+    // observable for products view
+    this.medicinBehavior=new BehaviorSubject('');
+    this.medicinUpdata = this.medicinBehavior.asObservable();
+
 
     // observable for get data of products from database 
     this.getDataBehavior = new BehaviorSubject([]);
@@ -112,7 +124,7 @@ invokeFirstComponentFunction = new EventEmitter();
 
 
     // if there is something in ignoreArr before refresh
-    if(sessionStorage.getItem('ignoreArr')){
+    if (sessionStorage.getItem('ignoreArr')) {
       this.ignoreConflictArr = JSON.parse(sessionStorage.getItem('ignoreArr'));
     }
   }
@@ -264,17 +276,17 @@ invokeFirstComponentFunction = new EventEmitter();
   isIgnored(obj) {
     console.log(obj)
     let isIgnored = false;
-    console.log(this.ignoreConflictArr.length)      
-      if (this.ignoreConflictArr[0]) {
-        console.log('inside if')
-        for (let i = 0; i < this.ignoreConflictArr.length; i++) {
-          console.log('inside for inside if')
-          if (obj.id == this.ignoreConflictArr[i].id) {
-            console.log('inside if inside for inside if')
-            isIgnored = true;
-          }
+    console.log(this.ignoreConflictArr.length)
+    if (this.ignoreConflictArr[0]) {
+      console.log('inside if')
+      for (let i = 0; i < this.ignoreConflictArr.length; i++) {
+        console.log('inside for inside if')
+        if (obj.id == this.ignoreConflictArr[i].id) {
+          console.log('inside if inside for inside if')
+          isIgnored = true;
         }
       }
+    }
     console.log('isIgnored', isIgnored)
     return isIgnored; // true if ignored and that mean don't complete check for conflict
   }
@@ -290,20 +302,28 @@ invokeFirstComponentFunction = new EventEmitter();
     sessionStorage.setItem('allData', JSON.stringify(arr));
   }
 
-    // observable to track id changes in "product details" component and find the item that match this id
-    private updateIdBehavior = new BehaviorSubject('');
-    updateId = this.updateIdBehavior.asObservable();
-    trackIdChanges(id) {
-      this.updateIdBehavior.next(id);
-      this.id = id;
-    }
+  // observable to track id changes in "product details" component and find the item that match this id
+  private updateIdBehavior = new BehaviorSubject('');
+  updateId = this.updateIdBehavior.asObservable();
+  trackIdChanges(id) {
+    this.updateIdBehavior.next(id);
+    this.id = id;
+  }
 
 
 
 
-    ///////////tryyy
-    onFirstComponentButtonClick() {    
-      this.invokeFirstComponentFunction.emit();    
-    }    
+  ///////////tryyy
+  onFirstComponentButtonClick() {
+    this.invokeFirstComponentFunction.emit();
+  }
 
+  // function for products view
+  // medicinBehavior;
+  // medicinUpda/;
+  getMedicineCatagory(){
+    this.medicineArray=this.dbData.filter(element=> element.category == "medicine");
+    // this.flagMedicin="true"
+    this.medicinBehavior.next(this.medicineArray);
+  }
 }

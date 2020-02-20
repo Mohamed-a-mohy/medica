@@ -32,6 +32,10 @@ import { JwPaginationComponent } from 'jw-angular-pagination';
 import { OrdersummeryComponent } from './ordersummery/ordersummery.component';
 import { RoshettaFormComponent } from './roshetta-form/roshetta-form.component';
 import { WarningModalComponent } from './warning-modal/warning-modal.component';
+import { FilterSearchPipe } from './filter-search.pipe';
+import { FormsModule } from '@angular/forms';
+import { HomeComponent } from './home/home.component';
+import { SearchBarInHomeComponent } from './search-bar-in-home/search-bar-in-home.component';
 
 
 @NgModule({
@@ -53,6 +57,10 @@ import { WarningModalComponent } from './warning-modal/warning-modal.component';
     OrdersummeryComponent,
     RoshettaFormComponent,
     WarningModalComponent,
+    FilterSearchPipe,
+    HomeComponent,
+    SearchBarInHomeComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -62,6 +70,7 @@ import { WarningModalComponent } from './warning-modal/warning-modal.component';
     AngularFirestoreModule.enablePersistence(),
     BrowserAnimationsModule,
     ReactiveFormsModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

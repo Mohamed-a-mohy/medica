@@ -13,6 +13,8 @@ export class OrdersummeryComponent implements OnInit {
 
   constructor() {
     console.log(this.currLng,this.currLat);
+    this.getLocation()
+    this.getCurrentLocation()
    }
 
   ngOnInit() {
@@ -20,12 +22,13 @@ export class OrdersummeryComponent implements OnInit {
   
     console.log(this.currLng,this.currLat);
     
+    
 
   }
 
   
 
- /*  getLocation() {
+  getLocation() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(this.showPosition);
     } 
@@ -41,8 +44,8 @@ export class OrdersummeryComponent implements OnInit {
    console.log(lat);
    
 
-  this.userLatLon = `${lat},${lon}`
-  } */
+  // this.userLatLon = `${lat},${lon}`
+  } 
 
 
   getCurrentLocation() {
@@ -57,7 +60,9 @@ export class OrdersummeryComponent implements OnInit {
     else {
       alert("Geolocation is not supported by this browser.");
     }
+    console.log(this.currLat,this.currLng);
   }
+
 
 }
 

@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { NgModule }      from '@angular/core';
 
 // firebase imports starts here
 import { AngularFireDatabase } from 'angularfire2/database';
@@ -7,7 +8,8 @@ import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument 
 
 // serve import
 import { AddtocartService } from '../addtocart.service';
-
+import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 
 @Component({
@@ -17,36 +19,13 @@ import { AddtocartService } from '../addtocart.service';
 })
 
 export class ProductsComponent implements OnInit {
-  location: any;
-  routeLink: any;
-  indexOflastSlash: any;
-  productID: any;
 
   @Input() navProduct
 
 
-
-  constructor(
-    private angularFS: AngularFirestore,
-    private service: AddtocartService, ) { 
-     
-      if(this.navProduct){
-        console.log(this.newArr);
-        
-        // this.isChecked(true);
-        this.categorySelector(this.category[0]);
-        this.filterGeneration(this.newArr);
-        this.showList();
-        this.sortCheck();
-      }
-
-    }
-
   // @Input() item;
   arrOfData;
   newArr; 
-
-
   /////list of products after filtering
 
   listOfProducts: any[] = [];
@@ -86,12 +65,41 @@ export class ProductsComponent implements OnInit {
 
 
   pageOfItems;
+  constructor(
+    private angularFS: AngularFirestore,
+    private service: AddtocartService, ) { 
+     
+      // if(this.navProduct){
+      //   console.log(this.newArr);
+        
+      //   // this.isChecked(true);
+      //   this.categorySelector(this.category[0]);
+      //   this.filterGeneration(this.newArr);
+      //   this.showList();
+      //   this.sortCheck();
+      // }
+
+      
+    // this.service.medicinUpdata.subscribe( arr =>{
+    //     this.categorySelector(this.category[0]);
+    //     this.filterGeneration(arr);
+    //     this.showList();
+    //     this.sortCheck(); 
+    //     console.log(arr)
+    //     this.newArr=arr
+    //     console.log(this.newArr);
+        
+    // }
+
+    // )
+
+    }
 
   ngOnInit() {
-
+    this.newArr=[]
     this.service.getData.subscribe(items => {
       this.arrOfData = items;
-      this.newArr=this.arrOfData.filter(element => element.category == "medicine");
+      // this.newArr=this.arrOfData.filter(element => element.category == "medicine");
       console.log("hiiii", this.arrOfData)
       ///////category array here
       for (let i = 0; i < this.arrOfData.length; i++) {
@@ -117,7 +125,7 @@ export class ProductsComponent implements OnInit {
               this.subCat.push(this.arrOfData[i].subCat)
             }
           }
-        } else {
+        } else{
           this.subCat.push(this.arrOfData[i].subCat)
         }
       }
@@ -156,20 +164,21 @@ export class ProductsComponent implements OnInit {
     // }
 
 
-      for(let i=0; i< this.arrOfData.length;i++){
-        this.newArr=[]
-        this.newArr=this.arrOfData.filter(element => element.category == this.activeCategory)
-      }
-    this.service.subsVar = this.service.  
-    invokeFirstComponentFunction.subscribe((name:string) => {    
-    /* this.isChecked(true) */
-    this.categorySelector("medicine")
-    this.filterGeneration(this.newArr)
-    this.sortCheck()
-    this.showList()}) 
+  //     for(let i=0; i< this.arrOfData.length;i++){
+  //       this.newArr=[]
+  //       this.newArr=this.arrOfData.filter(element => element.category == this.activeCategory)
+  //     }
+  //   this.service.subsVar = this.service.  
+  //   invokeFirstComponentFunction.subscribe((name:string) => {    
+  //   this.categorySelector("medicine")
+  //   this.filterGeneration(this.newArr)
+  //   this.sortCheck()
+  //   this.showList()
+
+  // }) 
    
-    console.log(this.arrOfData);
-    console.log(this.newArr);
+    // console.log(this.arrOfData);
+    // console.log(this.newArr);
        
   }
 
@@ -255,11 +264,6 @@ export class ProductsComponent implements OnInit {
   }
   ////filter list by price , brand and type
   filterList(products, brandObject, typeObject) {
-    this.radio1 = document.getElementById("radio1")
-    this.radio2 = document.getElementById("radio2")
-    this.radio3 = document.getElementById("radio3")
-    this.radio4 = document.getElementById("radio4")
-
     for (let element of products) {
       for (let brandKey in brandObject) {
         for (let typeKey in typeObject) {
@@ -419,6 +423,18 @@ export class ProductsComponent implements OnInit {
       this.sortByAHighToLow(this.listOfProducts)
     }
   } 
+
+////////////////////
+//take id from url//
+////////////////////
+cutString(str, index) {
+  let arr = str.split('');
+  let arr2 = [];
+  for (let i = index + 1; i < arr.length; i++) {
+    arr2.push(arr[i]);
+  }
+  return arr2.join("");
+}  
 
 
 }

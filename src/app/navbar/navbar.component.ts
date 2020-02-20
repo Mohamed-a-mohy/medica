@@ -29,7 +29,8 @@ export class NavbarComponent implements OnInit {
 
 
   firstComponentFunction(){    
-    this.service.onFirstComponentButtonClick();    
+    // this.service.onFirstComponentButtonClick(); 
+    this.service.getMedicineCatagory();   
   }    
 
 }
