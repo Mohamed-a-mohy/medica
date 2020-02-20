@@ -25,10 +25,6 @@ export class ProductdetailsComponent implements OnInit {
   // itemObj which hold item info
   itemObj;
   itemsInCart;
-  ///////////////////////////////////////////
-  // get item alternatives ( arr of alts )
-  /////////////////////////////////////////
-  alter = [];
 
   flag = false;
 
@@ -37,9 +33,8 @@ export class ProductdetailsComponent implements OnInit {
     private service: AddtocartService,
     private router: Router,
     location: Location) {
-    ///////////////////////////////////////////////////////////
+
     // track id changes/ url changes and send id to the service
-    ///////////////////////////////////////////////////////////
     router.events.subscribe((val) => {
       if (location.path() != '') {
         this.routeLink = location.path();
@@ -50,45 +45,31 @@ export class ProductdetailsComponent implements OnInit {
         this.indexOflastSlash = this.routeLink.lastIndexOf("/");
         if (this.routeLink[this.indexOflastSlash + 1]) {
           this.productID = this.cutString(this.routeLink, this.indexOflastSlash);
+          console.log('ya rb', this.productID);
           this.service.trackIdChanges(this.productID);
-
         }
       }
-      ////////////////////////////////////////////////////////////////
-      // if url changes, item should be changed by the id of the url
-      /////////////////////////////////////////////////////////////////
-      this.service.getData.subscribe(items=>{
-        // get item to show it's details
-        for(let i = 0 ; i < items.length; i++){
-          if(this.productID == items[i].id){
-            this.itemObj = items[i]
-          }
-        }
-        this.alter = [];
-        ///////////////////////
-        // get its alternatives
-        ///////////////////////
-        for(let i = 0; i < items.length; i++){
-          if(this.itemObj.active == items[i].active && this.itemObj.id != items[i].id){
-            this.alter.push(items[i]);
-          }
-        }
-      });
   });
 
     
   }
 
   ngOnInit() {  
-////////////////////////////
-//subscribe on items in cart
-///////////////////////////
 
+    this.service.getData.subscribe(items=>{
+      for(let i = 0 ; i < items.length; i++){
+        if(this.productID == items[i].id){
+          this.itemObj = items[i]
+          console.log(this.productID,"items array" , items)
+        }
+      }
+    });
 
     this.service.cartItems.subscribe(items=>{
       this.itemsInCart=items;
-      // update quantity on change
       if(this.itemsInCart[0]){
+        console.log(this.itemObj.id)
+        console.log(this.itemsInCart)
         for(let i = 0; i< this.itemsInCart.length; i++){
           if(this.itemsInCart[i].id == this.itemObj.id){
             this.flag = true;
@@ -102,9 +83,7 @@ export class ProductdetailsComponent implements OnInit {
     })
    }
 
-////////////////////
-//take id from url//
-////////////////////
+
   cutString(str, index) {
     let arr = str.split('');
     let arr2 = [];

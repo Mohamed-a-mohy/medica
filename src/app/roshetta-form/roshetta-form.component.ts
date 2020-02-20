@@ -53,7 +53,8 @@ export class RoshettaFormComponent implements OnInit {
   //////.......load image and convert it to data......///////
   readURL(event: any) {
     this.imageData = <File>event.target.files[0];
-    console.log(this.imageData);    
+    console.log(this.imageData);
+    
     this.preview();
     this.roshettaImageName = event.target.files[0].name;
   }

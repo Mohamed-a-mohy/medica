@@ -7,12 +7,7 @@ import { AddtocartService } from "../addtocart.service"
 })
 export class BtntocartComponent implements OnInit {
 @Input() item;
-show;
-  constructor(private service :AddtocartService) { 
-    this.service.isConflict.subscribe(showStatus=>{
-      this.show= showStatus;
-    });
-  }
+  constructor(private service :AddtocartService) { }
 
   ngOnInit() {
   }
