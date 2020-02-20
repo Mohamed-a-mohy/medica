@@ -27,6 +27,11 @@ import { CancelfromcartComponent } from './cancelfromcart/cancelfromcart.compone
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { RoshettaFormComponent } from './roshetta-form/roshetta-form.component';
+import { RoshettaDetailsComponent } from './roshetta-details/roshetta-details.component';
+
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+
 
 @NgModule({
   declarations: [
@@ -43,6 +48,7 @@ import { RoshettaFormComponent } from './roshetta-form/roshetta-form.component';
     SignUpComponent,
     SignInComponent,
     RoshettaFormComponent,
+    RoshettaDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -52,8 +58,12 @@ import { RoshettaFormComponent } from './roshetta-form/roshetta-form.component';
     AngularFirestoreModule.enablePersistence(),
     BrowserAnimationsModule,
     ReactiveFormsModule,
+    MatDatepickerModule,
+    MatNativeDateModule 
   ],
-  providers: [],
+  providers: [
+    MatDatepickerModule
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

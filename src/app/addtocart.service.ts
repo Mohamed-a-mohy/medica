@@ -17,7 +17,6 @@ export class AddtocartService {
   private CounterBehavior;
   counterArr;
   cartCounter;
-
   // the observable of cart items
   // this array used in "cart view"
   private cartBehavior;
@@ -35,6 +34,13 @@ export class AddtocartService {
 
   //track changes of url
   routeLink;
+
+
+  //roshettaaaaaaaaaaaaaaaaa varilables........
+  roshettaDetailsBehavior;
+  roshettaDetails;
+  roshettaFlagBehavior;
+  roshettaFlag;
 
   constructor(private route: ActivatedRoute,
     private router: Router,
@@ -64,6 +70,15 @@ export class AddtocartService {
     // observable for get data from database 
     this.getDataBehavior = new BehaviorSubject([]);
     this.getData = this.getDataBehavior.asObservable();
+
+
+
+    //roshettaaaaaaaaaaaaaaaaa details........
+    this.roshettaDetailsBehavior = new BehaviorSubject({});
+    this.roshettaDetails = this.roshettaDetailsBehavior.asObservable();
+    this.roshettaDetailsBehavior.next(JSON.parse(sessionStorage.getItem('roshettaDetails')));
+    this.roshettaFlagBehavior = new BehaviorSubject(false);
+    this.roshettaFlag = this.roshettaFlagBehavior.asObservable();
   }
 
   viewCartLength(obj) {
@@ -204,6 +219,15 @@ export class AddtocartService {
     console.log(count);
     
     
+  }
+
+
+  //get roshettaaaaa data from session storage........
+  setRoshettaDetails(obj){
+      this.roshettaDetailsBehavior.next(obj);
+  }
+  formatRoshettaForm(flag){
+    this.roshettaFlagBehavior.next(flag);
   }
 
 }
