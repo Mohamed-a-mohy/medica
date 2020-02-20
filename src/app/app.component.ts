@@ -19,12 +19,18 @@ export class AppComponent {
   arrOfItems;
   items;
 
+  conflict;
+  confCollection;
+  conflictArr;
+  navProduct;
+
   constructor(db: AngularFireDatabase,
     private angularFS: AngularFirestore,
     private service: AddtocartService) {
     // get data from database
     this.items = this.angularFS.collection('products').valueChanges({ idField: 'id' });
     this.itemCollection = this.angularFS.collection('products');
+
     this.getItems().subscribe(items => {
       // check sesttion storage
       if (sessionStorage.getItem('allData')) { // if data already exist
@@ -45,11 +51,24 @@ export class AppComponent {
         this.service.getCartView(JSON.parse(sessionStorage.getItem('cartView')));
       }
     })
+
+    // get data of conflict from database
+    this.conflict = this.angularFS.collection('interactions').valueChanges({ idField: 'id' });
+    this.confCollection = this.angularFS.collection('interactions');
+    this.getConfliict().subscribe(items => {
+      this.conflictArr = items;
+      this.service.getConflictData(items);
+    });
   }
-  ngOnInit() { }
+  ngOnInit() {
+   }
 
   getItems() {
     return this.items;
+  }
+
+  getConfliict() {
+    return this.conflict;
   }
 
   addQuantityProp(arr) {
@@ -57,5 +76,9 @@ export class AppComponent {
       arr[i].quantity = 0;
     }
     return arr;
+  }
+
+  callAnotherFunc(e){
+    this.navProduct = "done"
   }
 }

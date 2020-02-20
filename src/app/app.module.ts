@@ -26,11 +26,23 @@ import { ProductsComponent } from './products/products.component';
 import { CancelfromcartComponent } from './cancelfromcart/cancelfromcart.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { SignInComponent } from './sign-in/sign-in.component';
+import { AlternativeComponent } from './alternative/alternative.component';
+//pagination
+import { JwPaginationComponent } from 'jw-angular-pagination';
+import { OrdersummeryComponent } from './ordersummery/ordersummery.component';
 import { RoshettaFormComponent } from './roshetta-form/roshetta-form.component';
+
 import { RoshettaDetailsComponent } from './roshetta-details/roshetta-details.component';
 
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+=======
+import { WarningModalComponent } from './warning-modal/warning-modal.component';
+import { FilterSearchPipe } from './filter-search.pipe';
+import { FormsModule } from '@angular/forms';
+import { HomeComponent } from './home/home.component';
+import { SearchBarInHomeComponent } from './search-bar-in-home/search-bar-in-home.component';
+
 
 
 @NgModule({
@@ -47,8 +59,15 @@ import { MatNativeDateModule } from '@angular/material/core';
     CancelfromcartComponent,
     SignUpComponent,
     SignInComponent,
+    AlternativeComponent,
+    JwPaginationComponent,
+    OrdersummeryComponent,
     RoshettaFormComponent,
-    RoshettaDetailsComponent
+    RoshettaDetailsComponent,
+    WarningModalComponent,
+    FilterSearchPipe,
+    HomeComponent,
+    SearchBarInHomeComponent,
   ],
   imports: [
     BrowserModule,
@@ -62,7 +81,9 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatNativeDateModule 
   ],
   providers: [
-    MatDatepickerModule
+    MatDatepickerModule,
+    FormsModule,
+
   ],
   bootstrap: [AppComponent]
 })

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , Output , EventEmitter} from '@angular/core';
 import {AddtocartService} from "../addtocart.service";
 
 
@@ -10,11 +10,29 @@ import {AddtocartService} from "../addtocart.service";
 export class NavbarComponent implements OnInit {
   notification = 1;
   counter;
+
+  arrOfData=[]
+  @Output() callFunc = new EventEmitter()
+  
   constructor(private service :AddtocartService) { }
 
   ngOnInit() {
    this.service.cartCounter.subscribe(arrLength=>{
      this.counter=arrLength
    })
+
+
   }
+  getListOfProducts(){
+    this.callFunc.emit("done")
+  }
+
+
+  firstComponentFunction(){    
+    // this.service.onFirstComponentButtonClick(); 
+    this.service.getMedicineCatagory();   
+  }    
+
 }
+  
+ 
