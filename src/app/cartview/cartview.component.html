@@ -18,13 +18,14 @@
       <p> {{item.price}} LE/ item</p>
       <app-btntocart [item]='item'></app-btntocart>
       <app-cancelfromcart [item]='item'></app-cancelfromcart>
+      <a routerLink='/order-summery' class="btn btn-primary">CheckOut</a>
     </div>
   </div>
   <div style="font-size: 30px; font-weight: bold; text-align: center;">total Price: {{totalPrice}}</div>
+  <app-roshetta-details></app-roshetta-details>
 </div>
 
 <ng-template #elseBlock>
   <p style="font-size: 100px;">I'm empty</p>
 </ng-template>
 
-<app-roshetta-details></app-roshetta-details>
