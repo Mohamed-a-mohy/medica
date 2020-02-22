@@ -8,6 +8,8 @@ import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument 
 import { Observable } from 'rxjs';
 //endhere
 
+
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -19,18 +21,23 @@ export class AppComponent {
   arrOfItems;
   items;
 
+  conflict;
+  confCollection;
+  conflictArr;
+
   constructor(db: AngularFireDatabase,
     private angularFS: AngularFirestore,
-    private service: AddtocartService) {
+    private service: AddtocartService,) {
+
     // get data from database
     this.items = this.angularFS.collection('products').valueChanges({ idField: 'id' });
     this.itemCollection = this.angularFS.collection('products');
     this.getItems().subscribe(items => {
+      
       // check sesttion storage
       if (sessionStorage.getItem('allData')) { // if data already exist
         // send data to service and store it in behavour subject
-        this.arrOfItems = JSON.parse(sessionStorage.getItem('allData'));
-        this.service.dataCame(this.arrOfItems);
+        this.service.dataCame(JSON.parse(sessionStorage.getItem('allData')));
       }else{ // if data not exist
 
         /* 1- add quantity proparty to each item = 0;
@@ -45,11 +52,25 @@ export class AppComponent {
         this.service.getCartView(JSON.parse(sessionStorage.getItem('cartView')));
       }
     })
+
+    // get data of conflict from database
+    this.conflict = this.angularFS.collection('interactions').valueChanges({ idField: 'id' });
+    this.confCollection = this.angularFS.collection('interactions');
+    this.getConfliict().subscribe(items => {
+      this.conflictArr = items;
+      this.service.getConflictData(items);
+    });
+
   }
-  ngOnInit() { }
+  ngOnInit() {
+   }
 
   getItems() {
     return this.items;
+  }
+
+  getConfliict() {
+    return this.conflict;
   }
 
   addQuantityProp(arr) {

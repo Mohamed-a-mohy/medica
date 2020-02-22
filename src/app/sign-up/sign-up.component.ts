@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { AngularFirestore, AngularFirestoreCollection} from "angularfire2/firestore";
 import { FormBuilder, FormGroup, NgForm, Validators } from "@angular/forms";
+import { LoginService} from '../login.service'
 
 @Component({
   selector: "app-sign-up",
@@ -17,7 +18,8 @@ export class SignUpComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private angularFS: AngularFirestore) {
+    private angularFS: AngularFirestore,
+    private loginService : LoginService) {
     this.itemCollection = this.angularFS.collection("users");
     this.users = this.angularFS.collection("users").valueChanges();
   }
@@ -76,6 +78,7 @@ export class SignUpComponent implements OnInit {
         role: "user"
       });
       localStorage.setItem("checkLogin", "true");
+      this.loginService.changeLoginStatus(localStorage.getItem('checkLogin'))
     } else {
       document.getElementsByClassName("mesError")[1].innerHTML = "*user is already exist";
     }

@@ -23,3 +23,6 @@ input:focus{
 .messError, .fileError{
     color: red;
 }
+#datepickerArea{
+    z-index: 999999 !important;
+}

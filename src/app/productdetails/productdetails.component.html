@@ -1,91 +1,84 @@
 <div class="container" *ngIf="itemObj" else loading>
-    <div class="row">
-        <div class="col"><img src="https://via.placeholder.com/250x250" alt=""></div>
-        <div class="col">
-          <h3>{{itemObj.name}}</h3>
-          <div>
-            <h5>Concentration</h5>
-            <p>{{itemObj.conc}}</p>
-          </div>
-          <div>
-            <h5>Quantity</h5>
-            <app-quantity [item] = 'itemObj'></app-quantity>
-          </div>
+  <div class="row">
+      <div class="col"><img src="https://via.placeholder.com/250x250" alt=""></div>
+      <div class="col">
+        <h3>{{itemObj.name}}</h3>
+        <div>
+          <h5>Concentration</h5>
+          <p>{{itemObj.conc}}</p>
         </div>
+        <div>
+          <h5>Quantity</h5>
+          <app-quantity [item] = 'itemObj'></app-quantity>
+        </div>
+      </div>
+
+      <div class="col">
+        <h3>{{itemObj.price * itemObj.quantity}}LE</h3>
+        <p> {{itemObj.price}}LE / item</p>
+        <app-btntocart [item] = 'itemObj'></app-btntocart>
+      </div>
+  </div>
   
-        <div class="col">
-          <h3>{{itemObj.price * itemObj.quantity}}LE</h3>
-          <p> {{itemObj.price}}LE / item</p>
-          <app-btntocart [item] = 'itemObj'></app-btntocart>
-        </div>
-    </div>
-    
 
-    
+  
 
-    <div class="row">
-      <p class="">
-        <a  class="colps" data-toggle="collapse" href="#collapse1" role="button" aria-expanded="false" aria-controls="collapse1" >
-          Link with href
-        </a>
-      </p>
-      <div class="collapse" id="collapse1" >
-        <div class="card card-body">
-          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-        </div>
+  <div class="row">
+    <p class="">
+      <a  class="colps" data-toggle="collapse" href="#collapse1" role="button" aria-expanded="false" aria-controls="collapse1" >
+        Link with href
+      </a>
+    </p>
+    <div class="collapse" id="collapse1" >
+      <div class="card card-body">
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
       </div>
     </div>
-    <div class="row">
-      <p class="">
-        <a  class="colps" data-toggle="collapse" href="#collapse2" role="button" aria-expanded="false" aria-controls="collapse2">
-          Link with href
-        </a>
-      </p>
-      <div class="collapse" id="collapse2">
-        <div class="card card-body">
-          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-        </div>
+  </div>
+  <div class="row">
+    <p class="">
+      <a  class="colps" data-toggle="collapse" href="#collapse2" role="button" aria-expanded="false" aria-controls="collapse2">
+        Link with href
+      </a>
+    </p>
+    <div class="collapse" id="collapse2">
+      <div class="card card-body">
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
       </div>
     </div>
-    <div class="row">
-      <p class="">
-        <a  class="colps" data-toggle="collapse" href="#collapse3" role="button" aria-expanded="false" aria-controls="collapse3">
-          Link with href
-        </a>
-      </p>
-      <div class="collapse" id="collapse3">
-        <div class="card card-body">
-          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-        </div>
+  </div>
+  <div class="row">
+    <p class="">
+      <a  class="colps" data-toggle="collapse" href="#collapse3" role="button" aria-expanded="false" aria-controls="collapse3">
+        Link with href
+      </a>
+    </p>
+    <div class="collapse" id="collapse3">
+      <div class="card card-body">
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
       </div>
     </div>
-    <div class="row">
-      <p class="">
-        <a  class="colps" data-toggle="collapse" href="#collapse4" role="button" aria-expanded="false" aria-controls="collapse4">
-          Link with href
-        </a>
-      </p>
-      <div class="collapse" id="collapse4">
-        <div class="card card-body">
-          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-        </div>
+  </div>
+  <div class="row">
+    <p class="">
+      <a  class="colps" data-toggle="collapse" href="#collapse4" role="button" aria-expanded="false" aria-controls="collapse4">
+        Link with href
+      </a>
+    </p>
+    <div class="collapse" id="collapse4">
+      <div class="card card-body">
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
       </div>
     </div>
+  </div>
 </div>
 <ng-template #loading> <h1>Loading...</h1></ng-template>
 
 
+<div class="container">
+  <h2 *ngIf='alter[0]'>Alternatives</h2>
+  <app-item *ngFor="let item of alter" [item]="item"></app-item>
 
-   <!--  <span class="d-inline-block" data-toggle="popover" data-content="Disabled popover">
-      <button class="btn btn-primary" style="pointer-events: none;" type="button" disabled>Disabled button</button>
-    </span> -->
-
-
-  <div class="container">
-    <h2>Alternatives</h2>
-    <app-products></app-products>
-
-  </div>
+</div>
 
 
-  

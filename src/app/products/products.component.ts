@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { NgModule }      from '@angular/core';
+import { NgModule } from '@angular/core';
 
 // firebase imports starts here
 import { AngularFireDatabase } from 'angularfire2/database';
@@ -22,10 +22,14 @@ export class ProductsComponent implements OnInit {
 
   @Input() navProduct
 
+  //pg
+  items;
+  pageOfItems;
+
 
   // @Input() item;
   arrOfData;
-  newArr; 
+  newArr;
   /////list of products after filtering
 
   listOfProducts: any[] = [];
@@ -38,7 +42,13 @@ export class ProductsComponent implements OnInit {
   checkedType: object = {};
   checkedTypeAll: object = {};
   checkedBrandAll: object = {};
+  filterProductsByType: any[] = [];
+  filterProductsByBrand: any[] = [];
   checkedInput = document.getElementsByClassName("checkedInput");
+  ///////////  
+
+
+
 
   ////price range variables////
 
@@ -64,39 +74,13 @@ export class ProductsComponent implements OnInit {
   radio4;
 
 
-  pageOfItems;
   constructor(
     private angularFS: AngularFirestore,
-    private service: AddtocartService, ) { 
-     
-      // if(this.navProduct){
-      //   console.log(this.newArr);
-        
-      //   // this.isChecked(true);
-      //   this.categorySelector(this.category[0]);
-      //   this.filterGeneration(this.newArr);
-      //   this.showList();
-      //   this.sortCheck();
-      // }
-
-      
-    // this.service.medicinUpdata.subscribe( arr =>{
-    //     this.categorySelector(this.category[0]);
-    //     this.filterGeneration(arr);
-    //     this.showList();
-    //     this.sortCheck(); 
-    //     console.log(arr)
-    //     this.newArr=arr
-    //     console.log(this.newArr);
-        
-    // }
-
-    // )
-
-    }
+    private service: AddtocartService, ) { }
 
   ngOnInit() {
-    this.newArr=[]
+
+    this.newArr = []
     this.service.getData.subscribe(items => {
       this.arrOfData = items;
       // this.newArr=this.arrOfData.filter(element => element.category == "medicine");
@@ -125,7 +109,7 @@ export class ProductsComponent implements OnInit {
               this.subCat.push(this.arrOfData[i].subCat)
             }
           }
-        } else{
+        } else {
           this.subCat.push(this.arrOfData[i].subCat)
         }
       }
@@ -146,49 +130,20 @@ export class ProductsComponent implements OnInit {
       if (sessionStorage.getItem("activeCategory")) {
         this.activeCategory = sessionStorage.getItem("activeCategory");
       } else {
-        this.activeCategory = "medicine" 
+        this.activeCategory = "medicine"
       }
     });
-    
 
 
-    ////pagination
-    /*  this.listOfProducts = Array(150).fill(0).map((x, i) => ({ id: (i + 1), name: `Item ${i + 1}`})); */
-
-    // if(this.navProduct){
-    //   // this.isChecked(true);
-    //   this.categorySelector(this.category[0]);
-    //   this.filterGeneration(this.newArr);
-    //   this.showList();
-    //   this.sortCheck();
-    // }
 
 
-  //     for(let i=0; i< this.arrOfData.length;i++){
-  //       this.newArr=[]
-  //       this.newArr=this.arrOfData.filter(element => element.category == this.activeCategory)
-  //     }
-  //   this.service.subsVar = this.service.  
-  //   invokeFirstComponentFunction.subscribe((name:string) => {    
-  //   this.categorySelector("medicine")
-  //   this.filterGeneration(this.newArr)
-  //   this.sortCheck()
-  //   this.showList()
+    /////////////pagination
+    this.items = Array(150).fill(0).map((x, i) => ({ id: (i + 1), name: `Item ${i + 1}` }));
 
-  // }) 
-   
-    // console.log(this.arrOfData);
-    // console.log(this.newArr);
-       
   }
 
 
-  //////checked Input
-  // isCheckedInput(){
-  //   for(let i =0 ; i<this.checkedInput.length ; i++){
-  //     if(!this.checkedInput[i].checked)
-  //   }
-  // }
+
 
   //////generat dynamice filter
   filterGeneration(arrayOfProducts) {
@@ -206,8 +161,10 @@ export class ProductsComponent implements OnInit {
         }
       }
     }
-    this.collectPrices(this.arrayOfPrice, this.newArr);
+    this.collectPrices(this.arrayOfPrice, this.listOfProducts);
     this.maxPrice = Math.max(...this.arrayOfPrice)
+    this.arrayOfPrice = []
+
 
 
     /////////////
@@ -222,7 +179,7 @@ export class ProductsComponent implements OnInit {
     this.selectedPrice = param.value
     this.listOfProducts = [];
     this.showList();
-    
+
   }
 
   ///// function of checked filter from type and brand
@@ -273,16 +230,27 @@ export class ProductsComponent implements OnInit {
   }
   ////filter list by price , brand and type
   filterList(products, brandObject, typeObject) {
+    this.filterProductsByType = [];
+    this.filterProductsByBrand = [];
     for (let element of products) {
       for (let brandKey in brandObject) {
-        for (let typeKey in typeObject) {
-          if (element.brand == brandKey && element.type == typeKey && element.price <= this.selectedPrice) {
-            console.log(this.selectedPrice)
-            this.listOfProducts.push(element)
-          }
+        if (element.brand == brandKey) {
+          this.filterProductsByBrand.push(element)
         }
       }
     }
+    for (let element of this.filterProductsByBrand) {
+      for (let typeKey in typeObject) {
+        if (element.type == typeKey) {
+          this.filterProductsByType.push(element)
+        }
+      }
+    }
+    if (!this.selectedPrice) {
+      this.selectedPrice = this.maxPrice
+    }
+    this.listOfProducts = this.filterProductsByType.filter(element => parseInt(element.price) <= this.selectedPrice);
+
     /////////////
     //sortcheck
     /////////////
@@ -301,6 +269,7 @@ export class ProductsComponent implements OnInit {
     }
   }
   collectPrices(arrayOfPrice, products) {
+    
     for (let element of products) {
       if (element.price) {
         arrayOfPrice.push(element.price)
@@ -312,7 +281,7 @@ export class ProductsComponent implements OnInit {
 
 
   categorySelector(cat) {
-    this.newArr=[]
+    this.newArr = []
     this.activeCategory = cat;
     this.newArr = this.arrOfData.filter(element => element.category == this.activeCategory)
     console.log(this.newArr);
@@ -325,7 +294,7 @@ export class ProductsComponent implements OnInit {
     this.checkedType = {};
   }
   subCategorySelector(subcat) {
-    this.newArr=[]
+    this.newArr = []
     this.activesubCategory = subcat;
     this.newArr = this.arrOfData.filter(element => element.subCat == this.activesubCategory)
     console.log(this.newArr);
@@ -417,7 +386,7 @@ export class ProductsComponent implements OnInit {
   /////////////////
   //sort on click/
   ////////////////
-   sortCheck() {
+  sortCheck() {
     this.radio1 = document.getElementById("radio1")
     this.radio2 = document.getElementById("radio2")
     this.radio3 = document.getElementById("radio3")
@@ -425,25 +394,34 @@ export class ProductsComponent implements OnInit {
     if (this.radio1.checked) {
       this.sortByPriceLowToHigh(this.listOfProducts)
     } else if (this.radio2.checked) {
-      this.sortByAHighToLow(this.listOfProducts)
+      this.sortByPriceHighToLow(this.listOfProducts)
     } else if (this.radio3.checked) {
       this.sortByALowToHigh(this.listOfProducts)
     } else if (this.radio4.checked) {
       this.sortByAHighToLow(this.listOfProducts)
     }
-  } 
-
-////////////////////
-//take id from url//
-////////////////////
-cutString(str, index) {
-  let arr = str.split('');
-  let arr2 = [];
-  for (let i = index + 1; i < arr.length; i++) {
-    arr2.push(arr[i]);
   }
-  return arr2.join("");
-}  
+
+  ////////////////////
+  //take id from url//
+  ////////////////////
+  cutString(str, index) {
+    let arr = str.split('');
+    let arr2 = [];
+    for (let i = index + 1; i < arr.length; i++) {
+      arr2.push(arr[i]);
+    }
+    return arr2.join("");
+  }
+
+  onChangePage(pageOfItems) {
+    // update current page of items
+    this.pageOfItems = pageOfItems;
+    console.log(pageOfItems);
+    this.sortCheck()
+
+  }
 
 
 }
+

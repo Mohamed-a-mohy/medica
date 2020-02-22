@@ -1,6 +1,95 @@
-<div class="container cont">
-    <div class="cont">
-        <app-item *ngFor="let item of arrOfData" [item]="item"></app-item>
-    </div>
-</div>
+<!-- <div class="searchInput">
+    <input  #searchBar type="text" id="searchInput" [(ngModel)]="searchTerm"  placeholder="Search For Products" >
+</div> -->
 
+<section>
+    <div>
+        <ul class=" list-group list-group-horizontal-sm d-flex flex-row">
+             <li *ngFor="let cat of category"  (click)="isChecked(checkedInput)" (click)="categorySelector(cat)" (click)="filterGeneration(newArr)" class="list-group-item"  (click)="sortCheck()"><a>{{cat}}</a></li>
+        </ul>
+        <ul *ngIf="activeCategory" class=" list-group list-group-horizontal d-flex flex-row">
+            <li *ngFor="let sCat of subCatObj[activeCategory]" class="list-group-item "  (click)="isChecked(checkedInput)" (click)="subCategorySelector(sCat)" (click)="filterGeneration(newArr)" (click)="sortCheck()" > <a> {{sCat}}</a> </li>
+        </ul>
+    </div>
+</section>
+
+
+<section class="filters d-flex justify-content-spacebet">
+   
+    <section class="sideFilter">
+        <section *ngIf="newArr.length>0">
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                    SortBy
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item"> <input type="radio" name="sort" value="1" id="radio1"
+                            (click)="sortByPriceLowToHigh(listOfProducts)" (click)="filterGeneration(newArr)" (click)="onCheck(checkedInput)"> Price low to high</a>
+                    <a class="dropdown-item"> <input type="radio" name="sort" value="2" id="radio2"
+                            (click)="sortByPriceHighToLow(listOfProducts)" (click)="filterGeneration(newArr)"  (click)="onCheck(checkedInput)"> Price hight to low</a>
+                    <a class="dropdown-item"> <input type="radio" name="sort" value="3" id="radio3"
+                            (click)="sortByALowToHigh(listOfProducts)" (click)="filterGeneration(newArr)"  (click)="onCheck(checkedInput)"> A to Z</a>
+                    <a class="dropdown-item"> <input type="radio" name="sort" value="4" id="radio4"
+                            (click)="sortByAHighToLow(listOfProducts)" (click)="filterGeneration(newArr)" (click)="onCheck(checkedInput)"> Z to A</a>
+                </div>
+            </div>
+            <h2>price Range</h2>     
+            <div class="slidecontainer">
+                <input #priceRangInput type="range" min="1" max={{maxPrice}} value={{maxPrice}} class="slider" id="myRange"
+                    (input)="getPrice(priceRangInput)">
+                <p>Max price: <span id="priceValue" *ngIf="outputValue"> {{outputValue}} </span> <span id="priceValue"
+                        *ngIf="!outputValue">{{maxPrice}}</span></p>
+            </div>
+        
+        
+            <!-- ---------------types_filter--------------- -->
+            <div *ngIf="typeFilterArray.length>0" >
+                <div class="type_filter">
+                    <h4>Types</h4>
+                    <div *ngFor="let element of typeFilterArray">
+                        <input #typeElement type="checkbox" class="checkedInput" value="{{element}}" name="type" (click)="onCheck(typeElement)">
+                        <label> {{element}}  </label>
+                    </div>
+                </div>
+            </div>
+                <!-- ---------------brand_filter--------------- -->
+    
+            <div *ngIf="activeCategory!='medicine'">
+                <div *ngIf="typeFilterArray.length>0">
+                    <div class="brand_filter">
+                        <h4>Brands</h4>
+                        <div *ngFor="let element of brandFilterArray">
+                            <input #brandElement class="checkedInput" type="checkbox" value="{{element}}" name="brand" (click)="onCheck(brandElement)">
+                            <label> {{element}}  </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+     
+    </section>
+    <section class="main">
+
+        <div class="container cont">
+            <div *ngIf="newArr.length>0 else elseBlock">
+                <div class="cont">
+                   <!--  <app-item *ngFor="let item of listOfProducts |filterSearch :searchTerm" [item]="item"></app-item> -->
+                    
+                        <app-item *ngFor="let item of pageOfItems" [item]="item"></app-item>
+                    
+                    <div class="card-footer pb-0 pt-3">
+                        <jw-pagination [items]="listOfProducts" (changePage)="onChangePage($event)" [pageSize]="9"></jw-pagination>
+                    </div>
+                    
+                </div>
+            </div>
+            <ng-template #elseBlock>
+                <div class="cont">
+                    <app-item *ngFor="let item of arrOfData " [item]="item"></app-item>
+                </div>
+            </ng-template> 
+        </div>
+    </section>
+</section>

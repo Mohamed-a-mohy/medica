@@ -1,9 +1,10 @@
 <section class="search">
 
-    <input list="products" placeholder="Search For Products" (change)='getId($event)'>
+    <input list="products"  placeholder="Search For Products"  (change)='getId($event)'>
     <datalist id="products">
-        <option *ngFor="let item of listOfProducts" id="{{item.id}}" value="{{item.name}} {{item.conc}}"> 
-            Type : {{item.type}}
-        </option>
+            <option *ngFor="let item of listOfProducts" id="{{item.id}}" value="{{item.name}} {{item.conc}}" >  Type : {{item.type}} 
+            </option>
     </datalist>
 </section>
+
+

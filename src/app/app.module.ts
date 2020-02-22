@@ -9,15 +9,17 @@ import { AppComponent } from './app.component';
 // firebase imports starts here
 import { AngularFireModule } from 'angularfire2';
 import { environment } from '../environments/environment';
+
 // import { environment } from '../environments/environment.prod';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
-// firebase imports ends here
 
+// firebase imports ends here
 import { ProductdetailsComponent } from './productdetails/productdetails.component';
 import { ItemComponent } from './item/item.component';
 import { BtntocartComponent } from './btntocart/btntocart.component';
 // firebase imports ends here
+
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { CartviewComponent } from './cartview/cartview.component';
@@ -31,7 +33,12 @@ import { RoshettaDetailsComponent } from './roshetta-details/roshetta-details.co
 
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-
+import { ConflictWarnningComponent } from './conflict-warnning/conflict-warnning.component';
+import { SummeryviewComponent } from './summeryview/summeryview.component';
+import { ItemSmallComponent } from './item-small/item-small.component';
+import { HomeComponent} from './home/home.component';
+import { SearchBarInHomeComponent } from './search-bar-in-home/search-bar-in-home.component';
+import { JwPaginationComponent} from 'jw-angular-pagination'
 
 @NgModule({
   declarations: [
@@ -48,7 +55,13 @@ import { MatNativeDateModule } from '@angular/material/core';
     SignUpComponent,
     SignInComponent,
     RoshettaFormComponent,
-    RoshettaDetailsComponent
+    RoshettaDetailsComponent,
+    ConflictWarnningComponent,
+    ItemSmallComponent,
+    SummeryviewComponent,
+    HomeComponent,
+    SearchBarInHomeComponent,
+    JwPaginationComponent,
   ],
   imports: [
     BrowserModule,
@@ -59,7 +72,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     BrowserAnimationsModule,
     ReactiveFormsModule,
     MatDatepickerModule,
-    MatNativeDateModule 
+    MatNativeDateModule,
   ],
   providers: [
     MatDatepickerModule

@@ -33,7 +33,7 @@
                             want to make this order schedual</label>
                     </section>
                     <section class="schedualArea pb-3 pt-3 w-75 m-auto" *ngIf="schedualCheck.checked">
-                        <section  class="row mt-3">
+                        <section id="datepickerArea" class="row mt-3">
                             <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
                             <input matInput [matDatepicker]="myDatepicker" class="w-0 border-0">
                             <mat-datepicker #myDatepicker></mat-datepicker>

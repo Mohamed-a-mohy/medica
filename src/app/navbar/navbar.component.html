@@ -8,6 +8,7 @@
         </section>
         <section class="navbar-nav_mid">
             <ul class="navbar-nav_mid-ul">
+                <li><a  routerLink="/home">Home</a></li>
                 <li><a   routerLink="/products">products</a></li>
                 <li><a   routerLink="/shop">shop</a></li>
                 <li><a  >about us</a></li>
@@ -24,8 +25,11 @@
                     <i class="fas fa-shopping-bag"></i>
                     <span *ngIf = "counter > 0">{{counter}}</span>
                 </li>
-                <li><button class="navbar-nav_right-ul--profile" routerLink="/signUp"><i class="far fa-user"></i></button></li>
-            </ul>
+                <li *ngIf="checkuserLogin"><button (click)="logout()">logout</button></li>
+            
+            <a *ngIf="!checkuserLogin" routerLink="/signUp"><img src='../../../../user.png'/></a>
+            <span  *ngIf="checkuserLogin"></span>
+        </ul>
         </section>
     </section>
 </nav>

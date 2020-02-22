@@ -9,14 +9,17 @@ import { AddtocartService } from '../addtocart.service';
 })
 export class QuantityComponent implements OnInit {
   @Input() item;
-
-  constructor(private service :AddtocartService) {
+  show;
+  constructor(private service :AddtocartService) { 
+    this.service.isConflict.subscribe(showStatus=>{
+      this.show= showStatus;
+    });
   }
   ngOnInit() { }
 
   addToCart(){
     this.service.viewCartItems(this.item);
-    }
+  }
 
   removeFromCart(){
     this.service.decreaseViewCartItem(this.item);

@@ -14,7 +14,7 @@ export class RoshettaFormComponent implements OnInit {
   roshettaForm;
   roshettaImageName;
   
-  constructor(private fb: FormBuilder, private service: AddtocartService) { 
+  constructor(private fb: FormBuilder, private addtocartService: AddtocartService) { 
     this.roshettaForm = this.fb.group({
       roshettaImage:["", [Validators.required, Validators.pattern(/.*\.(gif|jpe?g|bmp|png)$/)]],
       roshettaNotes:"",
@@ -24,7 +24,7 @@ export class RoshettaFormComponent implements OnInit {
     this.roshettaImageName = 'Upload Roshetta';
     
     /////...... check if user add roshetta and cancel it.....////
-    this.service.roshettaFlag.subscribe(flag =>{
+    this.addtocartService.roshettaFlag.subscribe(flag =>{
       if(flag){
         this.roshettaImageName = 'Upload Roshetta';
         this.roshettaForm =this.fb.group({
@@ -91,7 +91,7 @@ export class RoshettaFormComponent implements OnInit {
         this.roshettaDtails['roshettaSchedual'] = form.value.schedual;
       }
       sessionStorage.setItem('roshettaDetails', JSON.stringify({...this.roshettaDtails, imageName: this.roshettaImageName}));
-      this.service.setRoshettaDetails(JSON.parse(sessionStorage.getItem('roshettaDetails')))
+      this.addtocartService.setRoshettaDetails(JSON.parse(sessionStorage.getItem('roshettaDetails')))
       e.target.setAttribute('data-dismiss', 'modal');
     }    
     }
