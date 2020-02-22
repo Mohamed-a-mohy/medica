@@ -21,10 +21,12 @@
     </div>
   </div>
   <div style="font-size: 30px; font-weight: bold; text-align: center;">total Price: {{totalPrice}}</div>
+  <app-roshetta-details></app-roshetta-details>
+  <a class="btn btn-primary" routerLink="/order-summery">CheckOut</a>
 </div>
 
 <ng-template #elseBlock>
-  <p style="font-size: 100px;">I'm empty</p>
+  <p style="font-size: 100px;">empty</p>
 </ng-template>
 
-<app-roshetta-details></app-roshetta-details>
+
