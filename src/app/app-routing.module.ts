@@ -18,8 +18,7 @@ const routes: Routes = [
   {path:"sigIn", component: SignInComponent},
   {path: "product/:id", component: ProductdetailsComponent},
   {path: "home" ,component:HomeComponent},
-  {path: "order-summery" ,component:SummeryviewComponent}
-
+  {path: "order-summery", component:SummeryviewComponent}
 ];
 
 @NgModule({

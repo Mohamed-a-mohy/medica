@@ -99,9 +99,7 @@ export class AddtocartService {
     }
 
     // if there is a roshetta uploaded before refresh
-    if(sessionStorage.getItem('roshettaDetails')){
       this.roshettaDetailsBehavior.next(JSON.parse(sessionStorage.getItem('roshettaDetails')));
-    }
   }
 
   // ----------------------------------------------------------------

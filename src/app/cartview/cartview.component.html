@@ -2,7 +2,7 @@
   <div *ngFor="let item of itemsInCart" class="row">
     <div class="col"><img src="https://via.placeholder.com/250x250" alt=""></div>
     <div class="col">
-      <h3>{{item.name}}</h3>
+      <h3><a [routerLink]="['/product',item.id]">{{item.name}}</a></h3>
       <div>
         <h5>Concentration</h5>
         <p>{{item.conc}}</p>
@@ -16,16 +16,16 @@
     <div class="col">
       <h3>{{item.price * item.quantity}}LE</h3>
       <p> {{item.price}} LE/ item</p>
-      <app-btntocart [item]='item'></app-btntocart>
       <app-cancelfromcart [item]='item'></app-cancelfromcart>
       <a routerLink='/order-summery' class="btn btn-primary">CheckOut</a>
     </div>
   </div>
   <div style="font-size: 30px; font-weight: bold; text-align: center;">total Price: {{totalPrice}}</div>
   <app-roshetta-details></app-roshetta-details>
+  <a class="btn btn-primary" routerLink="/order-summery">CheckOut</a>
 </div>
 
 <ng-template #elseBlock>
-  <p style="font-size: 100px;">I'm empty</p>
+  <p style="font-size: 100px;">empty</p>
 </ng-template>
 
