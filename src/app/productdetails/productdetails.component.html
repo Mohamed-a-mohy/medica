@@ -1,7 +1,7 @@
-<div class="container" *ngIf="itemObj" else loading>
-  <div class="row">
-      <div class="col"><img src="https://via.placeholder.com/250x250" alt=""></div>
-      <div class="col">
+<div class="container-fluid sec-productdetails" *ngIf="itemObj" else loading>
+  <div class="row sec-productdetails-cont">
+      <div class="col-3"><img src="https://via.placeholder.com/250x250" alt=""></div>
+      <div class="col-3 sec-productdetails-cont-details">
         <h3>{{itemObj.name}}</h3>
         <div>
           <h5>Concentration</h5>
@@ -13,9 +13,11 @@
         </div>
       </div>
 
-      <div class="col">
-        <h3>{{itemObj.price * itemObj.quantity}}LE</h3>
-        <p> {{itemObj.price}}LE / item</p>
+      <div class="col-3">
+        <div>
+          <h3>{{itemObj.price * itemObj.quantity}}LE</h3>
+          <p> {{itemObj.price}}LE / item</p>
+        </div>
         <app-btntocart [item] = 'itemObj'></app-btntocart>
       </div>
   </div>
@@ -23,51 +25,64 @@
 
   
 
-  <div class="row">
-    <p class="">
-      <a  class="colps" data-toggle="collapse" href="#collapse1" role="button" aria-expanded="false" aria-controls="collapse1" >
-        Link with href
-      </a>
-    </p>
-    <div class="collapse" id="collapse1" >
-      <div class="card card-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+  <div class="row .sec-productdetails-details">
+    <div class="col-1"></div>
+    <div class="col-5 colpsbox">
+      <p class="">
+        <a  class="colps" data-toggle="collapse" href="#collapse1" role="button" aria-expanded="false" aria-controls="collapse1" >
+         Symptoms / Usage
+        </a>
+      </p>
+      <div class="collapse" id="collapse1" >
+        <div class="card card-body">
+          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+        </div>
       </div>
     </div>
   </div>
   <div class="row">
-    <p class="">
-      <a  class="colps" data-toggle="collapse" href="#collapse2" role="button" aria-expanded="false" aria-controls="collapse2">
-        Link with href
-      </a>
-    </p>
-    <div class="collapse" id="collapse2">
-      <div class="card card-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+    <div class="col-1"></div>
+    <div class="col-5 colpsbox">
+      <p class="">
+        <a  class="colps" data-toggle="collapse" href="#collapse2" role="button" aria-expanded="false" aria-controls="collapse2">
+          Side Effects
+        </a>
+      </p>
+      <div class="collapse" id="collapse2">
+        <div class="card card-body">
+          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-1"></div>
+    <div class="col-5 colpsbox">
+      <p class="">
+        <a  class="colps" data-toggle="collapse" href="#collapse3" role="button" aria-expanded="false" aria-controls="collapse3">
+          Dose
+        </a>
+      </p>
+      <div class="collapse" id="collapse3">
+        <div class="card card-body">
+          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+        </div>
       </div>
     </div>
   </div>
   <div class="row">
-    <p class="">
-      <a  class="colps" data-toggle="collapse" href="#collapse3" role="button" aria-expanded="false" aria-controls="collapse3">
-        Link with href
-      </a>
-    </p>
-    <div class="collapse" id="collapse3">
-      <div class="card card-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <p class="">
-      <a  class="colps" data-toggle="collapse" href="#collapse4" role="button" aria-expanded="false" aria-controls="collapse4">
-        Link with href
-      </a>
-    </p>
-    <div class="collapse" id="collapse4">
-      <div class="card card-body">
-        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+    <div class="col-1"></div>
+    <div class="col-5 colpsbox ">
+      <p class="">
+        <a  class="colps" data-toggle="collapse" href="#collapse4" role="button" aria-expanded="false" aria-controls="collapse4">
+          Dos & Don'ts
+        </a>
+      </p>
+      <div class="collapse" id="collapse4">
+        <div class="card card-body">
+          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+        </div>
       </div>
     </div>
   </div>
@@ -75,10 +90,19 @@
 <ng-template #loading> <h1>Loading...</h1></ng-template>
 
 
-<div class="container">
-  <h2 *ngIf='alter[0]'>Alternatives</h2>
-  <app-item *ngFor="let item of alter" [item]="item"></app-item>
 
-</div>
+<!-- ---------------------sec-alts----------------- -->
+<!-- ---------------------sec-alts----------------- -->
+<!-- ---------------------sec-alts----------------- -->
+
+
+<section class="sec-alts">
+  <div class="container-fluid">
+    <h2 *ngIf='alter[0]'>Alternatives</h2>
+    <div class="row sec-alts-items">
+      <app-item *ngFor="let item of alter" [item]="item" class="col-3 mx-2"></app-item>
+    </div>
+  </div>
+</section>
 
 

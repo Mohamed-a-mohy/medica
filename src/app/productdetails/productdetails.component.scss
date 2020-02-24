@@ -5,3 +5,96 @@
     align-items: center;
     justify-content: space-between;
 }
+
+.sec-productdetails{
+    padding-bottom: 11rem;
+}
+
+.sec-productdetails-cont{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding-top: 5rem;
+    padding-bottom: 11rem;
+
+}
+
+.sec-productdetails-cont div{
+    margin: 0 10px;
+}
+.sec-productdetails-cont-details{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.sec-productdetails-cont-details h3{
+    padding-bottom: 20px;
+    font-size: 2rem;
+    font-weight: 600;
+    text-transform: capitalize;
+    
+}
+.sec-productdetails-cont-details div p{
+margin-left: 10px;
+padding-bottom: 20px;
+}
+.sec-productdetails-cont div:nth-of-type(3){
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.sec-productdetails-cont div:nth-of-type(3) h3{
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+
+.sec-productdetails-details{
+
+}
+
+a{
+    text-decoration: none;
+}
+
+.colps{
+    color: #05a19c;
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.colpsbox{
+    box-shadow: 2px 2px 9px -6px grey;
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+////////////sec-alts
+
+.sec-alts h2{
+ text-align: center;
+ font-size: 2rem;
+ font-weight: 600;
+
+}
+.sec-alts-items{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: stretch;
+}
+
+
+
+

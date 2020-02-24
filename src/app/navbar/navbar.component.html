@@ -2,19 +2,20 @@
     <section class="navbar-nav">
         <section class="navbar-nav_left">
             <ul class="navbar-nav_left-ul">
-                <li><a  ><img src="https://via.placeholder.com/90x80" alt="medica logo"></a></li>
-                <li><a  >العربية</a></li>
+                <li><a routerLink="/home" ><img src="https://via.placeholder.com/90x80" alt="medica logo"></a></li>
+                <li><a routerLink="/home" >PHARMEDICA</a></li>
             </ul>
         </section>
         <section class="navbar-nav_mid">
             <ul class="navbar-nav_mid-ul">
-                <li><a  routerLink="/home">Home</a></li>
-                <li><a   routerLink="/products">products</a></li>
-                <li><a   routerLink="/shop">shop</a></li>
-                <li><a  >about us</a></li>
+                <li><a  routerLink="/home" class="nav-active">Home</a></li>
+                <li><a   routerLink="/products">Categories</a></li>
             </ul>
         </section>
-        <app-roshetta-form></app-roshetta-form>
+        <div class="d-flex flex-row">
+            <app-search-bar-in-home></app-search-bar-in-home>
+            <app-roshetta-form></app-roshetta-form>
+        </div>
         <section class="navbar-nav_right">
             <ul class="navbar-nav_right-ul">
                 <li>
@@ -22,7 +23,7 @@
                     <span *ngIf = "notification > 0">{{notification}}</span>
                 </li>
                 <li>
-                    <i class="fas fa-shopping-bag"></i>
+                    <i  routerLink="/shop"  class="fas fa-shopping-bag"></i>
                     <span *ngIf = "counter > 0">{{counter}}</span>
                 </li>
                 <li *ngIf="checkuserLogin"><button (click)="logout()">logout</button></li>
