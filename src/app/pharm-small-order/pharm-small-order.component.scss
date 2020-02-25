@@ -1,0 +1,31 @@
+.sec-smallOrder{
+    background-color: #fff;
+    padding: 1rem;
+    border-radius: 8px;
+
+    &-upperCont{
+
+        &-id{
+            font-size: 1.5rem;
+            color: #018078;
+            font-weight: bold;
+        }
+    
+        button{
+            background-color: #Ffc401;
+            text-transform: capitalize;
+            color: #fff;
+            border-radius: 5px;
+            box-shadow: #dbd9d6 4px 4px 3px;
+            padding: 0.5rem 1.2rem;
+            font-size: 0.6rem;
+            border: none;
+        }
+    }
+    
+    &-lowerCont{
+        font-size: 0.9rem;
+        color: #212121;
+        font-weight: bold;
+    }
+}

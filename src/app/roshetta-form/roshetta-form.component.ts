@@ -16,7 +16,7 @@ export class RoshettaFormComponent implements OnInit {
   
   constructor(private fb: FormBuilder, private addtocartService: AddtocartService) { 
     this.roshettaForm = this.fb.group({
-      roshettaImage:["", [Validators.required, Validators.pattern(/.*\.(gif|jpe?g|bmp|png)$/)]],
+      roshettaImage:["", [Validators.required, Validators.pattern(/.*\.(gif|jpe?g|bmp|png)$/i)]],
       roshettaNotes:"",
       schedualCheck:false,
       schedual: "weekly"
@@ -28,7 +28,7 @@ export class RoshettaFormComponent implements OnInit {
       if(flag){
         this.roshettaImageName = 'Upload Roshetta';
         this.roshettaForm =this.fb.group({
-          roshettaImage:["", [Validators.required, Validators.pattern(/.*\.(gif|jpe?g|bmp|png)$/)]],
+          roshettaImage:["", [Validators.required, Validators.pattern(/.*\.(gif|jpe?g|bmp|png)$/i)]],
           roshettaNotes:"",
           schedualCheck:false,
           schedual: "weekly"
@@ -39,7 +39,7 @@ export class RoshettaFormComponent implements OnInit {
     if(sessionStorage.getItem('roshettaDetails')){
       let roshettaDetails = JSON.parse(sessionStorage.getItem('roshettaDetails'))
       this.roshettaForm = this.fb.group({
-        roshettaImage: ["", [Validators.pattern(/.*\.(gif|jpe?g|bmp|png)$/)]],
+        roshettaImage: ["", [Validators.pattern(/.*\.(gif|jpe?g|bmp|png)$/i)]],
         roshettaNotes: roshettaDetails.roshettaNotes,
         schedualCheck: roshettaDetails.roshettaSchedualCheck,
         schedual: roshettaDetails.roshettaSchedual
