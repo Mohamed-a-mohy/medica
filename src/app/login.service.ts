@@ -26,8 +26,7 @@ export class LoginService {
     for (let user of this.users) {
       if (
         user["email"] == form.value.email &&
-        user["password"] == form.value.password &&
-        user['role'] == 'user'
+        user["password"] == form.value.password
       ) {
         localStorage.setItem("checkLogin", "true");
         this.changeLoginStatus(localStorage.getItem("checkLogin"));

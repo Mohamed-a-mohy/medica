@@ -1,0 +1,33 @@
+<section class="section container">
+    <section class="row title">
+        <h1 class="text-center col-12">THANK YOU FOR YOUR PURCHASE!</h1>
+        <p class="text-center col-12">your order has been confirmed and will be on the way soon</p>
+    </section>
+
+    <section class="row details">
+        <section class="col-9 order_details">
+        <p>Date: <span>{{day}}/{{month+1}}/{{year}}</span></p>
+        <p>Payment: <span>Cash on delivery</span> </p>
+        </section>
+        <section class="col-3  delivery_details">
+            <p>Delivery details:</p><span>Lorem ipsum dolor sit amet</span>
+        </section>
+    </section>
+    <section class="products">
+
+        <div class="row px-4 products_title">
+            <p class="text-left col-4 ">ITEMS</p>
+            <p class="text-center col-4">QUANTITY</p>
+            <p class="text-right col-4">PRICE</p>
+        </div>
+        <div class="row products_details">
+            <app-confirm-item class="col-12" *ngFor="let item of productsInCart" [item]="item"></app-confirm-item>
+        </div>
+        <div class="row products_totalPrice">
+            <p>Total price doesn't include the Roshetta </p>
+            <p>Total Price : <span>{{totalPrice}}</span> </p>
+            
+        </div>
+    </section>
+</section>
+    

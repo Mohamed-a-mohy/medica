@@ -38,7 +38,13 @@ import { SummeryviewComponent } from './summeryview/summeryview.component';
 import { ItemSmallComponent } from './item-small/item-small.component';
 import { HomeComponent} from './home/home.component';
 import { SearchBarInHomeComponent } from './search-bar-in-home/search-bar-in-home.component';
-import { JwPaginationComponent} from 'jw-angular-pagination'
+import { JwPaginationComponent} from 'jw-angular-pagination';
+import { PharmViewComponent } from './pharm-view/pharm-view.component';
+import { PharmOrdersComponent } from './pharm-orders/pharm-orders.component';
+import { PharmSmallOrderComponent } from './pharm-small-order/pharm-small-order.component';
+import { PharmDetailedOrderComponent } from './pharm-detailed-order/pharm-detailed-order.component';
+import { ConfirmItemComponent } from './confirm-item/confirm-item.component';
+import { ConfirmationComponent } from './confirmation/confirmation.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +68,12 @@ import { JwPaginationComponent} from 'jw-angular-pagination'
     HomeComponent,
     SearchBarInHomeComponent,
     JwPaginationComponent,
+    PharmViewComponent,
+    PharmOrdersComponent,
+    PharmSmallOrderComponent,
+    PharmDetailedOrderComponent,
+    ConfirmItemComponent,
+    ConfirmationComponent,
   ],
   imports: [
     BrowserModule,

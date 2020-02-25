@@ -1,0 +1,21 @@
+    <div class="row px-3">
+        <div class="col-12 sec-smallOrder">
+
+            <!-- order id and button -->
+            <div class="sec-smallOrder-upperCont d-flex justify-content-between align-items-center mb-3">
+                <span class="sec-smallOrder-upperCont-id">#{{order.orderId}}</span>
+                <button (click) = 'showOrderDetails()'>view order</button>
+            </div>
+
+            <!-- date, time and address -->
+            <div class="sec-smallOrder-lowerCont">
+                <i class="far fa-bell mr-2"></i>
+                <time datetime="2020-2-12 11:00">{{order.date}}, {{order.time}}</time>
+            </div>
+            <div class="sec-smallOrder-lowerCont" *ngIf = 'order.status'>
+                <i class="far fa-bell mr-2"></i>
+                <span>{{order.userAddress}}</span>
+            </div>
+
+        </div>
+    </div>
