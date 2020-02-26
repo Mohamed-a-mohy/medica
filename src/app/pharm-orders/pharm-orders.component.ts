@@ -23,7 +23,6 @@ export class PharmOrdersComponent implements OnInit {
       if (location.path() != '') {
         this.routeLink = location.path();
       }
-
       if(this.routeLink.includes('/pending')){
         this.pharmService.getPendingData();
         this.pharmService.commingOrdersObs.subscribe(items => {

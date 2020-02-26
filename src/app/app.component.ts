@@ -28,7 +28,6 @@ export class AppComponent {
   constructor(db: AngularFireDatabase,
     private angularFS: AngularFirestore,
     private service: AddtocartService,) {
-
     // get data from database
     this.items = this.angularFS.collection('products').valueChanges({ idField: 'id' });
     this.itemCollection = this.angularFS.collection('products');
