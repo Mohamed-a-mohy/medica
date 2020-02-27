@@ -1,9 +1,14 @@
-<div class="media col-8">
-    <img src="https://via.placeholder.com/50x50" class="mr-3" alt="product image">
-    <div class="media-body">
-      <h5 class="mt-0">{{item.name}}</h5>
-      {{item.type}} {{item.conc}} 
-    </div>
-    <app-quantity [item]='item'></app-quantity>
-    <app-cancelfromcart [item]='item'></app-cancelfromcart>
+<div class="small_item">
+  <div class="row item_canclation">
+    <app-cancelfromcart class="col-12" [item]='item'></app-cancelfromcart>
   </div>
+  <div class="row">
+    <img class="col-2" src="https://via.placeholder.com/100x100" class="mr-3" alt="product image">
+    <div class="col-3 item_info">
+        <h5 class="mt-0">{{item.name}}</h5>
+        <p>{{item.type}} - {{item.conc}}</p>   
+    </div>
+    <app-quantity class="col-3" [item]='item'></app-quantity>
+    <div class="col-3 item_price"><p> {{item.price * item.quantity}} EGP</p> </div>
+  </div>
+</div>

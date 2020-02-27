@@ -1,0 +1,70 @@
+<section class="section container">
+    <section class="row title">
+        <h1 class="text-center col-12">THANK YOU FOR YOUR PURCHASE!</h1>
+        <p class="text-center col-12">your order has been confirmed and will be on the way soon</p>
+    </section>
+
+    <section class="row mb-5 details">
+        <section class="col-9 order_details">
+            <p>Date: <span>{{day}}/{{month+1}}/{{year}}</span></p>
+            <p>Payment: <span>Cash on delivery</span> </p>
+        </section>
+        <section class="col-3  delivery_details">
+            <p>Delivery details:</p><span>Lorem ipsum dolor sit amet</span>
+        </section>
+    </section>
+    <section class="products">
+
+        <div class="row px-4 products_title">
+            <p class="text-left col-4 ">ITEMS</p>
+            <p class="text-center col-4">QUANTITY</p>
+            <p class="text-right col-4">PRICE</p>
+        </div>
+        <div class="row products_details">
+            <app-confirm-item class="col-12" *ngFor="let item of productsInCart" [item]="item"></app-confirm-item>
+        </div>
+        <div class="row roshetta">
+            <div class="col-4">
+                <div class="row  px-4 roshetta_details">
+                    <div class="col-4 roshetta_img" data-toggle="modal" data-target="#staticBackdrop">
+                        <!-- Modal of roshetta -->
+                        <div class="modal fade" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog"
+                            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="staticBackdropLabel">Roshetta</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <figure>
+                                            <img src="{{roshettaImage}}" class="img-fluid" alt="">
+                                        </figure>                                        
+                                    </div>
+                                    <div class="noteInModel" *ngIf="roshettaNotes.length>1">
+                                        <p>Note : <span>{{roshettaNotes}}</span></p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-7 py-auto roshetta_info">
+                        <h4>Roshetta</h4>
+                        <p>Note: <span>Cash on delivery</span></p>
+                        <span>{{roshettaNotes}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row products_totalPrice">
+            <p>Total price doesn't include the Roshetta </p>
+            <p>Total Price : <span>{{totalPrice}}</span> </p>
+        </div>
+    </section>
+</section>

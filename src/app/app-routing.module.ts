@@ -7,6 +7,7 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { HomeComponent } from './home/home.component';
 import { SummeryviewComponent } from './summeryview/summeryview.component';
+import { ConfirmationComponent } from './confirmation/confirmation.component';
 
 
 
@@ -18,7 +19,8 @@ const routes: Routes = [
   {path:"sigIn", component: SignInComponent},
   {path: "product/:id", component: ProductdetailsComponent},
   {path: "home" ,component:HomeComponent},
-  {path: "order-summery", component:SummeryviewComponent}
+  {path: "order-summery", component:SummeryviewComponent},
+  {path: "confirm", component:ConfirmationComponent},
 ];
 
 @NgModule({
