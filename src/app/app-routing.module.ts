@@ -11,6 +11,8 @@ import { PharmViewComponent } from './pharm-view/pharm-view.component';
 import { PharmOrdersComponent } from './pharm-orders/pharm-orders.component';
 import { PharmRoleService } from './guards/pharm-role.service';
 import { NotPharmRoleService } from './guards/not-pharm-role.service';
+import { ConfirmationComponent } from './confirmation/confirmation.component';
+
 
 
 
@@ -27,6 +29,7 @@ const routes: Routes = [
   {path: "pharmview/pending", component:PharmOrdersComponent, canActivate: [PharmRoleService]},
   {path: "pharmview/inprogress", component:PharmOrdersComponent, canActivate: [PharmRoleService]},
   {path: "pharmview/orders", component:PharmOrdersComponent, canActivate: [PharmRoleService]},
+  {path: "confirm", component:ConfirmationComponent ,canActivate: [NotPharmRoleService]},
 ];
 
 @NgModule({

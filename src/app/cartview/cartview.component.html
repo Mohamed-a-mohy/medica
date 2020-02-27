@@ -4,8 +4,6 @@
       <mat-checkbox class="" id="scheduleCheck1" #scheduleCheck2 (change)="scheduleChecked($event)"
         [checked]="scheduleCheckStatus">Click here if you
         want to make this order schedule </mat-checkbox>
-      <!-- <label class="custom-control-label" for="scheduleCheck1">Click here if you
-        want to make this order schedule</!-->
     </section>
     <section class="scheduleArea pb-3 pt-3 w-75 m-auto" *ngIf="scheduleCheck2.checked">
       <section id="datepickerArea" class="row mt-3">
@@ -31,9 +29,6 @@
       </div>
     </section>
   </form>
-
-  <!-- <div *ngIf="scheduleCheck2.checked || scheduledAreaShow"><input type="checkbox" (click)="selectAll($event)" #selectAllInput>Select All</div> -->
-
   <div *ngFor="let item of itemsInCart" class="row">
     <div *ngVar="scheduleCheckStatusObj as variable">
       <mat-checkbox class=" select" [checked]= variable[item.id] [id]="item.id" 
@@ -54,9 +49,8 @@
     </div>
 
     <div class="col">
-      <h3>{{item.price * item.quantity}}LE</h3>
-      <p> {{item.price}} LE/ item</p>
-      <app-btntocart [item]='item'></app-btntocart>
+      <h3>{{item.price * item.quantity}}EGP</h3>
+      <p> {{item.price}}EGP/ item</p>
       <app-cancelfromcart [item]='item'></app-cancelfromcart>
     </div>
   </div>
