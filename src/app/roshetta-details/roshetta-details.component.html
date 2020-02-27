@@ -1,26 +1,33 @@
 <section class="container" *ngIf="roshettaDetails">
     <section class="row">
-        <section class="col">
-            <img [src]="roshettaDetails.roshettaImage" alt="" class="w-100">
+        <img class="ml-auto cursor" (click)="deletRoshetta()" src="../../assets/order summary/svg/Layer 22.svg">
+    </section>
+    <section class="row ">
+        <section class="width-85px ">
+            <img [src]="roshettaDetails.roshettaImage" alt="" class="w-100 h-100 cursor" data-toggle="modal"
+                data-target="#roshettaModel">
         </section>
-        <section class="col">
-            <p class="h3">Your Prescription</p>
-            <section class="row mt-3">
-                <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
-                <input matInput [matDatepicker]="myDatepicker" class="w-0 border-0">
-                <mat-datepicker #myDatepicker></mat-datepicker>
-                <span id="schedualedSpan">{{scheduleText}}</span>
-            </section>
-            <section class="row mt-3">
-                <span>{{roshettaDetails.roshettaNotes}}</span>
-            </section>
-            <span class="row mt-3">
-                <span><b>Note:</b>Cash on delivery</span>
-            </span>
+        <section class="pl-4 d-flex flex-column justify-content-center col-8">
+            <p class="h5 font-weight-bold m-0 row">Roshetta</p>
+            <p class="m-0 row gray-color text-break">{{roshettaDetails.roshettaNotes}}</p>
+        </section>
 
-        </section>
-        <section class="col">
-            <button class="" (click)="deletRoshetta()">&times;</button>
-        </section>
     </section>
 </section>
+
+<div class="modal fade" id="roshettaModel" tabindex="-1" role="dialog" aria-labelledby="roshettaModelTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header border-0">
+                <h5 class="modal-title" id="exampleModalLongTitle">Roshetta</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <img [src]="roshettaDetails.roshettaImage" class="w-100">
+            </div>
+        </div>
+    </div>
+</div>

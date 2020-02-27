@@ -49,7 +49,10 @@ import { PharmSmallOrderComponent } from './pharm-small-order/pharm-small-order.
 import { PharmDetailedOrderComponent } from './pharm-detailed-order/pharm-detailed-order.component';
 import { ConfirmItemComponent } from './confirm-item/confirm-item.component';
 import { ConfirmationComponent } from './confirmation/confirmation.component';
-
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input'
+import {MatCheckboxModule} from '@angular/material';
+import { VarDirective } from './var.directive'
 
 @NgModule({
   declarations: [
@@ -79,6 +82,7 @@ import { ConfirmationComponent } from './confirmation/confirmation.component';
     PharmDetailedOrderComponent,
     ConfirmItemComponent,
     ConfirmationComponent,
+    VarDirective
   ],
   imports: [
     BrowserModule,
@@ -90,6 +94,9 @@ import { ConfirmationComponent } from './confirmation/confirmation.component';
     ReactiveFormsModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatFormFieldModule,
+    MatInputModule ,
+  MatCheckboxModule
   ],
   providers: [
     MatDatepickerModule,

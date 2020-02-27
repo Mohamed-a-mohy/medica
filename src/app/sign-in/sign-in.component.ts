@@ -35,6 +35,7 @@ export class SignInComponent implements OnInit {
   
 
   onSubmit(form: NgForm) {
+
     if (this.myForm.value.email && this.myForm.value.password) {
       this.loginService.checkValidUser(form);
     } else {
