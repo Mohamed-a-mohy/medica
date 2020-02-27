@@ -49,8 +49,6 @@ import { PharmSmallOrderComponent } from './pharm-small-order/pharm-small-order.
 import { PharmDetailedOrderComponent } from './pharm-detailed-order/pharm-detailed-order.component';
 import { ConfirmItemComponent } from './confirm-item/confirm-item.component';
 import { ConfirmationComponent } from './confirmation/confirmation.component';
-
-
 @NgModule({
   declarations: [
     AppComponent,

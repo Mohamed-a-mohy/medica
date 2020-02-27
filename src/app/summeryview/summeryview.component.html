@@ -1,26 +1,42 @@
 <div class="container">
   <div class="row">
-    <app-item-small *ngFor="let item of itemsInCart" [item]='item' class="col-8"></app-item-small>
-    <div class="col-4">
-      <form action=""[formGroup]="myForm" (ngSubmit)="onSubmit(myForm)">
+    <div class="col-7">
+      <app-item-small *ngFor="let item of itemsInCart" [item]='item'></app-item-small>
+    </div>
+    <div class="col-1">
+
+    </div>
+    <div class="col-4 my-3 delivery_info">
+      <div class="delivery_info_tital">
+        <h2>Delivery Info.</h2>
+      </div>
+      <h4>Details</h4>
+      <form action=""[formGroup]="myForm">
         <section class="input-feild">
-          <input class="" formControlName="address" placeholder="Enter Yor Adress">
-          <span>@</span>
+          <input id="address" formControlName="address" placeholder="Address" (keyup)="checkValidation()">
+          <span> <img src="../../assets/order summary/svg/noun_Location_2024994.svg" alt=""> </span>
         </section>
         <p *ngIf="myForm.get('address').hasError('required') && myForm.get('address').touched">
           *Required.
         </p>
         <section class="input-feild">
-          <input class="" formControlName="phone" placeholder="Enter Yor Phone number">
-          <span>@</span>
+          <input id="phone" formControlName="phone" placeholder="Phone Number" (keyup)="checkValidation()">
+          <span> <img src="../../assets/order summary/svg/noun_Phone_2545576.svg" alt=""> </span>
         </section>
         <p *ngIf="myForm.get('phone').hasError('required') &&  myForm.get('phone').touched">
           *Required.
         </p>
         <p *ngIf=" myForm.get('phone').hasError('pattern') && myForm.get('phone').touched">
-          *min length 11.
+           must start with 01 and contain 11 number.
         </p>
-        <button class="btn btn-primary"  id="submit-btn" type="submit" >CheckOut</button>
+        <p>
+            {{waringMassege}}
+        </p>
+        <h4>Payment Method</h4>
+        <a class="dropdown-item p-0"><input class="input_payment" type="radio" checked  value="1"> cash</a>
+        <div class="Payment_button">
+          <button class="btn mt-3"  id="submit-btn" type="submit" (click)="checkUserHaveAccount()">Confirmation Order</button>
+        </div>
       </form>
     </div>
   </div>

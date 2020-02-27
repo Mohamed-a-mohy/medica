@@ -1,0 +1,28 @@
+*{
+    align-items: center;
+}
+.small_item{
+    border-bottom: 0.1rem solid #e3e3e3;
+    padding: 1rem 1.5rem;
+}
+.item_canclation{
+    text-align: right;
+}
+.item_info{
+    h5{
+        font-weight: bolder;
+        text-transform: capitalize;
+        font-size: 1rem;
+    }
+    p{
+        font-size: 0.8rem;
+        color: gray;
+    }
+}
+.item_price{
+   p{
+    font-weight: bolder;
+    font-size: 1rem;
+    padding-top: 0.8rem;
+   }
+}
