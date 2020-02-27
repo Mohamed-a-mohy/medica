@@ -15,7 +15,7 @@ export class PharmDetailedOrderComponent implements OnInit {
   order;
   addCollection;
   show;
-
+  dateTimeStr;
   constructor(private pharmService: PharmServiceService,
      private angularFS: AngularFirestore) {
       this.addCollection = this.angularFS.collection('pharmaciesOrders');
@@ -24,6 +24,9 @@ export class PharmDetailedOrderComponent implements OnInit {
   ngOnInit() {
     this.pharmService.orderDetailsObs.subscribe(order => {
       this.order = order;
+      if(this.order.time){
+        this.dateTimeStr = this.pharmService.editDateAndTimeFormat(this.order);
+      }
     })
 
     this.pharmService.showDetailsObs.subscribe(status => {

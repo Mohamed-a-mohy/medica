@@ -26,7 +26,7 @@
 
             &-head{
                 text-transform: uppercase;
-                color: #05a19c;
+                color: #01807b;
                 font-size: 1.1rem;
                 font-weight: bolder;
                 letter-spacing: 3px;
@@ -47,6 +47,11 @@
                 color: #05a19c;
                 font-size: 1.1rem;
                 text-decoration: none;
+
+                img {
+                    display: block;
+                    margin: 0 auto 0.5rem auto;
+                }
             }
         }
     }
@@ -57,6 +62,7 @@
     padding: 0.5rem 0;
     background-color: #f3ebe3;
 }
+
 
 
 // ----------------------------------------------------------------------------

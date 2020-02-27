@@ -8,10 +8,11 @@ import { PharmServiceService } from '../pharm-service.service';
 })
 export class PharmSmallOrderComponent implements OnInit {
   @Input() order;
-
+  dateTimeStr;
   constructor(private pharmService: PharmServiceService) { }
 
   ngOnInit() {
+    this.dateTimeStr = this.pharmService.editDateAndTimeFormat(this.order);
   }
 
   showOrderDetails(){

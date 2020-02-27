@@ -40,17 +40,44 @@
     justify-content: space-between;
     font-size: 20px;
     font-weight: bolder;
-    padding: 0;
-    padding-top: 10px;
+    padding: 0 1.5rem;
     border-top: 3px solid #e2e2e2;
+    padding-top: 1.5rem;
+    padding-bottom: 5rem;
     p{
         color: black;
-        // font-size: 20px;
     }
     span{
         color: gray;
         padding: 0;
-        // font-size: 20px;
     }
 }
-
+.roshetta_img{
+    height: 7rem;
+    margin: 1.5rem 0.5rem;
+    background-color: #e2e2e2;
+    border: 1rem solid #e2e2e2;
+    border-radius: 1rem;
+}
+.roshetta_details{
+    display: flex;
+    align-items: center;
+    h4{
+        font-weight: bolder;
+    }
+    span{
+        color: gray;
+    }
+    p{
+        font-size: 0.9rem;
+        padding: 0;
+    }
+}
+.noteInModel{
+    p{
+        font-size: 1rem;
+    }
+    span{
+        color: gray;
+    }
+}
