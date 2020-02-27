@@ -35,7 +35,7 @@ export class ConfirmationComponent implements OnInit {
   userId;
   user;
   //variables of roshetta
-  roshettaNotes;
+  roshettaNotes:string;
   cheskRoshetta:boolean;
   roshettaDetails:{};
   //variables of dataBase 

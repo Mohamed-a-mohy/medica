@@ -13,14 +13,14 @@
       <h4>Details</h4>
       <form action=""[formGroup]="myForm">
         <section class="input-feild">
-          <input id="address" formControlName="address" placeholder="Address" (keyup)="checkValidation()">
+          <input id="address" formControlName="address" placeholder="Address" (keyup)="checkValidation($event, myForm)">
           <span> <img src="../../assets/order summary/svg/noun_Location_2024994.svg" alt=""> </span>
         </section>
         <p *ngIf="myForm.get('address').hasError('required') && myForm.get('address').touched">
           *Required.
         </p>
         <section class="input-feild">
-          <input id="phone" formControlName="phone" placeholder="Phone Number" (keyup)="checkValidation()">
+          <input id="phone" formControlName="phone" placeholder="Phone Number" (keyup)="checkValidation($event, myForm)">
           <span> <img src="../../assets/order summary/svg/noun_Phone_2545576.svg" alt=""> </span>
         </section>
         <p *ngIf="myForm.get('phone').hasError('required') &&  myForm.get('phone').touched">

@@ -47,8 +47,8 @@ export class SummeryviewComponent implements OnInit {
       }
     }
   }
-  checkValidation(){
-    if(this.myForm.valid){
+  checkValidation(e, myForm){
+    if(myForm.valid){
       document.getElementById("submit-btn").setAttribute("style","opacity:1")
     }else{
       document.getElementById("submit-btn").setAttribute("style","opacity:0.5")
