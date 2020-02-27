@@ -6,22 +6,22 @@
             </div>
             <div class="sec-detailed-userInfo-container mb-5">
                 <div class="sec-detailed-userInfo-container-cont row">
-                    <span class="col-8">
-                        <i class="far fa-bell mr-2"></i>
-                        <time datetime="2020-2-12 11:00">{{order.date}}, {{order.time}}</time>
+                    <span class="col-8 d-flex align-items-center">
+                        <img src="../../assets/pharmDashboardIcones/dateIcon.svg" alt="" class="mr-2">
+                        <span>{{dateTimeStr}}</span>
                     </span>
-                    <span class="col-4">
-                        <i class="far fa-bell mr-2"></i>
+                    <span class="col-4 d-flex align-items-center">
+                        <img src="../../assets/pharmDashboardIcones/paymentIcon.svg" alt="" class="mr-2">
                         <span>Cash on delivery</span>
                     </span>
                 </div>
                 <div class="sec-detailed-userInfo-container-cont row" *ngIf = 'order.status'>
-                    <span class="col-8">
-                        <i class="far fa-bell mr-2"></i>
+                    <span class="col-8 d-flex align-items-center">
+                        <img src="../../assets/pharmDashboardIcones/addressIcon.svg" alt="" class="mr-2">
                         <span>{{order.userAddress}}</span>
                     </span>
-                    <span class="col-4">
-                        <i class="far fa-bell mr-2"></i>
+                    <span class="col-4 d-flex align-items-center">
+                        <img src="../../assets/pharmDashboardIcones/phoneIcon.svg" alt="" class="mr-2">
                         <span>+2 {{order.userPhone}}</span>
                     </span>
                 </div>

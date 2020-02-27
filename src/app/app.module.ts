@@ -20,6 +20,10 @@ import { ItemComponent } from './item/item.component';
 import { BtntocartComponent } from './btntocart/btntocart.component';
 // firebase imports ends here
 
+// guards import here
+import { PharmRoleService } from './guards/pharm-role.service';
+import { NotPharmRoleService } from './guards/not-pharm-role.service';
+
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { CartviewComponent } from './cartview/cartview.component';
@@ -45,6 +49,7 @@ import { PharmSmallOrderComponent } from './pharm-small-order/pharm-small-order.
 import { PharmDetailedOrderComponent } from './pharm-detailed-order/pharm-detailed-order.component';
 import { ConfirmItemComponent } from './confirm-item/confirm-item.component';
 import { ConfirmationComponent } from './confirmation/confirmation.component';
+
 
 @NgModule({
   declarations: [
@@ -87,7 +92,9 @@ import { ConfirmationComponent } from './confirmation/confirmation.component';
     MatNativeDateModule,
   ],
   providers: [
-    MatDatepickerModule
+    MatDatepickerModule,
+    PharmRoleService,
+    NotPharmRoleService
   ],
   bootstrap: [AppComponent]
 })

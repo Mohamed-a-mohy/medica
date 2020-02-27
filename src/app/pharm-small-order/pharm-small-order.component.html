@@ -8,12 +8,12 @@
             </div>
 
             <!-- date, time and address -->
-            <div class="sec-smallOrder-lowerCont">
-                <i class="far fa-bell mr-2"></i>
-                <time datetime="2020-2-12 11:00">{{order.date}}, {{order.time}}</time>
+            <div class="sec-smallOrder-lowerCont mb-2 d-flex align-items-center">
+                <img src="../../assets/pharmDashboardIcones/dateIcon.svg" alt="" class="mr-2">
+                <span>{{dateTimeStr}}</span>
             </div>
-            <div class="sec-smallOrder-lowerCont" *ngIf = 'order.status'>
-                <i class="far fa-bell mr-2"></i>
+            <div class="sec-smallOrder-lowerCont d-flex align-items-center" *ngIf = 'order.status'>
+                <img src="../../assets/pharmDashboardIcones/addressIcon.svg" alt="" class="mr-2">
                 <span>{{order.userAddress}}</span>
             </div>
 

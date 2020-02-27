@@ -4,32 +4,32 @@
         <nav class="col-2 sec-pharmView-nav pt-5 px-0">
             <div class="sec-pharmView-nav-logo mx-auto">
                 <div class="sec-pharmView-nav-logo-container">
-                    <img src="https://c.top4top.io/p_1514un5i21.png" alt="pharmedica logo">
+                    <img src="../../assets/pharmDashboardIcones/abovePharmName.svg" alt="">
                     <h1 class="sec-pharmView-nav-logo-head">{{pharmObj.userName}}</h1>
                 </div>
             </div>
             <ul>
                 <li routerLinkActive="active-link" class="mb-3">
                     <a routerLink="/pharmview/pending">
-                            <img src="" alt="">
+                            <img src="../../assets/pharmDashboardIcones/navPendingIcon.svg" alt="">
                                 pending orders
                     </a>
                 </li>
                 <li routerLinkActive="active-link" class="mb-3">
                     <a routerLink="/pharmview/inprogress">
-                            <img src="" alt="">
+                            <img src="../../assets/pharmDashboardIcones/navInprogressIcon.svg" alt="">
                                 in progress orders
                     </a>
                 </li>
                 <li routerLinkActive="active-link" class="mb-3">
                     <a routerLink="/pharmview/orders">
-                            <img src="" alt="">
+                            <img src="../../assets/pharmDashboardIcones/navCompleteIcon.svg" alt="">
                                 complete orders
                     </a>
                 </li>
                 <!-- <li routerLinkActive="active-link" class="mb-3">
                     <a routerLink="">
-                            <img src="" alt="">
+                            <img src="../../assets/pharmDashboardIcones/navStatisticsIcon.svg" alt="">
                                 statistics
                     </a>
                 </li> -->
@@ -46,7 +46,8 @@
             <div class="row px-3 py-0 m-0">
                 <!-- orders view or statistics view -->
                 <div class="col-12 p-0">
-                    <app-pharm-orders></app-pharm-orders>
+                    <!-- <app-pharm-orders></app-pharm-orders> -->
+                    <router-outlet></router-outlet>
                 </div>
             </div>
         </div>
