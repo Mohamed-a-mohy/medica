@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { AngularFirestore } from "angularfire2/firestore";
-import { Router } from '@angular/router';
+import { Router,  NavigationEnd } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +12,8 @@ export class LoginService {
   checkLogin$ = this.checkLoginBehavior.asObservable();
   userIdBehavior = new BehaviorSubject('');
   userId$ = this.userIdBehavior.asObservable();
+  previousUrl: string;
+  currentUrl: string;
 
   constructor(
     private angularFS: AngularFirestore,
@@ -21,7 +23,20 @@ export class LoginService {
     this.users.subscribe(items => {
       this.users = items;
     });
+    this.currentUrl = this.router.url;
+    router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {        
+        this.previousUrl = this.currentUrl;
+        this.currentUrl = event.url;
+      };
+    });
+
   }
+
+  getPreviousUrl() {
+    return this.previousUrl;
+  } 
+
   checkValidUser(form): void {
     for (let user of this.users) {
       if (
@@ -32,7 +47,8 @@ export class LoginService {
         this.changeLoginStatus(localStorage.getItem("checkLogin"));
         localStorage.setItem('userId', user.id);
         this.addUserId(localStorage.getItem('userId'));
-        this.router.navigate(['/home']);
+        localStorage.setItem('userRole', user['role']);
+        this.router.navigate([this.previousUrl]);
         return;
       }
     }

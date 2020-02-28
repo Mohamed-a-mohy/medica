@@ -1,8 +1,43 @@
-<div class="container" *ngIf='itemsInCart[0] else elseBlock'>
+<div class="container w-50" *ngIf='itemsInCart[0] || roshettaDetails else elseBlock'>
+  <form [formGroup]="scheduleForm">
+    <section class="custom-control custom-checkbox  pt-3 w-75 m-auto">
+      <mat-checkbox class="" id="scheduleCheck1" #scheduleCheck2 (change)="scheduleChecked($event)"
+        [checked]="scheduleCheckStatus">Click here if you
+        want to make this order schedule </mat-checkbox>
+    </section>
+    <section class="scheduleArea pb-3 pt-3 w-75 m-auto" *ngIf="scheduleCheck2.checked">
+      <section id="datepickerArea" class="row mt-3">
+        <input matInput [matDatepicker]="picker" formControlName="calendar" class="width-0 border-0"
+          (dateChange)="changeDate($event)">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker [dateClass]="dateClass" #picker></mat-datepicker>
+        <span id="scheduledSpan">{{scheduleText}}</span>
+      </section>
+      <div class="btn-group btn-group-toggle" data-toggle="buttons">
+        <label class="btn active">
+          <input type="radio" formControlName="schedule" id="weeklyCheck" autocomplete="off" value="week"
+            (click)="changeShedule($event, scheduleForm)"> weekly
+        </label>
+        <label class="btn">
+          <input type="radio" formControlName="schedule" id="twoWeeksCheck" autocomplete="off" value="2weeks"
+            (click)="changeShedule($event, scheduleForm)"> 2 weeks
+        </label>
+        <label class="btn">
+          <input type="radio" formControlName="schedule" id="monthlyCheck" autocomplete="off" value="month"
+            (click)="changeShedule($event, scheduleForm)"> monthly
+        </label>
+      </div>
+    </section>
+  </form>
   <div *ngFor="let item of itemsInCart" class="row">
+    <div *ngVar="scheduleCheckStatusObj as variable">
+      <mat-checkbox class=" select" [checked]= variable[item.id] [id]="item.id" 
+        (change)="addProductToScheduleList($event)" *ngIf="scheduleCheck2.checked">
+      </mat-checkbox>
+    </div>
     <div class="col"><img src="https://via.placeholder.com/250x250" alt=""></div>
     <div class="col">
-      <h3><a [routerLink]="['/product',item.id]">{{item.name}}</a></h3>
+      <h3>{{item.name}}</h3>
       <div>
         <h5>Concentration</h5>
         <p>{{item.conc}}</p>
@@ -17,15 +52,18 @@
       <h3>{{item.price * item.quantity}}EGP</h3>
       <p> {{item.price}}EGP/ item</p>
       <app-cancelfromcart [item]='item'></app-cancelfromcart>
-      <a routerLink='/order-summery' class="btn btn-primary">CheckOut</a>
     </div>
   </div>
   <div style="font-size: 30px; font-weight: bold; text-align: center;">total Price: {{totalPrice}}</div>
-  <app-roshetta-details></app-roshetta-details>
-  <a class="btn btn-primary" routerLink="/order-summery">CheckOut</a>
+  <div class="row">
+    <mat-checkbox class="select col-1" (change)="addRoshettaToScheduleList($event)"
+      *ngIf="(scheduleCheck2.checked && roshettaDetails)" [checked] = 'roshettaScheduleStatus'>
+    </mat-checkbox>
+    <app-roshetta-details class="col-11"></app-roshetta-details>
+  </div>
+
 </div>
 
 <ng-template #elseBlock>
-  <p style="font-size: 100px;">empty</p>
+  <p style="font-size: 100px;">I'm empty</p>
 </ng-template>
-

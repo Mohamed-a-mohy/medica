@@ -1,0 +1,16 @@
+.active {
+    text-decoration: underline;
+    font-weight: bold;
+  }
+  .width-0 {
+    width: 0px;
+  }
+  .example-custom-date-class {
+    background: orange;
+    border-radius: 100%;
+  }
+  
+  ::ng-deep .mat-checkbox-checked .mat-checkbox-background {
+      background-color: #ffc401 !important;
+    }
+  
