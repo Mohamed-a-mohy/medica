@@ -5,7 +5,7 @@
   <div class="row">
     <img class="col-2" src="https://via.placeholder.com/100x100" class="mr-3" alt="product image">
     <div class="col-3 item_info">
-        <h5 class="mt-0">{{item.name}}</h5>
+      <a [routerLink]="['/product',item.id]"><h5 class="mt-0">{{item.name}}</h5></a>
         <p>{{item.type}} - {{item.conc}}</p>   
     </div>
     <app-quantity class="col-3" [item]='item'></app-quantity>

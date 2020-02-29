@@ -24,6 +24,12 @@ import { BtntocartComponent } from './btntocart/btntocart.component';
 import { PharmRoleService } from './guards/pharm-role.service';
 import { NotPharmRoleService } from './guards/not-pharm-role.service';
 
+// mapbox
+import { NgxMapboxGLModule } from 'ngx-mapbox-gl';
+import { MatButtonModule, MatIconModule, MatListModule, MatSelectModule, MatSidenavModule, MatCardModule, MatTableModule } from "@angular/material";
+import { MapboxComponent } from './mapbox/mapbox.component';
+import {MatRadioModule} from '@angular/material/radio';
+
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { CartviewComponent } from './cartview/cartview.component';
@@ -52,7 +58,7 @@ import { ConfirmationComponent } from './confirmation/confirmation.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input'
 import {MatCheckboxModule} from '@angular/material';
-import { VarDirective } from './var.directive'
+import { VarDirective } from './var.directive';
 
 @NgModule({
   declarations: [
@@ -82,7 +88,8 @@ import { VarDirective } from './var.directive'
     PharmDetailedOrderComponent,
     ConfirmItemComponent,
     ConfirmationComponent,
-    VarDirective
+    VarDirective,
+    MapboxComponent
   ],
   imports: [
     BrowserModule,
@@ -96,7 +103,20 @@ import { VarDirective } from './var.directive'
     MatNativeDateModule,
     MatFormFieldModule,
     MatInputModule ,
-  MatCheckboxModule
+    MatCheckboxModule,
+  // mapbox
+  NgxMapboxGLModule.withConfig({
+    accessToken: 'pk.eyJ1IjoibWVkaWNhIiwiYSI6ImNrNnRmZHN3aDBvbngzaG52bWtyeDA4NzgifQ.tjL12W-8sV4kc6WiDxn1gA', // Optional, can also be set per map (accessToken input of mgl-map)
+    geocoderAccessToken: 'pk.eyJ1IjoibWVkaWNhIiwiYSI6ImNrNnRmZHN3aDBvbngzaG52bWtyeDA4NzgifQ.tjL12W-8sV4kc6WiDxn1gA' // Optional, specify if different from the map access token, can also be set per mgl-geocoder (accessToken input of mgl-geocoder)
+  }),
+  MatButtonModule,
+  MatIconModule,
+  MatListModule,
+  MatSelectModule,
+  MatSidenavModule,
+  MatCardModule,
+  MatTableModule,
+  MatRadioModule
   ],
   providers: [
     MatDatepickerModule,

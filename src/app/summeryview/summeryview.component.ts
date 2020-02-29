@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AddtocartService } from '../addtocart.service';
+import { UserLocationService } from '../user-location.service';
 import { FormBuilder, FormGroup, NgForm, Validators } from "@angular/forms";
 import { Router } from '@angular/router';
-
 
 @Component({
   selector: 'app-summeryview',
@@ -13,10 +13,18 @@ export class SummeryviewComponent implements OnInit {
   myForm: FormGroup;
   itemsInCart;
   waringMassege;
+
   address;
   phone;
+  city;
+  neighborhood;
+
+  located = false;
+  displayMap = false;
+  notLocated;
   
   constructor(private service: AddtocartService,
+              private locService: UserLocationService,
               private fb: FormBuilder,
               private router: Router
     ) { }
@@ -27,19 +35,45 @@ export class SummeryviewComponent implements OnInit {
       this.myForm = this.fb.group(
         {
           phone: ["", [Validators.required,Validators.pattern(/^01[0-9]{9}$/)]],
-          address:["",[Validators.required]]
+          address:["",[Validators.required]],
+          neighborhood: ["", [Validators.required]],
+          city: ["Alexandria", [Validators.required]]
         }
       );
+      
+      // get some html elemnts by id
+      this.address = document.getElementById("address");
+      this.phone = document.getElementById("phone");
+      this.city = document.getElementById("city");
+      this.neighborhood = document.getElementById("neighborhood");
+
+      // obsarvables of location
+        // 1- observable of coordinatesArr --> if array not empty then user choose his location
+        this.locService.coordinatesArrObs.subscribe(arr => {
+          if(arr[0]){
+            this.located = true;
+          }else {
+            this.located = false;
+          }
+          this.checkValidation('', this.myForm);
+        })
   }
-  checkUserHaveAccount(){
+  onSubmit(){
     if(this.myForm.invalid){
       this.waringMassege ="You should enter your data";
-    }else{
-      this.address=document.getElementById("address").value
-      this.phone=document.getElementById("phone").value
-      sessionStorage.setItem("address_user",this.address)
-      sessionStorage.setItem("phone_user",this.phone)
+    }else if(this.located == false){ // display error msg on html
+      this.waringMassege = '';
+      this.notLocated = true;
+    }else{ // all valid
 
+      // store user data in session
+      let address = `${this.address.value}, ${this.neighborhood.value}, ${this.city.value}`;
+      let phone = this.phone.value;
+      sessionStorage.setItem("address_user", address)
+      sessionStorage.setItem("phone_user", phone)
+      sessionStorage.setItem("lngLat_user", JSON.stringify(this.locService.coordinatesArr))
+
+      // route user to next page
       if(localStorage.getItem('checkLogin')){
         this.router.navigate(["/confirm"])
       }else{
@@ -47,11 +81,30 @@ export class SummeryviewComponent implements OnInit {
       }
     }
   }
+
+  // change confirm btn opacity
   checkValidation(e, myForm){
-    if(myForm.valid){
+    if(myForm.valid && this.located){
       document.getElementById("submit-btn").setAttribute("style","opacity:1")
     }else{
       document.getElementById("submit-btn").setAttribute("style","opacity:0.5")
     }
+  }
+
+  // locations functions
+  getCurrentPosition(){
+    this.displayMap = false;
+    this.notLocated = false;
+    this.locService.getUserCurrentLocation();
+  }
+
+  getLocationOnMap(){
+    this.displayMap = true;
+    this.notLocated = false;
+    this.locService.coordinatesArr = [];
+    this.locService.coordinatesArrBehavior.next([]);
+
+    let address = `${this.neighborhood.value}, ${this.city.value}`;
+    this.locService.searchWordBehavior.next(address);
   }
 }
