@@ -1,5 +1,5 @@
 .delivery_info{
-    max-height: 100%;
+    max-height: 125vh;
     border-radius: 0.5rem;
     -webkit-box-shadow: 0px 0px 9px 0px rgba(148,146,148,1);
     -moz-box-shadow: 0px 0px 9px 0px rgba(148,146,148,1);
@@ -80,42 +80,36 @@ button{
 // -----------------------------------------
 
 .map {
-    height: 48%;
-    max-height: 48%;
+    height: 57.5vh;
+    max-height: 57.5vh;
     position: relative;
 }
 
-.map div {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    background-color: #212121;
-    z-index: 100;
-    opacity: 0.9;
-    color: #f2f2f2;
-    font-size: 1.4rem;
-    font-weight: bolder;
+.ordersMinHight{
+    max-height: 125vh;
+    overflow-y: auto;
 }
 
 .orders{
     overflow-y: auto;
-    margin-bottom: 4%;
-    max-height: 48%;
+    margin-bottom: 10vh;
+    max-height: 57.5vh;
 }
 
-.orders::-webkit-scrollbar {
+.orders::-webkit-scrollbar,
+.ordersMinHight::-webkit-scrollbar {
     width: 0.5rem; 
     background: #f2f2f2; 
     border-radius: 5px;
 }
 
-.orders::-webkit-scrollbar-thumb{
+.orders::-webkit-scrollbar-thumb,
+.ordersMinHight::-webkit-scrollbar-thumb{
     background-color: #ffc401;
     border-radius: 5px;
 }
 
-.orders::-webkit-scrollbar-thumb:hover{
+.orders::-webkit-scrollbar-thumb:hover,
+.ordersMinHight::-webkit-scrollbar-thumb:hover{
     background-color: #ecb603;
 }

@@ -2,14 +2,11 @@
   <div class="row">
     <!-- left side: item in cart + map -->
     <div class="col-7">
-      <div class="orders">
+      <div id="orders" class="ordersMinHight">
         <app-item-small *ngFor="let item of itemsInCart" [item]='item'></app-item-small>
       </div>
-      <div class="map">
+      <div class="map" *ngIf = 'displayMap'>
         <app-mapbox></app-mapbox>
-        <div *ngIf = 'displayMap == false' class= "d-flex justify-content-center align-items-center">
-          Drag the marker on map till find your location
-        </div>
       </div>
     </div>
 

@@ -22,6 +22,7 @@ export class SummeryviewComponent implements OnInit {
   located = false;
   displayMap = false;
   notLocated;
+  ordersDiv;
   
   constructor(private service: AddtocartService,
               private locService: UserLocationService,
@@ -46,6 +47,8 @@ export class SummeryviewComponent implements OnInit {
       this.phone = document.getElementById("phone");
       this.city = document.getElementById("city");
       this.neighborhood = document.getElementById("neighborhood");
+
+      this.ordersDiv = document.getElementById('orders');
 
       // obsarvables of location
         // 1- observable of coordinatesArr --> if array not empty then user choose his location
@@ -95,6 +98,7 @@ export class SummeryviewComponent implements OnInit {
   getCurrentPosition(){
     this.displayMap = false;
     this.notLocated = false;
+    this.ordersDiv.className = 'ordersMinHight';
     this.locService.getUserCurrentLocation();
   }
 
@@ -104,6 +108,7 @@ export class SummeryviewComponent implements OnInit {
     this.locService.coordinatesArr = [];
     this.locService.coordinatesArrBehavior.next([]);
 
+    this.ordersDiv.className = 'orders';
     let address = `${this.neighborhood.value}, ${this.city.value}`;
     this.locService.searchWordBehavior.next(address);
   }
