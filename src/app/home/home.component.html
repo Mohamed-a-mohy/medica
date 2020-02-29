@@ -87,7 +87,11 @@
         <div class="row" *ngIf="category[0]">
           <div *ngFor="let item of category" class="col-3">
               <div class="sec-category-wrapper-img"><img src="https://via.placeholder.com/90x80" alt=""></div>
+<<<<<<< HEAD
               <h3><a href="">{{item}}</a></h3>
+=======
+              <h3><a [routerLink]="['/products',item]">{{item}}</a></h3>
+>>>>>>> mohamed
           </div>
           <div class="col-3">
               <div class="sec-category-wrapper-img"><img src="https://via.placeholder.com/90x80" alt=""></div>

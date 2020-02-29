@@ -153,7 +153,11 @@ export class AddtocartService {
           index = i;
         }
       }
+<<<<<<< HEAD
       if (flag && (this.routeLink.includes("shop") || this.routeLink.includes("order-summery")) && this.cartArr[index].quantity > 1) {
+=======
+      if (flag && this.routeLink.includes("shop") && this.cartArr[index].quantity > 1) {
+>>>>>>> mohamed
         this.cartArr[index].quantity--;
         // update observable
         this.getCartView(this.cartArr) // update cart counter in navbar

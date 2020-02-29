@@ -20,10 +20,13 @@ import { ItemComponent } from './item/item.component';
 import { BtntocartComponent } from './btntocart/btntocart.component';
 // firebase imports ends here
 
+<<<<<<< HEAD
 // guards import here
 import { PharmRoleService } from './guards/pharm-role.service';
 import { NotPharmRoleService } from './guards/not-pharm-role.service';
 
+=======
+>>>>>>> mohamed
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { CartviewComponent } from './cartview/cartview.component';
@@ -42,6 +45,7 @@ import { SummeryviewComponent } from './summeryview/summeryview.component';
 import { ItemSmallComponent } from './item-small/item-small.component';
 import { HomeComponent} from './home/home.component';
 import { SearchBarInHomeComponent } from './search-bar-in-home/search-bar-in-home.component';
+<<<<<<< HEAD
 import { JwPaginationComponent} from 'jw-angular-pagination';
 import { PharmViewComponent } from './pharm-view/pharm-view.component';
 import { PharmOrdersComponent } from './pharm-orders/pharm-orders.component';
@@ -53,6 +57,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input'
 import {MatCheckboxModule} from '@angular/material';
 import { VarDirective } from './var.directive'
+=======
+import { JwPaginationComponent} from 'jw-angular-pagination'
+>>>>>>> mohamed
 
 @NgModule({
   declarations: [
@@ -76,6 +83,7 @@ import { VarDirective } from './var.directive'
     HomeComponent,
     SearchBarInHomeComponent,
     JwPaginationComponent,
+<<<<<<< HEAD
     PharmViewComponent,
     PharmOrdersComponent,
     PharmSmallOrderComponent,
@@ -83,6 +91,8 @@ import { VarDirective } from './var.directive'
     ConfirmItemComponent,
     ConfirmationComponent,
     VarDirective
+=======
+>>>>>>> mohamed
   ],
   imports: [
     BrowserModule,
@@ -94,6 +104,7 @@ import { VarDirective } from './var.directive'
     ReactiveFormsModule,
     MatDatepickerModule,
     MatNativeDateModule,
+<<<<<<< HEAD
     MatFormFieldModule,
     MatInputModule ,
   MatCheckboxModule
@@ -102,6 +113,11 @@ import { VarDirective } from './var.directive'
     MatDatepickerModule,
     PharmRoleService,
     NotPharmRoleService
+=======
+  ],
+  providers: [
+    MatDatepickerModule
+>>>>>>> mohamed
   ],
   bootstrap: [AppComponent]
 })

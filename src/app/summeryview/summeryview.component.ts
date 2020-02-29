@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AddtocartService } from '../addtocart.service';
 import { FormBuilder, FormGroup, NgForm, Validators } from "@angular/forms";
+<<<<<<< HEAD
 import { Router } from '@angular/router';
+=======
+>>>>>>> mohamed
 
 
 @Component({
@@ -12,6 +15,7 @@ import { Router } from '@angular/router';
 export class SummeryviewComponent implements OnInit {
   myForm: FormGroup;
   itemsInCart;
+<<<<<<< HEAD
   waringMassege;
   address;
   phone;
@@ -19,11 +23,17 @@ export class SummeryviewComponent implements OnInit {
   constructor(private service: AddtocartService,
               private fb: FormBuilder,
               private router: Router
+=======
+
+  constructor(private service: AddtocartService,
+              private fb: FormBuilder,
+>>>>>>> mohamed
     ) { }
 
   ngOnInit() {
     this.service.cartItems.subscribe(items => {
       this.itemsInCart = items;})
+<<<<<<< HEAD
       this.myForm = this.fb.group(
         {
           phone: ["", [Validators.required,Validators.pattern(/^01[0-9]{9}$/)]],
@@ -53,5 +63,18 @@ export class SummeryviewComponent implements OnInit {
     }else{
       document.getElementById("submit-btn").setAttribute("style","opacity:0.5")
     }
+=======
+
+
+
+      this.myForm = this.fb.group(
+        {
+          phone: ["", [Validators.required,  Validators.pattern(/^[0-9\w]{11,}$/)]],
+          address:["",[Validators.required]]
+        }
+        
+      );
+
+>>>>>>> mohamed
   }
 }

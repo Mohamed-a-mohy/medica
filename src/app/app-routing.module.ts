@@ -18,7 +18,11 @@ import { ConfirmationComponent } from './confirmation/confirmation.component';
 
 
 const routes: Routes = [
+
   {path: "products", component: ProductsComponent, canActivate: [NotPharmRoleService]},
+  {path: "products/:cat", component: ProductsComponent,children:[
+    {path: ":sCat", component: ProductsComponent},
+  ]},
   {path: "shop", component: CartviewComponent, canActivate: [NotPharmRoleService]},
   {path:"signUp", component: SignUpComponent, canActivate: [NotPharmRoleService]},
   {path:"sigIn", component: SignInComponent, canActivate: [NotPharmRoleService]},
@@ -30,7 +34,8 @@ const routes: Routes = [
   {path: "pharmview/inprogress", component:PharmOrdersComponent, canActivate: [PharmRoleService]},
   {path: "pharmview/orders", component:PharmOrdersComponent, canActivate: [PharmRoleService]},
   {path: "confirm", component:ConfirmationComponent ,canActivate: [NotPharmRoleService]},
-];
+]
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

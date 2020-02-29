@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import { Component, OnInit } from '@angular/core';
+=======
+import { Component, OnInit, } from '@angular/core';
+>>>>>>> mohamed
 import {AddtocartService} from "../addtocart.service";
 import { LoginService} from '../login.service';
 
@@ -12,8 +16,24 @@ export class NavbarComponent implements OnInit {
   notification = 1;
   counter;
   checkuserLogin
+<<<<<<< HEAD
   constructor(private service :AddtocartService,
     private loginService: LoginService) { }
+=======
+
+
+  /////test1
+listOfProducts;
+
+
+  constructor(private service :AddtocartService,
+    private loginService: LoginService) { 
+      this.service.getData.subscribe(items => {
+        this.listOfProducts = items
+        this.categoryClicker(items)
+      });
+    }
+>>>>>>> mohamed
 
   ngOnInit() {
    this.service.cartCounter.subscribe(arrLength=>{
@@ -31,4 +51,14 @@ export class NavbarComponent implements OnInit {
     localStorage.removeItem('userId')
     this.loginService.changeLoginStatus(localStorage.getItem('userId'))
   }
+<<<<<<< HEAD
+=======
+  
+
+  //test1
+  categoryClicker(arr){
+    this.listOfProducts = arr
+  }
+  
+>>>>>>> mohamed
 }

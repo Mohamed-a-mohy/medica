@@ -1,5 +1,6 @@
 <div class="container">
   <div class="row">
+<<<<<<< HEAD
     <div class="col-7">
       <app-item-small *ngFor="let item of itemsInCart" [item]='item'></app-item-small>
     </div>
@@ -15,18 +16,32 @@
         <section class="input-feild">
           <input id="address" formControlName="address" placeholder="Address" (keyup)="checkValidation($event, myForm)">
           <span> <img src="../../assets/order summary/svg/noun_Location_2024994.svg" alt=""> </span>
+=======
+    <app-item-small *ngFor="let item of itemsInCart" [item]='item' class="col-8"></app-item-small>
+    <div class="col-4">
+      <form action=""[formGroup]="myForm" (ngSubmit)="onSubmit(myForm)">
+        <section class="input-feild">
+          <input class="" formControlName="address" placeholder="Enter Yor Adress">
+          <span>@</span>
+>>>>>>> mohamed
         </section>
         <p *ngIf="myForm.get('address').hasError('required') && myForm.get('address').touched">
           *Required.
         </p>
         <section class="input-feild">
+<<<<<<< HEAD
           <input id="phone" formControlName="phone" placeholder="Phone Number" (keyup)="checkValidation($event, myForm)">
           <span> <img src="../../assets/order summary/svg/noun_Phone_2545576.svg" alt=""> </span>
+=======
+          <input class="" formControlName="phone" placeholder="Enter Yor Phone number">
+          <span>@</span>
+>>>>>>> mohamed
         </section>
         <p *ngIf="myForm.get('phone').hasError('required') &&  myForm.get('phone').touched">
           *Required.
         </p>
         <p *ngIf=" myForm.get('phone').hasError('pattern') && myForm.get('phone').touched">
+<<<<<<< HEAD
            must start with 01 and contain 11 number.
         </p>
         <p>
@@ -37,6 +52,11 @@
         <div class="Payment_button">
           <button class="btn mt-3"  id="submit-btn" type="submit" (click)="checkUserHaveAccount()">Confirmation Order</button>
         </div>
+=======
+          *min length 11.
+        </p>
+        <button class="btn btn-primary"  id="submit-btn" type="submit" >CheckOut</button>
+>>>>>>> mohamed
       </form>
     </div>
   </div>

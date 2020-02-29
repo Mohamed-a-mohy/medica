@@ -8,7 +8,7 @@ import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument 
 
 // serve import
 import { AddtocartService } from '../addtocart.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
 
@@ -26,13 +26,16 @@ export class ProductsComponent implements OnInit {
   items;
   pageOfItems;
 
+  itemsF;
+  pageOfItemsF
+
 
   // @Input() item;
   arrOfData;
-  newArr;
+  newArr:[]=[]
   /////list of products after filtering
 
-  listOfProducts: any[] = [];
+  @Input()listOfProducts: any[] = [];
 
   ////filter range variables////
 
@@ -74,34 +77,150 @@ export class ProductsComponent implements OnInit {
   radio4;
 
 
+  //////////////////try to solve the products page
+
+  allselectedProducts: any[] = [];
+  selectedProducts: any[] = [];
+  routeLink: any;
+
+  indexOfcategory;
+  newCategory;
+  newSubCategory;
+
+
+
+
   constructor(
     private angularFS: AngularFirestore,
-    private service: AddtocartService, ) { }
+    private service: AddtocartService,
+    route: ActivatedRoute,
+    router: Router,
+    location: Location) {
+      
+
+      router.events.subscribe((val) => {
+        if (location.path().includes('/products')) {
+          this.routeLink = location.path();
+          this.indexOfcategory = this.routeLink.lastIndexOf("/")
+          if(this.indexOfcategory == 9){
+           this.newCategory= this.cutString(this.routeLink,this.indexOfcategory)
+          }else if(this.indexOfcategory > 9){
+            
+            this.newCategory= this.cutString(this.routeLink,9)
+            this.newSubCategory= this.cutString(this.routeLink,this.indexOfcategory)
+                        
+          }else{
+            router.navigate(['/products/medicine']);
+          }
+          console.log("newcategory"+this.newCategory)
+          console.log("newsubcategory"+this.newSubCategory)
+
+          console.log(this.indexOfcategory)
+          console.log(this.routeLink)
+          console.log('hi from if before')
+
+
+          //////////////////////
+          this.newArr = []
+          this.service.getData.subscribe(items => {
+            this.arrOfData = items;
+            console.log("hiiii",items ,this.arrOfData)
+            this.collectCategoriesInArr();
+            this.collectSubCatsInObj();
+            console.log('functions generated', this.category, this.subCatObj);
+
+
+
+            ///////////
+            if(this.arrOfData[0]){
+             /*  this.listOfProducts = this.arrOfData.filter(val=>val.category == this.newCategory);
+              console.log('hi from if');
+              console.log('this.listOfProducts', this.listOfProducts) */
+              if(this.newSubCategory){
+        
+                this.listOfProducts = this.arrOfData.filter(val=>val.subCat == this.newSubCategory);
+/*                 this.categorySelector(this.newCategory)
+ */                this.subCategorySelector(this.newSubCategory)
+                /* if(this.subCatObj[this.newCategory].indexOf(this.newSubCategory) == -1){
+                  router.navigate(['/']);
+                }  */
+              }else{
+                this.listOfProducts = this.arrOfData.filter(val=>val.category == this.newCategory);
+                this.categorySelector(this.newCategory)
+              }
+              
+              this.filterGeneration(this.listOfProducts)
+              this.sortCheck()
+              // this.isChecked(this.checkedInput)
+            }
+          });
+
+        }
+        
+
+        })
+
+        /*  this.service.getData.subscribe(items => {
+        this.listOfProducts = items
+      }); */
+     }
 
   ngOnInit() {
 
-    this.newArr = []
-    this.service.getData.subscribe(items => {
-      this.arrOfData = items;
-      // this.newArr=this.arrOfData.filter(element => element.category == "medicine");
-      console.log("hiiii", this.arrOfData)
-      ///////category array here
-      for (let i = 0; i < this.arrOfData.length; i++) {
-        if (this.category[0]) {
-          for (let j = 0; j < this.category.length; j++) {
-            if (this.category.indexOf(this.arrOfData[i].category) == -1 && this.arrOfData[i].category != undefined) {
 
-              this.category.push(this.arrOfData[i].category)
-              this.subCatObj[this.arrOfData[i].category] = []
+
+
+      // if (sessionStorage.getItem("activeCategory")) {
+      //   this.activeCategory = sessionStorage.getItem("activeCategory");
+      // } else {
+      //   this.activeCategory = "medicine"
+      // }
+
+    /*   <ul class=" list-group list-group-horizontal-sm d-flex flex-row">
+      <li *ngFor="let cat of category" (click)="isChecked(checkedInput)" (click)="categorySelector(cat)"
+          (click)="filterGeneration(newArr)" class="list-group-item" (click)="sortCheck()"><a
+              routerLink="/products" [queryParams]='[cat]'>{{cat}}</a></li>
+  </ul>
+  <ul *ngIf="activeCategory" class=" list-group list-group-horizontal d-flex flex-row">
+      <li *ngFor="let sCat of subCatObj[activeCategory]" class="list-group-item "
+          (click)="isChecked(checkedInput)" (click)="subCategorySelector(sCat)" (click)="filterGeneration(newArr)"
+          (click)="sortCheck()"> <a routerLink="/products" [queryParams]='[cat,sCat]'> {{sCat}}</a> </li>
+  </ul> */
+
+
+
+
+
+    /////////////pagination
+    this.items = Array(150).fill(0).map((x, i) => ({ id: (i + 1), name: `Item ${i + 1}` }));
+    this.itemsF = Array(150).fill(0).map((x, i) => ({ id: (i + 1), name: `Item ${i + 1}` }));
+    
+
+
+  }
+
+      // function to put all cats in one array
+      collectCategoriesInArr(){
+        ///////category array here
+        for (let i = 0; i < this.arrOfData.length; i++) {
+          if (this.category[0]) {
+            for (let j = 0; j < this.category.length; j++) {
+              if (this.category.indexOf(this.arrOfData[i].category) == -1 && this.arrOfData[i].category != undefined) {
+  
+                this.category.push(this.arrOfData[i].category)
+                this.subCatObj[this.arrOfData[i].category] = []
+              }
             }
+          } else {
+            this.category.push(this.arrOfData[i].category)
+            this.subCatObj[this.arrOfData[i].category] = []
           }
-        } else {
-          this.category.push(this.arrOfData[i].category)
-          this.subCatObj[this.arrOfData[i].category] = []
         }
       }
 
-      ///SubCat here
+      //function to put all subcats in an obj
+      collectSubCatsInObj(){
+              ///SubCat here
       for (let i = 0; i < this.arrOfData.length; i++) {
         if (this.subCat[0]) {
           for (let j = 0; j < this.subCat.length; j++) {
@@ -113,9 +232,8 @@ export class ProductsComponent implements OnInit {
           this.subCat.push(this.arrOfData[i].subCat)
         }
       }
-
-
-
+      
+      // --------------
       for (let i = 0; i < this.category.length; i++) {
         var cat = this.category[i]
         for (let j = 0; j < this.arrOfData.length; j++) {
@@ -124,23 +242,7 @@ export class ProductsComponent implements OnInit {
           }
         }
       }
-      console.log(" category", this.subCat);
-      console.log(" subCatobj", this.subCatObj);
-
-      if (sessionStorage.getItem("activeCategory")) {
-        this.activeCategory = sessionStorage.getItem("activeCategory");
-      } else {
-        this.activeCategory = "medicine"
       }
-    });
-
-
-
-
-    /////////////pagination
-    this.items = Array(150).fill(0).map((x, i) => ({ id: (i + 1), name: `Item ${i + 1}` }));
-
-  }
 
 
 
@@ -214,12 +316,18 @@ export class ProductsComponent implements OnInit {
       this.convertArrayToObject(this.brandFilterArray, this.checkedBrandAll)
       this.convertArrayToObject(this.typeFilterArray, this.checkedTypeAll)
       this.filterList(this.newArr, this.checkedBrandAll, this.checkedTypeAll)
+
+
     } else if (this.isEmpty(this.checkedType)) {
       this.convertArrayToObject(this.typeFilterArray, this.checkedTypeAll)
       this.filterList(this.newArr, this.checkedBrand, this.checkedTypeAll)
+
+
     } else if (this.isEmpty(this.checkedBrand)) {
       this.convertArrayToObject(this.brandFilterArray, this.checkedBrandAll)
       this.filterList(this.newArr, this.checkedBrandAll, this.checkedType)
+
+
     } else {
       this.filterList(this.newArr, this.checkedBrand, this.checkedType)
     }
@@ -409,7 +517,15 @@ export class ProductsComponent implements OnInit {
     let arr = str.split('');
     let arr2 = [];
     for (let i = index + 1; i < arr.length; i++) {
-      arr2.push(arr[i]);
+      if(arr[i] == '/'){
+        break;
+      }else if(arr[i] == 2 || arr[i]==0){
+       
+      }else if(arr[i] == "%"){
+        arr2.push(" ");
+      }else{
+        arr2.push(arr[i]);
+      }
     }
     return arr2.join("");
   }
@@ -419,9 +535,16 @@ export class ProductsComponent implements OnInit {
     this.pageOfItems = pageOfItems;
     console.log(pageOfItems);
     this.sortCheck()
-
   }
 
+  onChangePageF(pageOfItems) {
+    // update current page of items
+    this.pageOfItemsF = pageOfItems;
+    console.log(pageOfItems);
+    this.sortCheck()
+  }
+
+ 
 
 }
 
