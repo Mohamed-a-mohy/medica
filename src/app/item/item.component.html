@@ -1,0 +1,17 @@
+
+  <div class="card" style="width: 20rem;">
+    <img src="https://via.placeholder.com/50x50" class="card-img-top" alt="...">
+    <div class="card-body">
+      <div>
+        <a class="childone" [routerLink]="['/product',item.id]">
+          <p class="card-title">{{item.name}}</p>
+        </a>
+        <p class="card-text childtwo">{{item.price}} EGP</p>
+      </div>
+      <div>
+        <p>{{item.conc}}</p>
+        <p>{{item.type}}</p>
+      </div>
+      <app-btntocart [item]="item"></app-btntocart>
+    </div>
+  </div>

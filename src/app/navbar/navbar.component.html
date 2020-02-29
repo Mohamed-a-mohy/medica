@@ -1,0 +1,36 @@
+<nav class="navbar">
+    <section class="navbar-nav">
+        <section class="navbar-nav_left">
+            <ul class="navbar-nav_left-ul">
+                <li><a routerLink="/home" ><img src="https://via.placeholder.com/90x80" alt="medica logo"></a></li>
+                <li><a routerLink="/home" (click)="categoryClicker()">PHARMEDICA</a></li>
+            </ul>
+        </section>
+        <section class="navbar-nav_mid">
+            <ul class="navbar-nav_mid-ul">
+                <li><a  routerLink="/home" class="nav-active">Home</a></li>
+                <li><a  routerLink="/products">Categories</a></li>
+            </ul>
+        </section>
+        <div class="d-flex flex-row">
+            <app-search-bar-in-home></app-search-bar-in-home>
+            <app-roshetta-form></app-roshetta-form>
+        </div>
+        <section class="navbar-nav_right">
+            <ul class="navbar-nav_right-ul">
+                <li>
+                    <i class="far fa-bell"></i>
+                    <span *ngIf = "notification > 0">{{notification}}</span>
+                </li>
+                <li>
+                    <i  routerLink="/shop"  class="fas fa-shopping-bag"></i>
+                    <span *ngIf = "counter > 0">{{counter}}</span>
+                </li>
+                <li *ngIf="checkuserLogin"><button (click)="logout()">logout</button></li>
+            
+            <a *ngIf="!checkuserLogin" routerLink="/signUp"><img src='../../../../user.png'/></a>
+            <span  *ngIf="checkuserLogin"></span>
+        </ul>
+        </section>
+    </section>
+</nav>

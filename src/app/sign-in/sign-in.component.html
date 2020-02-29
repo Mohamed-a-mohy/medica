@@ -1,0 +1,35 @@
+<section class="container-fluid sec-signin">
+    <div class="row">
+        <div class="col-5"><img src="" alt=""></div>
+
+        <div class="col-7 sec-signin-cont">
+            <div class="row">
+                <div class="col-12 sec-signin-cont-btn">
+                    <a routerLink='/sigIn' id="signIN-btn">Sign In</a>
+                    <a routerLink='/signUp' id="signUP-btn">Sign Up</a>
+                </div>
+                <div class="col-12">
+                    <h2>Save Your Account Now</h2>
+                    <p>To receive our latest offers & discounts</p>
+                </div>
+
+            </div>
+            <!-- <label id="sinIn-Lbl">Sign In</label>
+            <a routerLink='/signUp' id="signUP-btn">Sign Up</a> -->
+            <form action="" [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)">
+                <section class="input-feild">
+                    <input type="email" formControlName="email" placeholder="Email">
+                    <span>@</span>
+                </section>
+                <section class="input-feild">
+                    <input type="password" formControlName="password" placeholder="Password">
+                    <span>@</span>
+                </section>
+            
+                <span class="mesError" ></span>
+                <span class="mesError"></span>
+                <a  id="submit-btn" type="submit" >Sign In</a>
+            </form>
+        </div>
+    </div>
+</section>

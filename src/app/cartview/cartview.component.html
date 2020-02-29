@@ -1,0 +1,35 @@
+<div class="container sec-cart" *ngIf='itemsInCart[0] else elseBlock'>
+  <div class="row sec-cart-header">
+    <h2>Cart</h2>
+    <p>Total items : {{counter}}</p>
+  </div>
+  <div *ngFor="let item of itemsInCart" class="row sec-cart-item">
+    <div class="col"><img src="https://via.placeholder.com/250x250" alt=""></div>
+    <div class="col">
+      <h3>
+        <a [routerLink]="['/product',item.id]">{{item.name}}</a>
+      </h3>
+      <p>{{item.type}} - {{item.conc}}</p>
+    </div>
+    <div class="col">
+      <app-quantity [item]='item'></app-quantity>
+    </div>
+    <div class="col">
+      <app-cancelfromcart [item]='item'></app-cancelfromcart>
+      <p>{{item.price * item.quantity}} EGP</p>
+      <span> {{item.price}} EGP/ ITEM</span>
+    </div>
+  </div>
+
+  <div class="row ">
+    <div class="col-12 sec-cart-total">
+      <h6>Total price does not include the Roshetta</h6>
+      <p>total Price: <span>{{totalPrice}} EGP</span></p>
+    </div>
+  </div>
+  <app-roshetta-details></app-roshetta-details>
+  <a class="btn btn-primary checkbtn" routerLink="/order-summery">CheckOut</a>
+</div>
+    <ng-template #elseBlock>
+      <p style="font-size: 100px;">empty</p>
+    </ng-template>

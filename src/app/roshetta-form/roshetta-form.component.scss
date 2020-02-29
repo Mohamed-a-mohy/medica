@@ -1,0 +1,28 @@
+
+input:focus{
+    outline: none;
+}
+
+.active{
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+#imageUpload{
+    position: relative;
+    input{
+        position: absolute;
+        top: 0;
+        opacity: 0;
+    }
+    i{
+        position: absolute;
+        top: 0;
+    }
+}
+.messError, .fileError{
+    color: red;
+}
+#datepickerArea{
+    z-index: 999999 !important;
+}

@@ -1,0 +1,24 @@
+ul{
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    align-items: center;
+    margin-left: 10px;
+    margin-top: 12px;
+    margin-bottom: 0;
+
+}
+li{
+margin: 0 5px;
+font-size: 1.2rem;
+font-weight: 600;
+
+}
+
+li button{
+    font-size: 1.3rem;
+    font-weight: 600;
+    padding: 0px 10px;
+    background-color: #Ffc401;
+    border: none;
+}

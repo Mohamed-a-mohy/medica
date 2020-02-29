@@ -1,0 +1,9 @@
+<div class="media col-8">
+    <img src="https://via.placeholder.com/50x50" class="mr-3" alt="product image">
+    <div class="media-body">
+      <h5 class="mt-0">{{item.name}}</h5>
+      {{item.type}} {{item.conc}} 
+    </div>
+    <app-quantity [item]='item'></app-quantity>
+    <app-cancelfromcart [item]='item'></app-cancelfromcart>
+  </div>
