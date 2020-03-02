@@ -30,6 +30,9 @@ export class AppComponent {
   constructor(db: AngularFireDatabase,
     private angularFS: AngularFirestore,
     private service: AddtocartService,) {
+      // localStorage.setItem('role', 'pharmacy')
+      // localStorage.setItem('userId', 'mGl6vFOdgbxGq3NLUqiS')
+
       this.role = localStorage.getItem('role');
     // get data from database
     this.items = this.angularFS.collection('products').valueChanges({ idField: 'id' });
@@ -45,7 +48,7 @@ export class AppComponent {
         /* 1- add quantity proparty to each item = 0;
         2- send data to service and store it in behavour subject */
         this.arrOfItems = this.addQuantityProp(items);
-        this.service.dataCame(this.arrOfItems);
+        this.service.dataCame(this.arrOfItems);        
       }
 
       if (!sessionStorage.getItem('cartView')) {

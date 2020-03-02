@@ -25,7 +25,7 @@ const routes: Routes = [
   {path: "product/:id", component: ProductdetailsComponent, canActivate: [NotPharmRoleService]},
   {path: "home" ,component:HomeComponent, canActivate: [NotPharmRoleService]},
   {path: "order-summery", component:SummeryviewComponent, canActivate: [NotPharmRoleService]},
-  {path: "pharmview", component:PharmViewComponent, canActivate: [PharmRoleService]},
+  // {path: "pharmview", component:PharmViewComponent, canActivate: [PharmRoleService]},
   {path: "pharmview/pending", component:PharmOrdersComponent, canActivate: [PharmRoleService]},
   {path: "pharmview/inprogress", component:PharmOrdersComponent, canActivate: [PharmRoleService]},
   {path: "pharmview/orders", component:PharmOrdersComponent, canActivate: [PharmRoleService]},

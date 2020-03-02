@@ -115,18 +115,18 @@ export class ConfirmationComponent implements OnInit {
     if (sessionStorage.getItem("cartView")) {
       this.productsInCart = JSON.parse(sessionStorage.getItem("cartView"))
       for (let product of this.productsInCart) {
-        // this.orderedProductObject.productName=product.name
-        // this.orderedProductObject.productId=product.id
-        // this.orderedProductObject.conc=product.conc
-        // this.orderedProductObject.type=product.type
-        // this.orderedProductObject.price=product.price
-        // this.orderedProductObject.quantity=product.quantity
+        this.orderedProductObject.productName=product['name']
+        this.orderedProductObject.productId=product['id']
+        this.orderedProductObject.conc=product['conc']
+        this.orderedProductObject.type=product['type']
+        this.orderedProductObject.price=product['price']
+        this.orderedProductObject.quantity=product['quantity']
         let copyOrderedProduct = JSON.parse(JSON.stringify(this.orderedProductObject))
         this.currentOrderObject.order.push(copyOrderedProduct)
       }
       this.scheduleOrdersObject.order=this.usersOrderObject.order=[...this.currentOrderObject.order]  
     }
-    console.log(this.currentOrderObject.order)
+    console.log(this.currentOrderObject)
     /////////////////
     if (localStorage.getItem("userId")) {
       this.userId = localStorage.getItem("userId")
@@ -142,8 +142,8 @@ export class ConfirmationComponent implements OnInit {
     if(sessionStorage.getItem('roshettaDetails')){
         this.cheskRoshetta = true ;
         this.roshettaDetails=JSON.parse(sessionStorage.getItem('roshettaDetails')) 
-        // this.roshettaNotes=this.roshettaDetails.roshettaNotes
-        // this.roshettaImage=this.roshettaDetails.roshettaImage
+        this.roshettaNotes=this.roshettaDetails['roshettaNotes']
+        this.roshettaImage=this.roshettaDetails['roshettaImage']
         console.log(this.roshettaNotes);
     }
     //////add data
