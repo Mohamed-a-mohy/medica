@@ -15,11 +15,13 @@ export class FooterComponent implements OnInit {
   // properties
   subscribeForm: FormGroup;
   
-  newsLEmails;
+  newsLEmails = [];
   emails;
   emailsCollection;
 
   emailInput;
+
+  msgToDisplay:string;
 
   // constructor function
   constructor(private fBuilder: FormBuilder,
@@ -34,8 +36,7 @@ export class FooterComponent implements OnInit {
   ngOnInit() {
 
     // get 'subscribeEmails' collection from firebase
-    this.getemails().subscribe(emails => {
-      console.log(emails);
+    this.emails.subscribe(emails => {
       this.newsLEmails = emails;
     })
 
@@ -49,29 +50,27 @@ export class FooterComponent implements OnInit {
 
   // subscribe form submit event function
   onSubmit(form: FormGroup) {
-    let flag = false;
-    if (this.newsLEmails) {
-      if(this.newsLEmails.length > 0){
-        for (let i = 0; i < this.newsLEmails.length; i++) {
-          if (form.value.email == this.newsLEmails[i].email) {
-            flag = true;
-          }
-        }
+    let check:Array<string>;
+
+    if(form.valid){ // user input correct
+      if(this.newsLEmails[0]){ // there is emails in database
+        check = this.newsLEmails.filter(item => item.email == form.value.email)
       }
-    }
-
-    if(flag == false){
-      this.addItem(form.value);
-      this.emailInput.value = '';
-    }else{
-      console.log('already exist')
+      
+      if(check[0]){ // the email is already in db
+        this.msgToDisplay = 'Your email already exist';
+      }else{ // the email isn't in db
+        this.msgToDisplay = 'Thank you for subscribe';
+        this.addItem(form.value);
+        this.emailInput.value = '';
+      }
+      
+    }else{ // user input wrong
+      this.msgToDisplay = 'Your email not valid';
     }
   }
 
-  // firebase get and post functions
-  getemails() {
-    return this.emails;
-  }
+  // firebase post function
 
   addItem(emailToadd) {
     this.emailsCollection.add(emailToadd);
