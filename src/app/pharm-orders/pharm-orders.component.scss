@@ -1,5 +1,5 @@
 .sec-pharmOrders{
-    height: 83.2vh;
+    height: 82.8vh;
     overflow-y: scroll;
     overflow-x: hidden;
 }
@@ -7,10 +7,6 @@
 .sec-pharmOrders::-webkit-scrollbar {
     width: 0px; /* remove scrollbar space */
     background: transparent; /* optional: just make scrollbar invisible */
-}
-
-.active-order{
-    box-shadow: #e9e7e5 6px 7px 3px;
 }
 
 .sec-pharmOrders-orders app-pharm-small-order{

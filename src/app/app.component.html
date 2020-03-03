@@ -1,4 +1,4 @@
-<app-pharm-view *ngIf = 'role == "pharmacy"; else usuallPages'></app-pharm-view>
+<app-pharm-view *ngIf = 'pharmLogout == false; else usuallPages'></app-pharm-view>
 <ng-template #usuallPages>
     <app-navbar></app-navbar>
     <router-outlet></router-outlet>

@@ -38,18 +38,47 @@
         <!-------------------- order side -------------------->
         <div class="col-10">
             <!-------------------- upper nav -------------------->
-            <div class="row px-3 mb-3">
-                <div class="col-12 sec-pharmView-upperNav py-4">
-                    <a routerLink="/"><img src="https://c.top4top.io/p_15142rqlg1.png" alt="home page"></a>
+            <div class="row mb-3 sec-pharmView-upperNav py-4">
+                <div class="col-3 offset-1">
+                    <a routerLink="/pharmview/pending"><img src="../../assets/medicaLogo.png" alt="home page"></a>
+                </div>
+                <div class="col-2 offset-6">
+                    <a data-toggle="modal" data-target="#settingModal" class="mr-3">
+                        <img src="../../assets/pharmDashboardIcones/setting.svg" alt="setting">
+                    </a>
+                    <a class="pl-3 button" (click) = "onLogout()">
+                        <img src="../../assets/pharmDashboardIcones/logout.svg" alt="logout">
+                    </a>
                 </div>
             </div>
             <div class="row px-3 py-0 m-0">
                 <!-- orders view or statistics view -->
                 <div class="col-12 p-0">
-                    <!-- <app-pharm-orders></app-pharm-orders> -->
                     <router-outlet></router-outlet>
                 </div>
             </div>
         </div>
     </div>
 </section>
+
+<!-- Modal -->
+<div class="modal fade" id="settingModal" tabindex="-1" role="dialog" aria-labelledby="settingModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="settingModalLabel">Setting</h5>
+        </div>
+        <div class="modal-body">
+            <form id="setting" [formGroup]="settingForm" (ngSubmit)="onSubmit(settingForm)" class="mb-3">
+                <input class="d-block mb-3 w-100 py-1 px-3" id="currentPasswordInput" type="text" formControlName="currentPassword" placeholder="Your current password">
+                <input class="d-block mb-3 w-100 py-1 px-3" id="newPasswordInput" type="text" formControlName="newPassword" placeholder="Your new password">
+                <input class="d-block mb-3 w-100 py-1 px-3" id="confirmPasswordInput" type="text" formControlName="confirmPassword" placeholder="Confirm your password">
+                <div class="form-btn-wrapper text-center">
+                    <button class="mr-4 cancel py-1 px-3" type="button" data-dismiss="modal">Cancel</button>
+                    <button class="save py-1 px-3" type = 'submit' data-dismiss="modal">Save Changes</button>
+                </div>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>

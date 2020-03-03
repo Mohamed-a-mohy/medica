@@ -20,17 +20,19 @@
 }
 
 .btn-primary {
+    border: 2px solid #ffc401;
     background-color: #ffc401;
     color: #fff;
 }
 
 .btn-secondary{
+    border: 2px solid #01807b;
+
     background-color: transparent;
-    color: #ffc401;
+    color: #01807b;
 }
 
 .btn-primary, .btn-secondary {
-    border: 2px solid #ffc401;
     text-transform: capitalize;
     border-radius: 3px;
 }

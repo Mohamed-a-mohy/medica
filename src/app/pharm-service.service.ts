@@ -29,6 +29,9 @@ export class PharmServiceService {
   showDetailsBehavoir = new BehaviorSubject(false);
   showDetailsObs = this.showDetailsBehavoir.asObservable();
 
+  logoutBehavoir = new BehaviorSubject(true);
+  logoutObs = this.logoutBehavoir.asObservable();
+
   // ----------------------------------------------------------------
 
   constructor(private angularFS: AngularFirestore) {
@@ -112,16 +115,18 @@ export class PharmServiceService {
 
     //know if it 'am' or 'pm'
     let hour = parseInt(obj.time.slice(0, firstIndexOfcolon));
+    let min = obj.time.slice(firstIndexOfcolon, lastIndexOfcolon);
     let amOrPm;
 
     if(hour - 12 > 0 || hour - 12 == 0){
       amOrPm = 'pm';
+      hour -= 12;
     }else{
       amOrPm = 'am';
     }
 
     // return the date and time in one string
-    return `${date}, ${time} ${amOrPm}`;
+    return `${date}, ${hour}${min} ${amOrPm}`;
   }
 
 }

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="195px"
+   height="50px"
+   viewBox="0 0 195 50"
+   version="1.1"
+   id="SVGRoot"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)"
+   sodipodi:docname="medica new 1.svg"
+   inkscape:export-filename="F:\BIG MESS\1- Graduation project\wireframes\medica new 2.png"
+   inkscape:export-xdpi="434.76257"
+   inkscape:export-ydpi="434.76257">
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="2.625641"
+     inkscape:cx="-10.283204"
+     inkscape:cy="25"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1366"
+     inkscape:window-height="706"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1" />
+  <defs
+     id="defs711" />
+  <metadata
+     id="metadata714">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     id="layer1"
+     inkscape:groupmode="layer"
+     inkscape:label="Layer 1">
+    <g
+       transform="translate(5.8496165,-53.510743)"
+       id="g30">
+      <g
+         transform="translate(1646.0935,309.07219)"
+         id="Group_738_2_">
+        <path
+           style="fill:#4db0a8"
+           inkscape:connector-curvature="0"
+           d="m -1623.4,-235.41 h 15.42 c -3.12,4.6 -5.53,9.64 -7.14,14.95 0.7,5.57 6.59,10.04 12.31,13.43 h -37.58 c -1.12,0 -2.02,-0.91 -2.02,-2.03 0,-1.12 0.91,-2.02 2.02,-2.02 h 15.57 c 1.11,-0.01 2.01,-0.91 2.03,-2.03 0,-1.11 -0.9,-2.02 -2.01,-2.03 -0.01,0 -0.02,0 -0.04,0 h -4.09 c -1.12,0.01 -2.04,-0.9 -2.05,-2.03 -0.01,-1.12 0.9,-2.04 2.03,-2.05 h 3.11 c 1.11,0 2.01,-0.9 2,-2.01 0,0 0,-0.01 0,-0.01 -0.01,-1.12 -0.91,-2.02 -2.03,-2.03 h -5.67 c -1.11,0.02 -2.03,-0.87 -2.05,-1.99 0,-0.01 0,-0.02 0,-0.04 0.01,-1.12 0.91,-2.02 2.03,-2.03 h 11.13 c 1.12,-0.01 2.02,-0.92 2.01,-2.04 -0.01,-1.12 -0.92,-2.02 -2.04,-2.01 h -2.94 c -1.12,0 -2.03,-0.91 -2.02,-2.04 0,-1.08 0.9,-1.99 2.02,-1.99 z m 8.38,22.31 c 0.01,-1.11 -0.88,-2.02 -1.99,-2.03 -0.01,0 -0.02,0 -0.03,0 h -0.66 c -1.1,-0.01 -2.01,0.87 -2.03,1.97 0,0.02 0,0.04 0,0.05 0,1.12 0.91,2.03 2.03,2.03 v 0 h 0.66 c 1.11,0 2.02,-0.91 2.02,-2.02 z m -8.23,-26.36 m -7.21,4.05 h 1.32 c 1.12,0 2.02,0.91 2.02,2.03 0,1.12 -0.91,2.02 -2.02,2.02 h -1.32 c -1.12,0 -2.02,-0.91 -2.02,-2.03 0,-1.11 0.9,-2.02 2.02,-2.02 z m -5.67,16.21 h 1.32 c 1.12,-0.01 2.04,0.9 2.05,2.03 0.01,1.12 -0.9,2.04 -2.03,2.05 v 0 h -1.32 c -1.12,0.01 -2.04,-0.9 -2.05,-2.03 0,-1.13 0.91,-2.04 2.03,-2.05 z"
+           class="st4"
+           id="Path_2549_2_" />
+        <g
+           transform="translate(22.66)"
+           id="Group_737_2_">
+          <path
+             style="fill:#4db0a8"
+             inkscape:connector-curvature="0"
+             d="m -1602.01,-243.93 c -1.9,-7.03 -9.13,-11.18 -16.15,-9.29 -3.36,0.91 -6.22,3.1 -7.97,6.11 l -11.78,20.41 -0.07,0.11 v 0.02 c -3.55,6.28 -1.37,14.25 4.88,17.85 l 0.11,0.06 h 0.02 c 6.28,3.55 14.25,1.37 17.84,-4.9 l 11.79,-20.39 0.06,-0.11 v -0.02 c 1.72,-2.98 2.17,-6.53 1.27,-9.85 z m -20.7,-0.29 -5.03,8.72 -1.79,-1.05 5.18,-8.98 c 1.37,-2.4 3.64,-4.14 6.31,-4.84 3.55,-0.95 7.34,0.05 9.96,2.62 -5.48,-2.8 -11.9,-1.19 -14.63,3.53 z"
+             class="st4"
+             id="Path_2550_2_" />
+          <g
+             transform="translate(0.069,15.039)"
+             id="Group_736_2_">
+            <path
+               style="fill:#ffffff"
+               inkscape:connector-curvature="0"
+               d="m -1626.56,-223.12 c -2.07,0 -4.1,-0.54 -5.9,-1.56 l -0.24,-0.14 h -0.01 c -5.63,-3.33 -7.56,-10.55 -4.34,-16.25 l 0.14,-0.24 v -0.01 l 5.15,-8.92 c 0.47,0.36 0.97,0.7 1.49,1 l 19.32,11.14 -5.18,8.95 c -1.58,2.77 -4.21,4.8 -7.3,5.62 -1.02,0.27 -2.07,0.4 -3.13,0.41 z"
+               class="st26"
+               id="Path_2551_2_" />
+            <path
+               style="fill:#4dafaa"
+               inkscape:connector-curvature="0"
+               d="m -1631.43,-248.71 c 0.2,0.13 0.41,0.26 0.62,0.38 h 0.01 v 0 l 18.4,10.61 -4.65,8.04 c -1.44,2.53 -3.84,4.37 -6.65,5.12 -0.93,0.25 -1.89,0.37 -2.86,0.37 -1.89,0 -3.74,-0.49 -5.38,-1.42 l -0.43,-0.25 c -4.99,-3.1 -6.65,-9.59 -3.76,-14.7 l 0.28,-0.49 v -0.01 l 4.43,-7.68 m -0.64,-3.12 -5.85,10.14 -0.06,0.11 v 0.02 c -3.54,6.25 -1.37,14.18 4.86,17.76 l 0.11,0.06 h 0.02 c 1.96,1.11 4.17,1.7 6.42,1.7 1.15,0 2.29,-0.15 3.4,-0.45 3.35,-0.9 6.21,-3.1 7.94,-6.11 l 5.7,-9.86 -20.23,-11.67 c -0.83,-0.49 -1.61,-1.06 -2.31,-1.7 z"
+               class="st30"
+               id="Path_2552_2_" />
+          </g>
+        </g>
+      </g>
+      <text
+         style="font-size:30.99500084px;font-family:AlHadari-Medium;fill:#212121"
+         y="90.167496"
+         x="70.396255"
+         id="text11"
+         class="st31 st32 st33">
+        <tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Hit the Road';-inkscape-font-specification:'Hit the Road'"
+           id="tspan16">MEDICA</tspan>
+      </text>
+    </g>
+  </g>
+</svg>
