@@ -1,3 +1,20 @@
 img:hover{
     cursor: pointer;
 }
+
+.modal-header{
+    border: none;
+}
+
+.modal-footer{
+    border: none;
+    justify-content: center;
+}
+
+.btn-primary, .btn-secondary{
+    background-color: #ffc401;
+    color: #fff;
+    border: 2px solid #ffc401;
+    text-transform: capitalize;
+    border-radius: 3px;
+}

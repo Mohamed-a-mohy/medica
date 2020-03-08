@@ -5,5 +5,21 @@
     box-sizing: border-box;
     font-family: 'Muli', sans-serif;
 }
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.modal-backdrop {
+    z-index: 15;
+}
+
+.page-item.active .page-link {
+    z-index: 3;
+    color: #fff;
+    background-color: #ffc401;
+    border-color: #ffc401;
+}
+
+// remove outline border on focus
+*:focus {outline: none;}
+input:focus, button:focus ,li:focus {outline: none;}

@@ -108,6 +108,7 @@ export class AddtocartService {
 
   // function of 'add to card' and '+' buttons
   viewCartItems(obj) {
+    sessionStorage.removeItem('checkedOut');
     //if to check if array exist
     if (this.cartArr[0]) {
       // check if there is a conflict
@@ -153,11 +154,7 @@ export class AddtocartService {
           index = i;
         }
       }
-<<<<<<< HEAD
       if (flag && (this.routeLink.includes("shop") || this.routeLink.includes("order-summery")) && this.cartArr[index].quantity > 1) {
-=======
-      if (flag && this.routeLink.includes("shop") && this.cartArr[index].quantity > 1) {
->>>>>>> mohamed
         this.cartArr[index].quantity--;
         // update observable
         this.getCartView(this.cartArr) // update cart counter in navbar
@@ -187,6 +184,18 @@ export class AddtocartService {
     this.getCartView(this.cartArr) // update cart counter in navbar
     this.cartBehavior.next(this.cartArr);
     sessionStorage.setItem('cartView', JSON.stringify(this.cartArr));
+  }
+
+  emptyCart(){
+    if(this.cartArr[0]){
+      for(let i = this.cartArr.length - 1; i >= 0; i--){
+        this.cartArr[i].quantity = 0;
+        this.cartArr.splice(i,1);
+      }
+      this.getCartView(this.cartArr) // update cart counter in navbar
+      this.cartBehavior.next(this.cartArr);
+      sessionStorage.setItem('checkedOut', "true");
+    }
   }
 
   //function to update cart counter in navbar

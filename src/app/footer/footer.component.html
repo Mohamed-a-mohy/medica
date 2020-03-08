@@ -1,49 +1,62 @@
-<footer class="footer">
-    <section class="footer-inner">
-        <section class="footer-inner_about">
-            <h2 class="footer-inner_about-h2">about us</h2>
-            <ul class="footer-inner_about-ul">
-                <li><a >our history</a></li>
-                <li><a >faq investors</a></li>
-                <li><a >news and updates</a></li>
-            </ul>
+<footer class="footer  pt-5 pb-2">
+    <div class="container"> 
+        <section class="footer-inner row ">
+            <section class="footer-inner_about col-12 col-md-6 col-lg-3 mb-5">
+                <h2 class="footer-inner_about-h2 h5 mb-4">about us</h2>
+                <ul class="footer-inner_about-ul">
+                    <li class="mb-3"><a >our history</a></li>
+                    <li class="mb-3"><a >FAQ</a></li>
+                    <li class="mb-3"><a >news and updates</a></li>
+                </ul>
+            </section>
+            <section class="footer-inner_contact col-12 col-md-6 col-lg-3 mb-5">
+                <h2 class="footer-inner_contact-h2 h5 mb-4">contact us</h2>
+                <ul class="footer-inner_contact-ul">
+                    <li class="mb-3"><a >mempership</a></li>
+                    <li class="mb-3"><a >employment</a></li>
+                    <li class="mb-3"><a >donations</a></li>
+                </ul>
+            </section>
+            <section class="footer-inner_help col-12 col-md-6 col-lg-3 mb-5">
+                <h2 class="footer-inner_help-h2 h5 mb-4">help</h2>
+                <ul class="footer-inner_help-ul">
+                    <li class="mb-3"><a >track order</a></li>
+                    <li class="mb-3"><a >delivery & return</a></li>
+                    <li class="mb-3"><a >student discount</a></li>
+                </ul>
+            </section>
+            <section class="footer-inner_newsletter col-12 col-md-6 col-lg-3 mb-5">
+                <h2 class="footer-inner_newsletter-h2 h5 mb-4">Subscribe to our newsletter</h2>
+                <form id="subscribe" [formGroup]="subscribeForm" (ngSubmit)="onSubmit(subscribeForm)" class="mb-3">
+                    <input id="emailInput" type="text" formControlName="email" placeholder="Email Address">
+                    <button type = 'submit' data-toggle="modal" data-target=".bd-example-modal-sm">Subscribe</button>
+                </form>
+                <!-- modal start here -->
+                <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-sm">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body text-center">
+                            <p>{{msgToDisplay}}</p>
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+                <!-- modal end here -->
+                <ul class="footer-inner_newsletter-ul d-flex align-items-center">
+                    <li class="px-2 py-1 mr-2"><a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+                    <li class="px-2 py-1 mr-2"><a href="#" target="_blank"><i class="fab fa-twitter"></i></a></li>
+                    <li class="px-2 py-1"><a href="#" target="_blank"><i class="fab fa-google-plus-g"></i></a></li>
+                </ul>
+            </section>
         </section>
-        <section class="footer-inner_contact">
-            <h2 class="footer-inner_contact-h2">contact us</h2>
-            <ul class="footer-inner_contact-ul">
-                <li><a >mempership</a></li>
-                <li><a >employment</a></li>
-                <li><a >donations</a></li>
-            </ul>
+        <section class="footer-inner row">
+            <p class="col-12 text-center">copyright &copy; medica 2020. all rights reserved.</p>
         </section>
-        <section class="footer-inner_help">
-            <h2 class="footer-inner_help-h2">help</h2>
-            <ul class="footer-inner_help-ul">
-                <li><a >track order</a></li>
-                <li><a >delivery & return</a></li>
-                <li><a >student discount</a></li>
-            </ul>
-        </section>
-        <section class="footer-inner_newsletter">
-            <h2 class="footer-inner_newsletter-h2">Subscribe to our newsletter</h2>
-            <form id="subscribe" [formGroup]="subscribeForm" (ngSubmit)="onSubmit(subscribeForm)">
-                <input id="emailInput" type="text" formControlName="email" placeholder="Email Address">
-
-                <button type = 'submit' [disabled]="subscribeForm.invalid">Subscribe</button>
-                <!-- <span class="d-inline-block" data-toggle="popover" data-content="Disabled popover">
-                    <button class="btn btn-primary" style="pointer-events: none;" type="button" disabled>Disabled button</button>
-                </span> -->
-                <p id="errorMsg" *ngIf="subscribeForm.get('email').hasError('pattern')">Your password not valid
-                </p>
-            </form>
-            <ul class="footer-inner_newsletter-ul">
-                <li><a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
-                <li><a href="#" target="_blank"><i class="fab fa-twitter"></i></a></li>
-                <li><a href="#" target="_blank"><i class="fab fa-google-plus-g"></i></a></li>
-            </ul>
-        </section>
-    </section>
-    <section class="footer-inner">
-        <p>copyright &copy; medica 2020. all rights reserved.</p>
-    </section>
+    </div>
+    
 </footer>

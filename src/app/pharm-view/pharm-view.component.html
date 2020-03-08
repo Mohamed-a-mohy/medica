@@ -38,18 +38,50 @@
         <!-------------------- order side -------------------->
         <div class="col-10">
             <!-------------------- upper nav -------------------->
-            <div class="row px-3 mb-3">
-                <div class="col-12 sec-pharmView-upperNav py-4">
-                    <a routerLink="/"><img src="https://c.top4top.io/p_15142rqlg1.png" alt="home page"></a>
+            <div class="row mb-3 sec-pharmView-upperNav py-4">
+                <div class="col-3 offset-1 sec-pharmView-upperNav-logo">
+                    <a routerLink="/pharmview/pending">
+                        <img class="sec-pharmView-upperNav-logo d-block mx-auto" src="../../assets/medicaLogo.png" alt="home page">
+                    </a>
+                </div>
+                <div class="col-2 offset-6">
+                    <a data-toggle="modal" data-target="#settingModal" class="mr-3 pointerCursor" title="Setting">
+                        <img src="../../assets/pharmDashboardIcones/setting.svg" alt="setting">
+                    </a>
+                    <a class="pl-3 button" (click) = "onLogout()"  title="Logout">
+                        <img src="../../assets/pharmDashboardIcones/logout.svg" alt="logout">
+                    </a>
                 </div>
             </div>
             <div class="row px-3 py-0 m-0">
                 <!-- orders view or statistics view -->
                 <div class="col-12 p-0">
-                    <!-- <app-pharm-orders></app-pharm-orders> -->
                     <router-outlet></router-outlet>
                 </div>
             </div>
         </div>
     </div>
 </section>
+
+<!-- Modal -->
+<div class="modal fade" id="settingModal" tabindex="-1" role="dialog" aria-labelledby="settingModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="settingModalLabel"><i class="fas fa-cog mr-3"></i>Setting</h5>
+        </div>
+        <div class="modal-body">
+            <form id="setting" [formGroup]="settingForm" class="mb-3">
+                <input class="d-block mt-3 mb-5 w-100 py-1 px-3" id="currentPasswordInput" type="password" formControlName="currentPassword" placeholder="Your current password" (focus) = 'removeErrorMsg()'>
+                <input class="d-block mb-5 w-100 py-1 px-3" id="newPasswordInput" type="password" formControlName="newPassword" placeholder="Your new password" (focus) = 'removeErrorMsg()'>
+                <input class="d-block mb-5 w-100 py-1 px-3" id="confirmPasswordInput" type="password" formControlName="confirmPassword" placeholder="Confirm your password" (focus) = 'removeErrorMsg()'>
+                <p class="errorMsg" *ngIf = 'settingFormErrorMsg'>{{settingFormErrorMsg}}</p>
+                <div class="form-btn-wrapper pt-5 text-center">
+                    <button class="mr-4 cancel py-1 px-3" type="button" data-dismiss="modal" (click)="resetValues()">Cancel</button>
+                    <button class="save py-1 px-3" type = 'submit' (click)="changeSetting($event)">Save Changes</button>
+                </div>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>

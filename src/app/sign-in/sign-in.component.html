@@ -1,38 +1,29 @@
-<section class="container-fluid sec-signin">
-    <div class="row">
-        <div class="col-5"><img src="" alt=""></div>
-
-        <div class="col-7 sec-signin-cont">
-            <div class="row">
-                <div class="col-12 sec-signin-cont-btn">
-                    <a routerLink='/sigIn' id="signIN-btn">Sign In</a>
-                    <a routerLink='/signUp' id="signUP-btn">Sign Up</a>
-                </div>
-                <div class="col-12">
-                    <h2>Save Your Account Now</h2>
-                    <p>To receive our latest offers & discounts</p>
-                </div>
-
+<section class="container-fluid sign-in">
+    <section class="row align-items-center mb-5 sec-signin-cont-btn">
+        <a routerLink='/sigIn' id="signIN-btn" class=" ml-auto">Sign In</a>
+        <a routerLink='/signUp' id="signUP-btn" class="">Sign Up</a>
+    </section>
+    <div class="row signIn-section">
+        <div class="col-12 col-md-11 col-lg-5 ml-auto">
+            <div class="row mx-0 title">
+                <h2>Save Your Account Now</h2>
+                <h5>To receive our latest offers & discounts</h5>
             </div>
-            <!-- <label id="sinIn-Lbl">Sign In</label>
-            <a routerLink='/signUp' id="signUP-btn">Sign Up</a> -->
             <form action="" [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)">
                 <section class="input-feild">
                     <input type="email" formControlName="email" placeholder="Email">
-                    <span>@</span>
+                    <img class="d-inline" src="../../assets/signUp/svg/envelope.svg">
                 </section>
                 <section class="input-feild">
                     <input type="password" formControlName="password" placeholder="Password">
-                    <span>@</span>
+                    <img class="d-inline" src="../../assets/signUp/svg/password.svg">
                 </section>
-            
-                <span class="mesError" ></span>
+                    <input type="checkbox" formControlName="pharmacyCheck" id="pharmacyCheck">
+                    <label for="pharmacyCheck" class="mt-3">check if you are pharmacy</label>
+
                 <span class="mesError"></span>
-<<<<<<< HEAD
-                <button  id="submit-btn" type="submit" >Sign In</button>
-=======
-                <a  id="submit-btn" type="submit" >Sign In</a>
->>>>>>> mohamed
+                <span class="mesError"></span>
+                <button class="my-4" id="submit-btn" type="submit">Sign In</button>
             </form>
         </div>
     </div>

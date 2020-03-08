@@ -1,32 +1,82 @@
-
-<<<<<<< HEAD
-input:focus , textarea:focus{
-=======
-input:focus{
->>>>>>> mohamed
-    outline: none;
+.roshetastyle {
+  font-size: 1.1rem;
+  font-size: 600;
+  font-weight: 600;
+  color: #01807b;
+}
+input:focus,
+textarea:focus {
+  outline: none;
 }
 
-.active{
-    text-decoration: underline;
-    font-weight: bold;
+.active {
+  text-decoration: underline;
+  font-weight: bold;
 }
 
-#imageUpload{
-    position: relative;
-    input{
-        position: absolute;
-        top: 0;
-        opacity: 0;
-    }
-    i{
-        position: absolute;
-        top: 0;
-    }
+#imageUpload {
+  position: relative;
+  cursor: pointer;
+
+  input {
+    background-color: white;
+    cursor: pointer;
+  }
+  #uploadRoshetta {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    opacity: 0;
+    padding: 10px;
+  }
+  // input{
+  //     position: absolute;
+  //     top: 0;
+  //     opacity: 0;
+  // }
+  // i{
+  //     position: absolute;
+  //     top: 0;
+  // }
 }
-.messError, .fileError{
-    color: red;
+.messError,
+.fileError {
+  color: red;
 }
-#datepickerArea{
-    z-index: 999999 !important;
+#datepickerArea {
+  z-index: 999999 !important;
+}
+
+.close-btn {
+  background-color: #01807b;
+  color: white;
+  width: 40px;
+  height: 40px;
+  font-size: 2rem;
+}
+.plus-btn {
+  background-color: #01807b;
+  color: white;
+  font-size: 2rem;
+  font-weight: bold;
+  border: none;
+}
+
+.bgColor-gray {
+  background-color: #f6f6f6;
+}
+.roshettaImageName {
+  max-width: 200px;
+  color: #b2b2b2;
+}
+
+.submit-btn {
+  background-color: #01807b;
+  color: white;
+  font-weight: bold;
+  margin: 0 auto;
+  display: block;
+}
+.cursor{
+    cursor: pointer;
 }

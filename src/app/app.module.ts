@@ -20,13 +20,18 @@ import { ItemComponent } from './item/item.component';
 import { BtntocartComponent } from './btntocart/btntocart.component';
 // firebase imports ends here
 
-<<<<<<< HEAD
 // guards import here
 import { PharmRoleService } from './guards/pharm-role.service';
 import { NotPharmRoleService } from './guards/not-pharm-role.service';
+import { UserRoleGuardService} from "./user-role-guard.service";
 
-=======
->>>>>>> mohamed
+
+// mapbox
+import { NgxMapboxGLModule } from 'ngx-mapbox-gl';
+import { MatButtonModule, MatIconModule, MatListModule, MatSelectModule, MatSidenavModule, MatCardModule, MatTableModule } from "@angular/material";
+import { MapboxComponent } from './mapbox/mapbox.component';
+import {MatRadioModule} from '@angular/material/radio';
+
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 import { CartviewComponent } from './cartview/cartview.component';
@@ -45,7 +50,6 @@ import { SummeryviewComponent } from './summeryview/summeryview.component';
 import { ItemSmallComponent } from './item-small/item-small.component';
 import { HomeComponent} from './home/home.component';
 import { SearchBarInHomeComponent } from './search-bar-in-home/search-bar-in-home.component';
-<<<<<<< HEAD
 import { JwPaginationComponent} from 'jw-angular-pagination';
 import { PharmViewComponent } from './pharm-view/pharm-view.component';
 import { PharmOrdersComponent } from './pharm-orders/pharm-orders.component';
@@ -56,10 +60,9 @@ import { ConfirmationComponent } from './confirmation/confirmation.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input'
 import {MatCheckboxModule} from '@angular/material';
-import { VarDirective } from './var.directive'
-=======
-import { JwPaginationComponent} from 'jw-angular-pagination'
->>>>>>> mohamed
+import { VarDirective } from './var.directive';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { RoshettaShowComponent } from './roshetta-show/roshetta-show.component';
 
 @NgModule({
   declarations: [
@@ -83,16 +86,16 @@ import { JwPaginationComponent} from 'jw-angular-pagination'
     HomeComponent,
     SearchBarInHomeComponent,
     JwPaginationComponent,
-<<<<<<< HEAD
     PharmViewComponent,
     PharmOrdersComponent,
     PharmSmallOrderComponent,
     PharmDetailedOrderComponent,
     ConfirmItemComponent,
     ConfirmationComponent,
-    VarDirective
-=======
->>>>>>> mohamed
+    VarDirective,
+    MapboxComponent,
+    NotFoundComponent,
+    RoshettaShowComponent
   ],
   imports: [
     BrowserModule,
@@ -104,20 +107,28 @@ import { JwPaginationComponent} from 'jw-angular-pagination'
     ReactiveFormsModule,
     MatDatepickerModule,
     MatNativeDateModule,
-<<<<<<< HEAD
     MatFormFieldModule,
     MatInputModule ,
-  MatCheckboxModule
+    MatCheckboxModule,
+  // mapbox
+  NgxMapboxGLModule.withConfig({
+    accessToken: 'pk.eyJ1IjoibWVkaWNhIiwiYSI6ImNrNnRmZHN3aDBvbngzaG52bWtyeDA4NzgifQ.tjL12W-8sV4kc6WiDxn1gA', // Optional, can also be set per map (accessToken input of mgl-map)
+    geocoderAccessToken: 'pk.eyJ1IjoibWVkaWNhIiwiYSI6ImNrNnRmZHN3aDBvbngzaG52bWtyeDA4NzgifQ.tjL12W-8sV4kc6WiDxn1gA' // Optional, specify if different from the map access token, can also be set per mgl-geocoder (accessToken input of mgl-geocoder)
+  }),
+  MatButtonModule,
+  MatIconModule,
+  MatListModule,
+  MatSelectModule,
+  MatSidenavModule,
+  MatCardModule,
+  MatTableModule,
+  MatRadioModule
   ],
   providers: [
     MatDatepickerModule,
     PharmRoleService,
-    NotPharmRoleService
-=======
-  ],
-  providers: [
-    MatDatepickerModule
->>>>>>> mohamed
+    NotPharmRoleService,
+    UserRoleGuardService
   ],
   bootstrap: [AppComponent]
 })

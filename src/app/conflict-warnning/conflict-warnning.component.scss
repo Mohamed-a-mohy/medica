@@ -1,0 +1,38 @@
+.modal-header{
+    border: none;
+    height: 15px;
+}
+
+.warning-icon i {
+    font-size: 5rem;
+    color: #ffc401;
+}
+
+.modal-body{
+    border: none;
+}
+
+.modal-footer{
+    border: none;
+    width: 80%;
+    margin: 0 auto;
+    justify-content: space-evenly;
+}
+
+.btn-primary {
+    border: 2px solid #ffc401;
+    background-color: #ffc401;
+    color: #fff;
+}
+
+.btn-secondary{
+    border: 2px solid #01807b;
+
+    background-color: transparent;
+    color: #01807b;
+}
+
+.btn-primary, .btn-secondary {
+    text-transform: capitalize;
+    border-radius: 3px;
+}

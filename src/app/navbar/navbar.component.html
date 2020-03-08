@@ -1,44 +1,48 @@
-<nav class="navbar">
-    <section class="navbar-nav">
-        <section class="navbar-nav_left">
-            <ul class="navbar-nav_left-ul">
-                <li><a routerLink="/home" ><img src="https://via.placeholder.com/90x80" alt="medica logo"></a></li>
-<<<<<<< HEAD
-                <li><a routerLink="/home" >PHARMEDICA</a></li>
-=======
-                <li><a routerLink="/home" (click)="categoryClicker()">PHARMEDICA</a></li>
->>>>>>> mohamed
-            </ul>
-        </section>
-        <section class="navbar-nav_mid">
-            <ul class="navbar-nav_mid-ul">
-                <li><a  routerLink="/home" class="nav-active">Home</a></li>
-<<<<<<< HEAD
-                <li><a   routerLink="/products">Categories</a></li>
-=======
-                <li><a  routerLink="/products">Categories</a></li>
->>>>>>> mohamed
-            </ul>
-        </section>
-        <div class="d-flex flex-row">
-            <app-search-bar-in-home></app-search-bar-in-home>
-            <app-roshetta-form></app-roshetta-form>
-        </div>
-        <section class="navbar-nav_right">
-            <ul class="navbar-nav_right-ul">
-                <li>
-                    <i class="far fa-bell"></i>
-                    <span *ngIf = "notification > 0">{{notification}}</span>
-                </li>
-                <li>
-                    <i  routerLink="/shop"  class="fas fa-shopping-bag"></i>
-                    <span *ngIf = "counter > 0">{{counter}}</span>
-                </li>
-                <li *ngIf="checkuserLogin"><button (click)="logout()">logout</button></li>
-            
-            <a *ngIf="!checkuserLogin" routerLink="/signUp"><img src='../../../../user.png'/></a>
-            <span  *ngIf="checkuserLogin"></span>
-        </ul>
-        </section>
-    </section>
+<nav class="navbar navbar-expand-xl navbar-light bg-light">
+  <div class="container">
+    <a class="navbar-brand" routerLink="/home"><img src="../../assets/medicaLogo.png" alt=""></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse navbar-wrapper d-flex-lg" id="navbarSupportedContent">
+      <ul class="navbar-nav">
+        <li class="nav-item my-lg-1 ">
+          <a class="nav-link" routerLink="/home" routerLinkActive='active' [routerLinkActiveOptions]="{exact:true}">Home
+            <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item my-lg-1">
+          <a class="nav-link" routerLink="/products" routerLinkActive='active'>Categories</a>
+        </li>
+        <li class="nav-item my-lg-1">
+          <app-roshetta-form></app-roshetta-form>
+        </li>
+        <li class="nav-item my-lg-2">
+          <app-search-bar-in-home></app-search-bar-in-home>
+        </li>
+        <li class="nav-item accounts my-lg-1">
+          <!-- cart icon -->
+          <div class="icon-cart-holder icon-after">
+            <i><img routerLink="/shop" src="../../assets/Home/Svg/Group 477.svg" class="icon-cart"  title="Cart">
+              <span>{{counter}}</span></i>
+          </div>
+
+          <!-- login or logout icons starts here -->
+          <div *ngIf="login; else logout" class="elias-icon">
+            <a class="pl-3 button" (click)="onLogout()"  title="Logout">
+              <img src="../../assets/Home/Svg/logout.svg" alt="logout" class="logout">
+            </a>
+          </div>
+
+          <ng-template #logout class="elias-icon">
+            <a routerLink="/signUp"  title="SignUp" class="icon-profil">
+              <img src='../../assets/Home/Svg/noun_profile_956123.svg'>
+            </a>
+          </ng-template>
+          <!-- login or logout icons ends here -->
+        </li>
+      </ul>
+    </div>
+  </div>
 </nav>

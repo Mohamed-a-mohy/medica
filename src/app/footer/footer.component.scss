@@ -1,51 +1,81 @@
 .footer{
-    width: 100%;
+    // width: 100%;
+    background-color: #f9f5f1;
+
+    li {
+        list-style: none;
+    }
 
     &-inner{
-        width: 90%;
-        margin: 0 auto;
-        display: flex;
-        align-items: flex-start;
-        justify-content: space-between;
+        // width: 90%;
+        // margin: 0 auto;
 
-        &_about, &_contact, &_help{
-            width: 24%;
+        &_about h2, &_contact h2, &_help h2{
             text-transform: uppercase;
+        }
 
-            li{
-                list-style: none;
-            }
+        h2{
+            font-weight: bold;
+        }
+
+        ul, p{
+            text-transform: capitalize;
         }
 
         &_newsletter{
-            ul{
+            form{
                 display: flex;
                 align-items: center;
 
-                li{
-                    list-style: none; 
-                    margin-right: 2rem; 
+                input{
+                    width: 65%;
+                    padding: 0.25rem 0.75rem;
+                    border: none;
+                    border-radius: 3px;
+                }
+                button{
+                    width: 35%;
+                    padding: 0.36rem 0;
+                    border: none;
+                    background-color: #01807b;
+                    text-transform: capitalize;
+                    color: #fff;
+                    border-radius: 3px;
+                    box-shadow: #dbd9d6 2px 2px 3px;
+                    font-size: 0.65rem;
+                    text-align: center;
                 }
 
-                li:last-child{
-                    margin-right: 0;
+                input::placeholder, input{
+                    font-size: 0.8rem;
+                    color: #afaeae;
                 }
             }
-        }
 
-        p{
-            text-transform: capitalize;
+            a i{
+                color: #01807b;
+                font-size: 1.25rem;
+            }
+
+            li {
+                box-shadow: #dbd9d6 0 2px 3px;
+            }
         }
     }
 }
 
+// modal style
 
-#subscribe{
-    position: relative;
+.modal-content{
+    background-color: #f9f5f1;
+    font-weight: bold;
 }
 
-#errorMsg{
-    position: absolute;
-    top: 20%;
-    left: 10%;
+.close span{
+    color: #01807b;
+}
+
+.modal-header{
+    border: none;
+    height: 15px;
 }

@@ -2,9 +2,11 @@
 
     <input list="products"  placeholder="Search For Products"  (change)='getId($event)'>
     <datalist id="products">
-            <option *ngFor="let item of listOfProducts" id="{{item.id}}" value="{{item.name}} {{item.conc}}" >  Type : {{item.type}} 
+            <option *ngFor="let item of listOfProducts" id="{{item.id}}" value="{{item.name}} {{item.conc}}" >{{item.name}} 
             </option>
     </datalist>
+    <div><i class="fas fa-search"></i></div>
+    
 </section>
 
 

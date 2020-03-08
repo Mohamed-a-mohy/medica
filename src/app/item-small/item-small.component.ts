@@ -12,13 +12,7 @@ export class ItemSmallComponent implements OnInit {
   constructor(private service :AddtocartService) { }
 
   ngOnInit() {
-<<<<<<< HEAD
-  //   this.service.cartItems.subscribe(items => {
-  //     this.itemsInCart = items;})
-=======
-    this.service.cartItems.subscribe(items => {
-      this.itemsInCart = items;})
->>>>>>> mohamed
+    
   }
 
 }

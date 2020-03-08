@@ -1,9 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { AddtocartService } from '../addtocart.service';
-<<<<<<< HEAD
 import { log } from 'util';
-=======
->>>>>>> mohamed
 
 
 @Component({
@@ -26,10 +23,7 @@ export class QuantityComponent implements OnInit {
   }
 
   removeFromCart(){
-<<<<<<< HEAD
     console.log('from - in quantity')
-=======
->>>>>>> mohamed
     this.service.decreaseViewCartItem(this.item);
   }
 }

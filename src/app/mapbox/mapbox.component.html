@@ -1,0 +1,23 @@
+<mgl-map [style]="'mapbox://styles/mapbox/streets-v10'" [zoom]="[15]" [center]="[29.918743783419217, 31.19805641493292]" [locale]="locale" [attributionControl] = 'true'  (load)="map = $event">
+
+    <!-- dragable point -->
+  
+    <mgl-geojson-source id="point">
+      <mgl-feature [properties]="" [geometry]="{type: 'Point', coordinates: [29.918743783419217, 31.19805641493292]}"
+        [mglDraggable]="targetLayer"
+        (dragEnd)="onDrag($event)"></mgl-feature>
+    </mgl-geojson-source>
+    <mgl-layer #targetLayer id="point" type="circle" source="point" [paint]="layerPaint"
+      (mouseEnter)="changeColor('#01807b')" (mouseLeave)="changeColor('#05a19c')"></mgl-layer>
+  
+    <mgl-control position="bottom-left">
+      <mat-card style="visibility: hidden;">
+        <div>Lng:&nbsp;{{ coordinates[0] }}</div>
+        <div>Lat:&nbsp;{{ coordinates[1] }}</div>
+      </mat-card>
+    </mgl-control>
+  
+    <!-- other controls -->
+        <mgl-control mglGeocoder [searchInput]="searchWord"></mgl-control>
+        <mgl-control mglNavigation [showCompass]= 'true' [showZoom] = 'true'></mgl-control>
+    </mgl-map>

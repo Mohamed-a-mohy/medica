@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="60" height="71.442" viewBox="0 0 60 71.442">
+    <defs>
+        <style>
+            .prefix__cls-3{fill:#fdbf00}.prefix__cls-6{fill:#ffc401}
+        </style>
+    </defs>
+    <g id="prefix___032-discount" data-name="032-discount" transform="translate(-41)">
+        <g id="prefix__Group_2772" data-name="Group 2772" transform="translate(41 14.793)">
+            <path id="prefix__Path_5178" d="M75.047 153.04H52.3a11.315 11.315 0 01-11.3-11.3v-33.628a2.093 2.093 0 012.093-2.093h41.163a2.093 2.093 0 012.093 2.093v33.626a11.315 11.315 0 01-11.302 11.302z" data-name="Path 5178" transform="translate(-41 -106.019)" style="fill:#05a19c"/>
+        </g>
+        <path id="prefix__Path_5179" d="M224.081 106.019H203.5v47.021h11.372a11.315 11.315 0 0011.3-11.3v-33.628a2.093 2.093 0 00-2.091-2.093z" data-name="Path 5179" transform="translate(-139.826 -91.226)" style="fill:#01807b"/>
+        <g id="prefix__Group_2773" data-name="Group 2773" transform="translate(53.524)">
+            <path id="prefix__Path_5180" d="M148.823 25.356a2.093 2.093 0 01-2.093-2.093V10.081a5.895 5.895 0 00-11.789 0v13.182a2.093 2.093 0 11-4.186 0V10.081a10.081 10.081 0 1120.161 0v13.182a2.093 2.093 0 01-2.093 2.093z" class="prefix__cls-3" data-name="Path 5180" transform="translate(-130.755)"/>
+        </g>
+        <g id="prefix__Group_2774" data-name="Group 2774" transform="translate(71.698 29.582)">
+            <path id="prefix__Path_5181" d="M288.209 253.862h-25.116a2.093 2.093 0 01-2.093-2.093V218.28a2.093 2.093 0 011.431-1.986l12.558-4.186a2.1 2.1 0 011.324 0l12.558 4.186a2.093 2.093 0 011.431 1.986v33.488a2.093 2.093 0 01-2.093 2.094z" data-name="Path 5181" transform="translate(-261 -212.001)" style="fill:#fff"/>
+        </g>
+        <path id="prefix__Path_5182" d="M379.22 216.293l-12.558-4.186A2.093 2.093 0 00366 212v41.86h12.558a2.093 2.093 0 002.093-2.093v-33.488a2.093 2.093 0 00-1.431-1.986z" data-name="Path 5182" transform="translate(-279.651 -182.419)" style="fill:#f2f2f2"/>
+        <path id="prefix__Path_5183" d="M203.5.013V4.2a5.9 5.9 0 015.825 5.893v13.181a2.093 2.093 0 004.186 0V10.092A10.091 10.091 0 00203.5.013z" class="prefix__cls-6" data-name="Path 5183" transform="translate(-139.826 -.011)"/>
+        <g id="prefix__Group_2775" data-name="Group 2775" transform="translate(78.542 42.704)">
+            <path id="prefix__Path_5184" d="M312.142 321.663a2.093 2.093 0 01-1.48-3.573l11.428-11.428a2.093 2.093 0 012.96 2.96l-11.428 11.428a2.087 2.087 0 01-1.48.613z" class="prefix__cls-3" data-name="Path 5184" transform="translate(-310.049 -306.048)"/>
+        </g>
+        <g id="prefix__Group_2776" data-name="Group 2776" transform="translate(80.249 43.12)">
+            <circle id="prefix__Ellipse_78" cx="1.85" cy="1.85" r="1.85" class="prefix__cls-3" data-name="Ellipse 78"/>
+        </g>
+        <g id="prefix__Group_2777" data-name="Group 2777" transform="translate(88.574 53.295)">
+            <circle id="prefix__Ellipse_79" cx="2.312" cy="2.312" r="2.312" class="prefix__cls-6" data-name="Ellipse 79"/>
+        </g>
+        <path id="prefix__Path_5185" d="M373.194 306.661a2.093 2.093 0 00-2.96 0L366 310.9v5.92l7.194-7.194a2.093 2.093 0 000-2.965z" class="prefix__cls-6" data-name="Path 5185" transform="translate(-279.651 -263.344)"/>
+    </g>
+</svg>

@@ -31,8 +31,8 @@ export class ProductsComponent implements OnInit {
 
 
   // @Input() item;
-  arrOfData;
-  newArr:[]=[]
+  arrOfData=[]
+  newArr=[]
   /////list of products after filtering
 
   @Input()listOfProducts: any[] = [];
@@ -88,7 +88,7 @@ export class ProductsComponent implements OnInit {
   newSubCategory;
 
 
-
+count=0;
 
   constructor(
     private angularFS: AngularFirestore,
@@ -99,7 +99,9 @@ export class ProductsComponent implements OnInit {
       
 
       router.events.subscribe((val) => {
+        
         if (location.path().includes('/products')) {
+          this.arrOfData=[]
           this.routeLink = location.path();
           this.indexOfcategory = this.routeLink.lastIndexOf("/")
           if(this.indexOfcategory == 9){
@@ -112,48 +114,59 @@ export class ProductsComponent implements OnInit {
           }else{
             router.navigate(['/products/medicine']);
           }
-          console.log("newcategory"+this.newCategory)
-          console.log("newsubcategory"+this.newSubCategory)
+          // console.log("newcategory"+this.newCategory)
+          // console.log("newsubcategory"+this.newSubCategory)
 
-          console.log(this.indexOfcategory)
-          console.log(this.routeLink)
-          console.log('hi from if before')
+          // console.log(this.indexOfcategory)
+          // console.log(this.routeLink)
+          // console.log('hi from if before')
 
 
           //////////////////////
           this.newArr = []
-          this.service.getData.subscribe(items => {
-            this.arrOfData = items;
-            console.log("hiiii",items ,this.arrOfData)
-            this.collectCategoriesInArr();
-            this.collectSubCatsInObj();
-            console.log('functions generated', this.category, this.subCatObj);
+          if(this.arrOfData[0]==undefined){
 
-
-
-            ///////////
-            if(this.arrOfData[0]){
-             /*  this.listOfProducts = this.arrOfData.filter(val=>val.category == this.newCategory);
-              console.log('hi from if');
-              console.log('this.listOfProducts', this.listOfProducts) */
-              if(this.newSubCategory){
-        
-                this.listOfProducts = this.arrOfData.filter(val=>val.subCat == this.newSubCategory);
-/*                 this.categorySelector(this.newCategory)
- */                this.subCategorySelector(this.newSubCategory)
-                /* if(this.subCatObj[this.newCategory].indexOf(this.newSubCategory) == -1){
-                  router.navigate(['/']);
-                }  */
-              }else{
-                this.listOfProducts = this.arrOfData.filter(val=>val.category == this.newCategory);
-                this.categorySelector(this.newCategory)
+            this.service.getData.subscribe(items => {
+              this.arrOfData = items;
+              console.log("hiiii",items ,this.arrOfData)
+              this.collectCategoriesInArr();
+              this.collectSubCatsInObj();
+              console.log('functions generated', this.category, this.subCatObj);
+  
+  
+  
+              ///////////
+              if(this.arrOfData[0] && this.newCategory){
+                this.count++
+                console.log(this.count);
+                
+               /*  this.listOfProducts = this.arrOfData.filter(val=>val.category == this.newCategory);
+                console.log('hi from if');
+                console.log('this.listOfProducts', this.listOfProducts) */
+                if(this.newSubCategory){
+          
+                  this.listOfProducts = this.arrOfData.filter(val=>val.subCat == this.newSubCategory);
+  /*                 this.categorySelector(this.newCategory)
+   */                this.subCategorySelector(this.newSubCategory)
+                  /* if(this.subCatObj[this.newCategory].indexOf(this.newSubCategory) == -1){
+                    router.navigate(['/']);
+                  }  */
+                }else{
+                  this.listOfProducts = this.arrOfData.filter(val=>val.category == this.newCategory);
+                  this.categorySelector(this.newCategory)
+                }
+                
+                this.filterGeneration(this.listOfProducts)
+                // this.filterGeneration(this.listOfProducts)
+                this.sortCheck()
+                // this.isChecked(this.checkedInput)
+                this.newSubCategory=""
+                // this.sortCheck()
+                // this.isChecked(this.checkedInput)
               }
-              
-              this.filterGeneration(this.listOfProducts)
-              this.sortCheck()
-              // this.isChecked(this.checkedInput)
-            }
-          });
+            });
+          }
+        
 
         }
         
@@ -265,6 +278,7 @@ export class ProductsComponent implements OnInit {
     }
     this.collectPrices(this.arrayOfPrice, this.listOfProducts);
     this.maxPrice = Math.max(...this.arrayOfPrice)
+    this.outputValue = this.maxPrice
     this.arrayOfPrice = []
 
 

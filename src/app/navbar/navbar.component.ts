@@ -1,64 +1,53 @@
-<<<<<<< HEAD
 import { Component, OnInit } from '@angular/core';
-=======
-import { Component, OnInit, } from '@angular/core';
->>>>>>> mohamed
 import {AddtocartService} from "../addtocart.service";
 import { LoginService} from '../login.service';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
+
 export class NavbarComponent implements OnInit {
-  notification = 1;
-  counter;
-  checkuserLogin
-<<<<<<< HEAD
-  constructor(private service :AddtocartService,
-    private loginService: LoginService) { }
-=======
-
-
-  /////test1
-listOfProducts;
-
+  // ----------------------------------------------------------
+  // properties
+  // ----------------------------------------------------------
+  counter:Number = 0;
+  login:boolean = false;
 
   constructor(private service :AddtocartService,
-    private loginService: LoginService) { 
-      this.service.getData.subscribe(items => {
-        this.listOfProducts = items
-        this.categoryClicker(items)
-      });
-    }
->>>>>>> mohamed
+    private loginService: LoginService,
+    private router: Router) {
+     }
 
   ngOnInit() {
+    // ----------------------------------------------------------
+    // update cart counter
+    // ----------------------------------------------------------
    this.service.cartCounter.subscribe(arrLength=>{
      this.counter=arrLength;
-   })
+   });
 
-   this.loginService.checkLogin$.subscribe(checkLogin => {
-    this.checkuserLogin = checkLogin;
-  })
+    // ----------------------------------------------------------
+    // show 'logout'icon or 'sign in' icon
+    // ----------------------------------------------------------     
+    this.loginService.checkLogin$.subscribe(state=>{
+      if(state && localStorage.getItem("role") == 'user'){
+        this.login = true;
+      }else if(!state || localStorage.getItem("role") != 'user'){
+        this.login = false;
+      }
+    })
   }
 
-  logout(){
-    localStorage.removeItem('checkLogin')
-    this.loginService.changeLoginStatus(localStorage.getItem('checkLogin'))
-    localStorage.removeItem('userId')
-    this.loginService.changeLoginStatus(localStorage.getItem('userId'))
+  // ----------------------------------------------------------
+  // logout function
+  // ----------------------------------------------------------
+  onLogout(){
+    localStorage.removeItem('userId');
+    localStorage.removeItem('role');
+    this.loginService.checkLoginBehavior.next(false);
+    this.router.navigate(['/home']); 
   }
-<<<<<<< HEAD
-=======
-  
-
-  //test1
-  categoryClicker(arr){
-    this.listOfProducts = arr
-  }
-  
->>>>>>> mohamed
 }

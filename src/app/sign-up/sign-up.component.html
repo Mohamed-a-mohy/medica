@@ -1,86 +1,14 @@
-<!-- <a routerLink='/sigIn' id="sinIn-btn">Sign In</a>
-<label  id="signUP-Lbl">Sign Up</label>
-
-<form action="" [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)">
-
-    <section class="input-feild">
-        <input class="" formControlName="userName" placeholder="Name">
-        <span>@</span>
+<section class="container-fluid sign-up ">
+    <section class="row align-items-center mb-5 sec-signin-cont-btn">
+        <a routerLink='/sigIn' id="signIN-btn" class=" ml-auto">Sign In</a>
+        <a routerLink='/signUp' id="signUP-btn" class="">Sign Up</a>
     </section>
-    <p *ngIf="myForm.get('userName').hasError('required') && myForm.get('userName').touched">
-        *Required.
-    </p>
-    <p *ngIf="myForm.get('userName').hasError('minlength')&& myForm.get('userName').touched">
-        *Name must be 3 character at least.
-    </p>
-    <section class="input-feild">
-        <input type="email" formControlName="email" placeholder="Email">
-        <span>@</span>
-    </section>
-    <p *ngIf="myForm.get('email').hasError('required') && myForm.get('email').touched">
-        *Required
-    </p>
-    <p *ngIf="myForm.get('email').hasError('pattern') && myForm.get('email').touched">
-        *Invalid email(example@gmail.com)
-    </p>
-    <section class="input-feild">
-        <input type="password" formControlName="password" placeholder="Password">
-        <span>@</span>
-    </section>
-    <p *ngIf="myForm.get('password').hasError('required') && myForm.get('password').touched">
-        *Required
-    </p>
-    <p *ngIf="myForm.get('password').hasError('pattern') && myForm.get('password').touched">
-        *minimum length:8, contain (capital and small letter, number and special character)
-    </p>
-    <section class="input-feild">
-        <input type="password" formControlName="passwordConfirm" placeholder="Confirm password">
-        <span>@</span>
-    </section>
-    <p *ngIf="myForm.get('passwordConfirm').hasError('mustMatch')">Passwords must match</p>
-    <p *ngIf="myForm.get('passwordConfirm').hasError('required') && myForm.get('passwordConfirm').touched">
-        *Required
-    </p>
-    <p><input id="checkInsurance" type="checkbox" formControlName="checkInsurance" #checkInsurance>Check if you have
-        insurance</p>
-
-    <section class="insuranceArea" *ngIf="checkInsurance.checked">
-        <section class="input-feild">
-            <input type="text" formControlName="insuranceNum" placeholder="Enter your insurance number" />
-            <span>@</span>
-        </section>
-        <p *ngIf="myForm.get('insuranceNum').hasError('pattern') ">
-            *must be 5 numbers
-        </p>
-        <section class="input-feild">
-            <label>Upload your insurance photo</label>
-            <input id="insuranceImage" type="file" (change)="readURL($event)">
-        </section>
-    </section>
-    <span class="mesError" ></span>
-    <span class="mesError"></span>
-    <button  id="submit-btn" type="submit" >Sign Up</button>
-
-</form> -->
-
-
-
-
-<section class="container-fluid sec-signin">
-    <div class="row">
-        <div class="col-5"><img src="" alt=""></div>
-
-        <div class="col-7 sec-signin-cont">
-            <div class="row">
-                <div class="col-12 sec-signin-cont-btn">
-                    <a routerLink='/sigIn' id="signIN-btn">Sign In</a>
-                    <a routerLink='/signUp' id="signUP-btn">Sign Up</a>
-                </div>
-                <div class="col-12">
-                    <h2>Save Your Account Now</h2>
-                    <p>To receive our latest offers & discounts</p>
-                </div>
-
+    <div class="row signUp-section">
+        <!-- <div class="col-7 h-100"><img class="img-fluid" src="../../assets/signup/signup.svg" alt=""></div> -->
+        <div class="col-12 col-md-8 col-lg-5  ml-auto">
+            <div class="row mx-0 title">
+                <h2>Save Your Account Now</h2>
+                <h5>To receive our latest offers & discounts</h5>
             </div>
             <!-- <label id="sinIn-Lbl">Sign In</label>
             <a routerLink='/signUp' id="signUP-btn">Sign Up</a> -->
@@ -88,62 +16,70 @@
 
                 <section class="input-feild">
                     <input class="" formControlName="userName" placeholder="Name">
-                    <span>@</span>
+                    <img class="d-inline username-icon" src="../../assets/signUp/noun_profile_956123.svg">
                 </section>
-                <p *ngIf="myForm.get('userName').hasError('required') && myForm.get('userName').touched">
+                <p class="mesError"
+                    *ngIf="myForm.get('userName').hasError('required') && myForm.get('userName').touched">
                     *Required.
                 </p>
-                <p *ngIf="myForm.get('userName').hasError('minlength')&& myForm.get('userName').touched">
+                <p class="mesError"
+                    *ngIf="myForm.get('userName').hasError('minlength')&& myForm.get('userName').touched">
                     *Name must be 3 character at least.
                 </p>
                 <section class="input-feild">
                     <input type="email" formControlName="email" placeholder="Email">
-                    <span>@</span>
+                    <img class="d-inline" src="../../assets/signUp/svg/envelope.svg">
                 </section>
-                <p *ngIf="myForm.get('email').hasError('required') && myForm.get('email').touched">
+                <p class="mesError" *ngIf="myForm.get('email').hasError('required') && myForm.get('email').touched">
                     *Required
                 </p>
-                <p *ngIf="myForm.get('email').hasError('pattern') && myForm.get('email').touched">
+                <p class="mesError" *ngIf="myForm.get('email').hasError('pattern') && myForm.get('email').touched">
                     *Invalid email(example@gmail.com)
                 </p>
                 <section class="input-feild">
                     <input type="password" formControlName="password" placeholder="Password">
-                    <span>@</span>
+                    <img class="d-inline" src="../../assets/signUp/svg/password.svg">
                 </section>
-                <p *ngIf="myForm.get('password').hasError('required') && myForm.get('password').touched">
+                <p class="mesError"
+                    *ngIf="myForm.get('password').hasError('required') && myForm.get('password').touched">
                     *Required
                 </p>
-                <p *ngIf="myForm.get('password').hasError('pattern') && myForm.get('password').touched">
+                <p class="mesError"
+                    *ngIf="myForm.get('password').hasError('pattern') && myForm.get('password').touched">
                     *minimum length:8, contain (capital and small letter, number and special character)
                 </p>
                 <section class="input-feild">
                     <input type="password" formControlName="passwordConfirm" placeholder="Confirm password">
-                    <span>@</span>
+                    <img class="d-inline" src="../../assets/signUp/svg/password.svg">
                 </section>
-                <p *ngIf="myForm.get('passwordConfirm').hasError('mustMatch')">Passwords must match</p>
-                <p *ngIf="myForm.get('passwordConfirm').hasError('required') && myForm.get('passwordConfirm').touched">
+                <p class="mesError" *ngIf="myForm.get('passwordConfirm').hasError('mustMatch')">Passwords must match</p>
+                <p class="mesError"
+                    *ngIf="myForm.get('passwordConfirm').hasError('required') && myForm.get('passwordConfirm').touched">
                     *Required
                 </p>
-                <p><input id="checkInsurance" type="checkbox" formControlName="checkInsurance" #checkInsurance>Check if you have
-                    insurance</p>
-            
+                <input type="checkbox" id="checkInsurance" formControlName="checkInsurance" #checkInsurance>
+                   
+                <label  class=" pt-0" for='checkInsurance'>check if you have insurance</label> 
+                
+
                 <section class="insuranceArea" *ngIf="checkInsurance.checked">
                     <section class="input-feild">
-                        <input type="text" formControlName="insuranceNum" placeholder="Enter your insurance number" />
-                        <span>@</span>
+                        <input class="mt-0" type="text" formControlName="insuranceNum" placeholder="Enter your insurance number" />
+                        <img class="d-inline" src="../../assets/signUp/svg/id.svg">
                     </section>
-                    <p *ngIf="myForm.get('insuranceNum').hasError('pattern') ">
-                        *must be 5 numbers
+                    <p class="mesError" *ngIf="myForm.get('insuranceNum').hasError('pattern')&&  myForm.get('insuranceNum').touched">
+                        *must be numbers
                     </p>
-                    <section class="input-feild">
-                        <label>Upload your insurance photo</label>
-                        <input id="insuranceImage" type="file" (change)="readURL($event)">
+                    <section class="input-feild" id="insuranceContainer">
+                        <input disabled placeholder="Upload your insurance photo" >
+                        <img class="d-inline" src="../../assets/signUp/svg/camera.svg">
+                        <input class="w-100" id="insuranceImage" type="file" (change)="readURL($event)">
                     </section>
                 </section>
-                <span class="mesError" ></span>
                 <span class="mesError"></span>
-                <a  id="submit-btn" type="submit" >Sign Up</a>
-            
+                <span class="mesError"></span>
+                <button class="my-4" id="submit-btn" type="submit">Sign Up</button>
+
             </form>
         </div>
     </div>

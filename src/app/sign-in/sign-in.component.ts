@@ -28,17 +28,15 @@ export class SignInComponent implements OnInit {
 
     this.myForm = this.fb.group({
       email: "",
-      password: ""
+      password: "",
+      pharmacyCheck: false
     });
   }
 
   
 
   onSubmit(form: NgForm) {
-<<<<<<< HEAD
 
-=======
->>>>>>> mohamed
     if (this.myForm.value.email && this.myForm.value.password) {
       this.loginService.checkValidUser(form);
     } else {
@@ -46,5 +44,6 @@ export class SignInComponent implements OnInit {
       document.getElementsByClassName("mesError")[1].innerHTML =
         "please enter your email and password";
     }
+    this.loginService.checkLoginBehavior.next(true); // display login / logout icon in navbar
   }
 }

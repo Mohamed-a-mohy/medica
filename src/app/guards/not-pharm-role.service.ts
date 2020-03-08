@@ -11,7 +11,9 @@ export class NotPharmRoleService {
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
     if (localStorage.getItem('role') == 'pharmacy') {
+      this.router.navigate(['/home'])
         return false;
+
     }else {
       return true;
     }

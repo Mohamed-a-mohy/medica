@@ -1,45 +1,128 @@
+.container{
+    margin-top: 0 !important;
+    padding-top: 10rem;
+}
+.titalOfOrders{
+    h2{
+        font-weight: bolder;
+    }
+    p{
+        font-weight: bolder;
+        color: gray;
+    }
+}
 .delivery_info{
+    max-height: 125vh;
     border-radius: 0.5rem;
     -webkit-box-shadow: 0px 0px 9px 0px rgba(148,146,148,1);
     -moz-box-shadow: 0px 0px 9px 0px rgba(148,146,148,1);
     box-shadow: 0px 0px 9px 0px rgba(148,146,148,1);
     width: 50%;
-    padding: 1rem 1.5rem;
-    h4{
+    padding: 3rem 1.5rem;
+    h3,h2{
         font-weight: bolder;
-        padding: 0.5rem;
+        text-transform: capitalize;
     }
     p{
-        color: red;
-        font-size: 1rem;
+        color: #ffc401;
+        font-size: 0.8rem;
+    }
+    p.note{
+        color: #cfcfcf;
     }
 }
 input{
     border: 0;
-    width: 90%;
+    width: 80%;
 }
+
+input::placeholder{
+    color: #cfcfcf;
+}
+
 .input-feild{
-    border-bottom: 0.2rem solid #f2f2f2;
+    border-bottom: 0.1rem solid #f2f2f2;
     padding: 1rem 0.8rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
 }
+
+.input-small-feild{
+    width: 47.5%;
+    border-bottom: 0.1rem solid #f2f2f2;
+    padding: 1rem 0.8rem;
+}
+
+.errorWidth {
+    width: 47.5%;
+}
+
+.errorWidth:first-child{
+    margin-right: 4%;
+}
+
+.input-small-feild-No2{
+    padding: 1rem 0.8rem;
+    margin-bottom: 0.5rem;
+}
+
 .delivery_info_tital{
     text-align: center;
     font-weight: bolder;
-    margin-bottom: 2rem;
+    margin-bottom: 4rem;
  }
 button{
     background-color: #ffc401;
-    border: #ffc401;
+    border: 1px solid #ffc401;
     margin: auto;
     font-weight: bolder;
     color: white;
     opacity: 0.5;
+    padding: 0.75rem 1.5rem;
+    outline: none;
+    border-radius: 5px;
 } 
+
 .Payment_button{
     margin: auto;
     text-align: center;
 }
 .input_payment{
     width: auto;
+}
+
+// -----------------------------------------
+
+.map {
+    height: 57.5vh;
+    max-height: 57.5vh;
+    position: relative;
+}
+
+.ordersMinHight{
+    max-height: 125vh;
+    overflow-y: auto;
+}
+
+.orders{
+    overflow-y: auto;
+    margin-bottom: 10vh;
+    max-height: 57.5vh;
+}
+
+.orders::-webkit-scrollbar,
+.ordersMinHight::-webkit-scrollbar {
+    width: 0.5rem; 
+    background: #f2f2f2; 
+    border-radius: 5px;
+}
+
+.orders::-webkit-scrollbar-thumb,
+.ordersMinHight::-webkit-scrollbar-thumb{
+    background-color: #ffc401;
+    border-radius: 5px;
+}
+
+.orders::-webkit-scrollbar-thumb:hover,
+.ordersMinHight::-webkit-scrollbar-thumb:hover{
+    background-color: #ecb603;
 }

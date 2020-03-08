@@ -1,0 +1,39 @@
+.roshetta_img{
+    height: 5rem;
+    padding: 0;
+
+    img{
+        display: block;
+        width: 100%;
+        height: 100%;
+        border: 2px solid #e2e2e2;
+        border-radius: 1rem;
+    }
+}
+.roshetta_details{
+    display: flex;
+    align-items: center;
+    h4{
+        font-weight: bolder;
+    }
+    span{
+        color: gray;
+    }
+    p{
+        font-size: 0.9rem;
+        padding: 0;
+    }
+}
+.noteInModel{
+    p{
+        font-size: 1rem;
+    }
+    span{
+        color: gray;
+    }
+}
+
+.border-top{
+    border-top: 1px solid #9c9c9c;
+    padding-top: 1rem;
+}

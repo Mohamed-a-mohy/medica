@@ -1,64 +1,102 @@
-<div class="container">
+<div class="container my-5">
   <div class="row">
-<<<<<<< HEAD
-    <div class="col-7">
-      <app-item-small *ngFor="let item of itemsInCart" [item]='item'></app-item-small>
-    </div>
-    <div class="col-1">
-
-    </div>
-    <div class="col-4 my-3 delivery_info">
-      <div class="delivery_info_tital">
-        <h2>Delivery Info.</h2>
+    <!-- left side: item in cart + map -->
+    <div class="col-7 mt-2">
+      <div class="row titalOfOrders px-3">
+          <h2 class="col-6">Order Summary</h2>
+          <p class="col-6 pt-3 text-right">Total Item: {{totalItem}} </p>
       </div>
-      <h4>Details</h4>
-      <form action=""[formGroup]="myForm">
-        <section class="input-feild">
-          <input id="address" formControlName="address" placeholder="Address" (keyup)="checkValidation($event, myForm)">
-          <span> <img src="../../assets/order summary/svg/noun_Location_2024994.svg" alt=""> </span>
-=======
-    <app-item-small *ngFor="let item of itemsInCart" [item]='item' class="col-8"></app-item-small>
-    <div class="col-4">
-      <form action=""[formGroup]="myForm" (ngSubmit)="onSubmit(myForm)">
-        <section class="input-feild">
-          <input class="" formControlName="address" placeholder="Enter Yor Adress">
-          <span>@</span>
->>>>>>> mohamed
-        </section>
-        <p *ngIf="myForm.get('address').hasError('required') && myForm.get('address').touched">
-          *Required.
-        </p>
-        <section class="input-feild">
-<<<<<<< HEAD
-          <input id="phone" formControlName="phone" placeholder="Phone Number" (keyup)="checkValidation($event, myForm)">
-          <span> <img src="../../assets/order summary/svg/noun_Phone_2545576.svg" alt=""> </span>
-=======
-          <input class="" formControlName="phone" placeholder="Enter Yor Phone number">
-          <span>@</span>
->>>>>>> mohamed
+      <div id="orders" class="ordersMinHight">
+        <app-item-small *ngFor="let item of itemsInCart" [item]='item'></app-item-small>
+        <div class="mx-3 mt-3" *ngIf="cheskRoshetta">
+          <app-roshetta-details></app-roshetta-details>
+        </div>
+      </div>
+      <div class="map" *ngIf = 'displayMap'>
+        <app-mapbox></app-mapbox>
+      </div>
+    </div>
+
+    <!-- right side: delivery info section -->
+    <div class="col-5 delivery_info">
+      <div class="delivery_info_tital">
+        <h2 class="h3">Delivery Info.</h2>
+      </div>
+
+      <!-- details (phone & address) -->
+      <h3 class="h5">Details</h3>
+      <p class="note mb-3">(To find you)</p>
+      <p *ngIf = 'myForm.invalid'>
+        {{waringMassege}}
+      </p>
+      <form action="" [formGroup]="myForm">
+        <section class="input-feild d-flex justify-content-between align-items-center">
+          <input id="phone" formControlName="phone" placeholder="Phone Number"
+            (keyup)="checkValidation($event, myForm)">
+          <span> <img src="../../assets/orderSummary/svg/noun_Phone_2545576.svg" alt=""> </span>
         </section>
         <p *ngIf="myForm.get('phone').hasError('required') &&  myForm.get('phone').touched">
           *Required.
         </p>
         <p *ngIf=" myForm.get('phone').hasError('pattern') && myForm.get('phone').touched">
-<<<<<<< HEAD
-           must start with 01 and contain 11 number.
+          must start with 01 and contain 11 number.
         </p>
-        <p>
-            {{waringMassege}}
+        <section class="input-feild d-flex justify-content-between align-items-center">
+          <input id="address" formControlName="address" placeholder="Address" (keyup)="checkValidation($event, myForm)">
+          <span> <img src="../../assets/orderSummary/svg/home-address.svg" alt=""> </span>
+        </section>
+        <p *ngIf="myForm.get('address').hasError('required') && myForm.get('address').touched">
+          *Required.
         </p>
-        <h4>Payment Method</h4>
-        <a class="dropdown-item p-0"><input class="input_payment" type="radio" checked  value="1"> cash</a>
+
+        <section class="d-flex justify-content-between align-items-center">
+          <section class="input-small-feild d-flex justify-content-between align-items-center">
+            <input id="neighborhood" formControlName="neighborhood" placeholder="Neighborhood"
+              (keyup)="checkValidation($event, myForm)">
+            <span style="visibility: hidden;"> <img src="../../assets/orderSummary/svg/address.svg" alt=""> </span>
+          </section>
+          <section class="input-small-feild d-flex justify-content-between align-items-center">
+            <input id="city" formControlName="city" placeholder="City" value="Alexandria"
+              (keyup)="checkValidation($event, myForm)">
+            <span> <img src="../../assets/orderSummary/svg/noun_Location_2024994.svg" alt=""> </span>
+          </section>
+        </section>
+            <section class="input-small-feild-No2 d-flex justify-content-between align-items-center">
+              <p class="errorWidth" *ngIf="myForm.get('neighborhood').hasError('required') && myForm.get('neighborhood').touched">
+                *Required.
+              </p>
+              <p class="errorWidth" *ngIf="myForm.get('city').hasError('required') && myForm.get('city').touched">
+                *Required.
+              </p>
+            </section>
+
+        <!-- take lng and lat of user -->
+        <h3 class="h5">Get your location</h3>
+        <p class="note mb-3">(To find nearest pharmacy)</p>
+        <p *ngIf = 'notLocated'>*you should choose one method</p>
+        <section class="mb-3 d-flex align-items-center">
+          <section class="d-flex align-items-center mr-5">
+            <input class="input_payment" type="radio" name="location" value="currentLoc" (click)='getCurrentPosition()'><label
+              class="pl-2 pt-1">Current</label>
+          </section>
+          <section class="d-flex align-items-center">
+            <input class="input_payment" type="radio" name="location" value="mapLoc" (click)='getLocationOnMap()'><label class="pl-2 pt-1">Choose on
+              map</label>
+          </section>
+        </section>
+
+        <!-- payment method (cash on delivery) -->
+        <h3 class="h5">Payment by Cash</h3>
+        <p class="note mb-3">(Cash on delivery)</p>
+        <!-- <section class="d-flex align-items-center">
+          <input class="input_payment" type="radio" checked value="cash"><label class="pl-2 pt-1">Cash</label>
+        </section> -->
+
+        <!-- submit button -->
         <div class="Payment_button">
-          <button class="btn mt-3"  id="submit-btn" type="submit" (click)="checkUserHaveAccount()">Confirmation Order</button>
+          <button class="mt-3" id="submit-btn" type="submit" (click)="onSubmit()">Confirm Order</button>
         </div>
-=======
-          *min length 11.
-        </p>
-        <button class="btn btn-primary"  id="submit-btn" type="submit" >CheckOut</button>
->>>>>>> mohamed
       </form>
     </div>
   </div>
 </div>
-
