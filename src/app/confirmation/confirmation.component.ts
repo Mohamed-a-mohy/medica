@@ -46,7 +46,6 @@ export class ConfirmationComponent implements OnInit {
       orderId: new Date().getTime().toString() + Math.floor(Math.random()*1000000),
       date: this.day + "/" + (this.month +1) + "/" + this.year,
       time: this.now.getHours() + ":" + this.now.getMinutes() + ":" + this.now.getSeconds(),
-      nearestPharmId: 'mGl6vFOdgbxGq3NLUqiS',
       //user_details
       userId: "",
       userName: "",

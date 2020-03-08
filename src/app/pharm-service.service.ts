@@ -40,7 +40,7 @@ export class PharmServiceService {
     // ----------------------------------------------------------------
     // get orders data from firebase
     // ----------------------------------------------------------------     
-    this.pendingData = this.angularFS.collection('currentOrders').valueChanges({ idField: 'id' });
+    this.pendingData = this.angularFS.collection('sentOrders').valueChanges({ idField: 'id' });
     this.pharmData = this.angularFS.collection('pharmaciesOrders').valueChanges({ idField: 'id' });
     this.allOrders = this.angularFS.collection('userOrders').valueChanges({ idField: 'id' });
   }
