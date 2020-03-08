@@ -1,21 +1,24 @@
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 992px) {
   .signUp-section {
-    // background: url(../../assets/signUp/signup.svg) no-repeat;
     padding: 30px;
   }
   #signUP-btn{
-    margin-right: 0;
+    margin-right: 3em;
+  }
+  .signUp-section div:first-child{
+    margin:0 auto;
   }
 }
-@media only screen and (min-width:901px) {
+@media only screen and (min-width:993px) {
   .signUp-section {
      padding-right: 6rem;
-    /* margin: 0 auto; */
-    background: url(../../assets/signUp/signup.svg) no-repeat;
-    background-position: left;
+    background: url(../../assets/signUp/signUp.png) no-repeat;
   }
   #signUP-btn{
     margin-right: 135px;
+  }
+  .signUp-section div:first-child{
+    margin-left: auto;
   }
 }
 
@@ -42,8 +45,6 @@
   border-radius: 0px 10px 10px 0px;
 }
 .signUp-section {
-  
-  // background: url(../../assets/signUp/signup.svg) no-repeat;
   .title{
     h2, h5{
       font-weight: bold;
