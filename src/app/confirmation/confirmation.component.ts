@@ -34,6 +34,7 @@ export class ConfirmationComponent implements OnInit {
   //variables Of user
   userId;
   user;
+  lngLat_user=[];
   //variables of roshetta
   roshettaNotes:string;
   cheskRoshetta:boolean;
@@ -42,9 +43,10 @@ export class ConfirmationComponent implements OnInit {
   currentOrderCollection: AngularFirestoreCollection;
   currentOrderObject: any =
     {
-      orderId: 0,
+      orderId: new Date().getTime().toString() + Math.floor(Math.random()*1000000),
       date: this.day + "/" + (this.month +1) + "/" + this.year,
       time: this.now.getHours() + ":" + this.now.getMinutes() + ":" + this.now.getSeconds(),
+      nearestPharmId: 'mGl6vFOdgbxGq3NLUqiS',
       //user_details
       userId: "",
       userName: "",
@@ -56,11 +58,14 @@ export class ConfirmationComponent implements OnInit {
       //order_details
       order: [],
       //roshetta_details
-      roshetta:{},
+      roshetta:{
+        image:"",
+        note:""
+      },
     };
   scheduleOrdersCollection: AngularFirestoreCollection;
   scheduleOrdersObject = {
-    orderId: 0,
+    orderId: new Date().getTime().toString() + Math.floor(Math.random()*1000000),
     date: this.day + "/" + (this.month +1) + "/" + this.year,
     time: this.now.getHours() + ":" + this.now.getMinutes() + ":" + this.now.getSeconds(),
     //user_details
@@ -74,13 +79,16 @@ export class ConfirmationComponent implements OnInit {
     //order_details
     order: [],
     //roshetta_details
-    roshetta:{},
+    roshetta:{
+      image:"",
+      note:""
+    },
     //schedule
     schedule: "",
   }
   usersOrderCollection: AngularFirestoreCollection;
   usersOrderObject = {
-    orderId: 0,
+    orderId: new Date().getTime().toString() + Math.floor(Math.random()*1000000),
     date: this.day + "/" + (this.month +1) + "/" + this.year,
     time: this.now.getHours() + ":" + this.now.getMinutes() + ":" + this.now.getSeconds(),
     //user_details
@@ -94,7 +102,10 @@ export class ConfirmationComponent implements OnInit {
     //order_details
     order: [],
     //roshetta_details
-    roshetta:{},
+    roshetta:{
+      image:"",
+      note:""
+    },
     //order_status
     orderStatus: "",
   }
@@ -115,26 +126,27 @@ export class ConfirmationComponent implements OnInit {
     if (sessionStorage.getItem("cartView")) {
       this.productsInCart = JSON.parse(sessionStorage.getItem("cartView"))
       for (let product of this.productsInCart) {
-        this.orderedProductObject.productName=product['name']
-        this.orderedProductObject.productId=product['id']
-        this.orderedProductObject.conc=product['conc']
-        this.orderedProductObject.type=product['type']
-        this.orderedProductObject.price=product['price']
-        this.orderedProductObject.quantity=product['quantity']
+        this.orderedProductObject.productName=product["name"]
+        this.orderedProductObject.productId=product["id"]
+        this.orderedProductObject.conc=product["conc"]
+        this.orderedProductObject.type=product["type"]
+        this.orderedProductObject.price=product["price"]
+        this.orderedProductObject.quantity=product["quantity"] 
         let copyOrderedProduct = JSON.parse(JSON.stringify(this.orderedProductObject))
         this.currentOrderObject.order.push(copyOrderedProduct)
       }
       this.scheduleOrdersObject.order=this.usersOrderObject.order=[...this.currentOrderObject.order]  
     }
-    console.log(this.currentOrderObject)
+    console.log(this.currentOrderObject.order) 
     /////////////////
     if (localStorage.getItem("userId")) {
       this.userId = localStorage.getItem("userId")
     }
     this.user = this.angularFS.doc("users/" + this.userId).valueChanges()
+    
     this.user.subscribe(item => {
       this.currentOrderObject.userId = this.scheduleOrdersObject.userId = this.usersOrderObject.userId = this.userId
-      this.currentOrderObject.userName = this.scheduleOrdersObject.userName = this.usersOrderObject.userName = item.userName
+      this.currentOrderObject.userName = this.scheduleOrdersObject.userName = this.usersOrderObject.userName = item["userName"]
       if (item.checkInsurance) {
         this.currentOrderObject.insuranceNum = this.scheduleOrdersObject.insuranceNum = this.usersOrderObject.insuranceNum = item.insuranceNum
       }
@@ -142,17 +154,29 @@ export class ConfirmationComponent implements OnInit {
     if(sessionStorage.getItem('roshettaDetails')){
         this.cheskRoshetta = true ;
         this.roshettaDetails=JSON.parse(sessionStorage.getItem('roshettaDetails')) 
-        this.roshettaNotes=this.roshettaDetails['roshettaNotes']
-        this.roshettaImage=this.roshettaDetails['roshettaImage']
-        console.log(this.roshettaNotes);
+        this.roshettaNotes=this.roshettaDetails["roshettaNotes"]
+        this.roshettaImage=this.roshettaDetails["roshettaImage"]
+        this.currentOrderObject.roshetta.image=this.scheduleOrdersObject.roshetta.image=this.usersOrderObject.roshetta.image=this.roshettaDetails["roshettaImage"]
+        this.currentOrderObject.roshetta.note=this.scheduleOrdersObject.roshetta.note=this.usersOrderObject.roshetta.note=this.roshettaDetails["roshettaNotes"]
     }
-    //////add data
+  if(sessionStorage.getItem('phone_user')){
+      this.currentOrderObject.userPhone=this.scheduleOrdersObject.userPhone=this.usersOrderObject.userPhone=sessionStorage.getItem('phone_user')
+  }
+  if(sessionStorage.getItem('address_user')){
+     this.currentOrderObject.userAddress=this.scheduleOrdersObject.userAddress=this.usersOrderObject.userAddress=sessionStorage.getItem('address_user')
+  }
+  if(sessionStorage.getItem('lngLat_user')){
+    this.lngLat_user=JSON.parse(sessionStorage.getItem('lngLat_user')) 
+    this.currentOrderObject.lat=this.scheduleOrdersObject.lat=this.usersOrderObject.lat=this.lngLat_user[1]
+    this.currentOrderObject.lng=this.scheduleOrdersObject.lng=this.usersOrderObject.lng=this.lngLat_user[0]
+  }
+   //////add data
     this.currentOrderCollection=this.angularFS.collection('currentOrders');
     this.currentOrderCollection.add(this.currentOrderObject)
     this.scheduleOrdersCollection=this.angularFS.collection('scheduleOrders')
     this.scheduleOrdersCollection.add(this.scheduleOrdersObject)
     this.usersOrderCollection=this.angularFS.collection('userOrders')
-    this.usersOrderCollection.add(this.usersOrderObject)
+    this.usersOrderCollection.add(this.usersOrderObject) 
   }
   getRoshetta(){
     // roshetta

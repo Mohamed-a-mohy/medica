@@ -1,20 +1,24 @@
-<a type="button" data-toggle="modal" data-target="#exampleModalCenter">
-    <i class="fas fa-camera"></i>
+<a class="roshetastyle" type="button" data-toggle="modal" data-target="#exampleModalCenter">
+    UploadRosheta
 </a>
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-            <div class="modal-header border-0">
-                <h5 class="modal-title" id="exampleModalLongTitle">Order with Roshetta</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+            <div class="modal-header border-0 m-3 ">
+                <h5 class="modal-title font-weight-bold" id="exampleModalLongTitle">Order with Roshetta</h5>
+                <!-- <button type="button" class="close close-btn p-0" data-dismiss="modal" aria-label="Close">
+                   &times;
+                </button> -->
+                
+        <img class="ml-auto cursor close" data-dismiss="modal" aria-label="Close" src="../../assets/order summary/svg/Layer 22.svg">
             </div>
             <div class="modal-body">
                 <form [formGroup]="roshettaForm ">
-                    <section id="imageUpload" class="input-feild border-bottom pb-3 pt-3 w-75 m-auto">
-                        <i id="imageIcon" class="fas fa-camera">{{roshettaImageName}}</i>
+                    <section id="imageUpload" class="input-feild w-75 m-auto bgColor-gray">
+                        <!-- <i id="imageIcon" class="fas fa-camera">{{roshettaImageName}}</i> -->
+                        <button class="plus-btn px-4">+</button>
+                        <div class="text-truncate d-inline-block roshettaImageName pl-2">{{roshettaImageName}}</div>
                         <input class="w-100" type="file" formControlName="roshettaImage" (change)="readURL($event)" id="uploadRoshetta">
                     </section>
                     <p *ngIf="roshettaForm.get('roshettaImage').hasError('required')" class="messError ml-5"></p>
@@ -25,8 +29,8 @@
                     </section>
                     <div class="pb-3 pt-3 w-75 m-auto">
 
-                        <button type="button" class="btn border" (click)="saveRoshetta(roshettaForm, $event)">continue shopping</button>
-                        <button type="submit" class="btn border" routerLink="/order-summery" (click)="saveRoshetta(roshettaForm, $event)">checkout</button>
+                        <!-- <button type="button" class="btn border" (click)="saveRoshetta(roshettaForm, $event)">continue shopping</button> -->
+                        <button type="submit" class="submit-btn btn border" (click)="saveRoshetta(roshettaForm, $event)">checkout</button>
                     </div>
                 </form>
             </div>

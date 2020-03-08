@@ -1,7 +1,7 @@
 <ul>
-  <li><button class="btn btn-light" (click)="removeFromCart()">-</button></li>
+  <li><button class="btn btn-info" (click)="removeFromCart()">-</button></li>
   <li class="quantity">{{item.quantity}}</li>
-  <li><button class="btn btn-light" (click)="addToCart()" data-toggle="modal" data-target="#exampleModal">+</button></li>
+  <li><button class="btn btn-info" (click)="addToCart()" data-toggle="modal" data-target="#exampleModal">+</button></li>
 </ul>
 
 <app-conflict-warnning *ngIf='show'></app-conflict-warnning>

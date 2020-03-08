@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { AddtocartService } from "../addtocart.service";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-roshetta-form',
@@ -14,10 +15,13 @@ export class RoshettaFormComponent implements OnInit {
   roshettaForm;
   roshettaImageName;
   
-  constructor(private fb: FormBuilder, private addtocartService: AddtocartService) { 
+  constructor(private fb: FormBuilder, private addtocartService: AddtocartService,
+    private router: Router) { 
     this.roshettaForm = this.fb.group({
-      roshettaImage:["", [Validators.required, Validators.pattern(/.*\.(gif|jpe?g|bmp|png)$/i)]],
-      roshettaNotes:""
+      roshettaImage:["", [Validators.required, Validators.pattern(/.*\.(gif|jpe?g|bmp|png)$/)]],
+      roshettaNotes:"",
+      schedualCheck:false,
+      schedual: "weekly"
     })
     this.roshettaImageName = 'Upload Roshetta';
     
@@ -26,8 +30,10 @@ export class RoshettaFormComponent implements OnInit {
       if(flag){
         this.roshettaImageName = 'Upload Roshetta';
         this.roshettaForm =this.fb.group({
-          roshettaImage:["", [Validators.required, Validators.pattern(/.*\.(gif|jpe?g|bmp|png)$/i)]],
+          roshettaImage:["", [Validators.required, Validators.pattern(/.*\.(gif|jpe?g|bmp|png)$/)]],
           roshettaNotes:"",
+          schedualCheck:false,
+          schedual: "weekly"
         })
       }
     })
@@ -35,8 +41,10 @@ export class RoshettaFormComponent implements OnInit {
     if(sessionStorage.getItem('roshettaDetails')){
       let roshettaDetails = JSON.parse(sessionStorage.getItem('roshettaDetails'))
       this.roshettaForm = this.fb.group({
-        roshettaImage: ["", [Validators.pattern(/.*\.(gif|jpe?g|bmp|png)$/i)]],
+        roshettaImage: ["", [Validators.pattern(/.*\.(gif|jpe?g|bmp|png)$/)]],
         roshettaNotes: roshettaDetails.roshettaNotes,
+        schedualCheck: roshettaDetails.roshettaSchedualCheck,
+        schedual: roshettaDetails.roshettaSchedual
       })
       this.roshettaImage = roshettaDetails.roshettaImage ;
       this.roshettaImageName = roshettaDetails.imageName;
@@ -46,7 +54,9 @@ export class RoshettaFormComponent implements OnInit {
 
   //////.......load image and convert it to data......///////
   readURL(event: any) {
-    this.imageData = <File>event.target.files[0];    
+    this.imageData = <File>event.target.files[0];
+    console.log(this.imageData);
+    
     this.preview();
     this.roshettaImageName = event.target.files[0].name;
   }
@@ -62,6 +72,9 @@ export class RoshettaFormComponent implements OnInit {
     }
   }
 
+  changeSchedual(e){
+    this.roshettaForm.value.schedual = e.target.value;
+  }
   saveRoshetta(form:FormGroup, e){
     if(!form.valid){
       if(form.get('roshettaImage').hasError('required')){
@@ -73,10 +86,17 @@ export class RoshettaFormComponent implements OnInit {
     }else{
       this.roshettaDtails={
         roshettaImage:this.roshettaImage,
-        roshettaNotes: form.value.roshettaNotes      }
+        roshettaNotes: form.value.roshettaNotes,
+        roshettaSchedualCheck: form.value.schedualCheck
+      }
+      if(form.value.schedualCheck){
+        this.roshettaDtails['roshettaSchedual'] = form.value.schedual;
+      }
       sessionStorage.setItem('roshettaDetails', JSON.stringify({...this.roshettaDtails, imageName: this.roshettaImageName}));
       this.addtocartService.setRoshettaDetails(JSON.parse(sessionStorage.getItem('roshettaDetails')))
+      this.router.navigate(['/order-summery'])
       e.target.setAttribute('data-dismiss', 'modal');
+      
     }    
     }
 

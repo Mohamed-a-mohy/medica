@@ -9,12 +9,10 @@
     text-align: right;
 }
 .item_info{
-    a{
+    h5{
         font-weight: bolder;
         text-transform: capitalize;
         font-size: 1rem;
-        text-decoration: none;
-        color: #000;
     }
     p{
         font-size: 0.8rem;
@@ -27,4 +25,12 @@
     font-size: 1rem;
     padding-top: 0.8rem;
    }
+}
+
+
+
+.img-cont{
+    width: 90%;
+    max-width: 120px;
+    margin:0 auto
 }

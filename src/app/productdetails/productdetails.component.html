@@ -1,7 +1,7 @@
 <div class="container-fluid sec-productdetails" *ngIf="itemObj" else loading>
   <div class="row sec-productdetails-cont">
-      <div class="col-3"><img src="https://via.placeholder.com/250x250" alt=""></div>
-      <div class="col-3 sec-productdetails-cont-details">
+      <div class="col-8 col-sm-5 col-md-3"><img class="w-100" [src]=[itemObj.img] alt=""></div>
+      <div class="col-11 col-sm-6 col-md-3 sec-productdetails-cont-details">
         <h3>{{itemObj.name}}</h3>
         <div>
           <h5>Concentration</h5>
@@ -13,7 +13,7 @@
         </div>
       </div>
 
-      <div class="col-3">
+      <div class="col-12 col-sm-12 col-md-3">
         <div>
           <h3>{{itemObj.price * itemObj.quantity}}LE</h3>
           <p> {{itemObj.price}}LE / item</p>
@@ -26,8 +26,8 @@
   
 
   <div class="row .sec-productdetails-details">
-    <div class="col-1"></div>
-    <div class="col-5 colpsbox">
+    <div class="col-12 col-md-1"></div>
+    <div class="col-12 col-md-5 colpsbox">
       <p class="">
         <a  class="colps" data-toggle="collapse" href="#collapse1" role="button" aria-expanded="false" aria-controls="collapse1" >
          Symptoms / Usage
@@ -41,8 +41,8 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-1"></div>
-    <div class="col-5 colpsbox">
+    <div class="col-12 col-md-1"></div>
+    <div class="col-12 col-md-5 colpsbox">
       <p class="">
         <a  class="colps" data-toggle="collapse" href="#collapse2" role="button" aria-expanded="false" aria-controls="collapse2">
           Side Effects
@@ -57,8 +57,8 @@
   </div>
 
   <div class="row">
-    <div class="col-1"></div>
-    <div class="col-5 colpsbox">
+    <div class="col-12 col-md-1"></div>
+    <div class="col-12 col-md-5 colpsbox">
       <p class="">
         <a  class="colps" data-toggle="collapse" href="#collapse3" role="button" aria-expanded="false" aria-controls="collapse3">
           Dose
@@ -72,8 +72,8 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-1"></div>
-    <div class="col-5 colpsbox ">
+    <div class="col-12 col-md-1"></div>
+    <div class="col-12 col-md-5 colpsbox ">
       <p class="">
         <a  class="colps" data-toggle="collapse" href="#collapse4" role="button" aria-expanded="false" aria-controls="collapse4">
           Dos & Don'ts
@@ -100,7 +100,7 @@
   <div class="container-fluid">
     <h2 *ngIf='alter[0]'>Alternatives</h2>
     <div class="row sec-alts-items">
-      <app-item *ngFor="let item of alter" [item]="item" class="col-3 mx-2"></app-item>
+      <app-item *ngFor="let item of alter" [item]="item" class="col-7 col-sm-5 col-md-4 col-lg-3 mx-2"></app-item>
     </div>
   </div>
 </section>

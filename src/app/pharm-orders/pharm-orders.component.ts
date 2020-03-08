@@ -11,14 +11,15 @@ import { Location } from '@angular/common';
 })
 export class PharmOrdersComponent implements OnInit {
 
-  allOrders;
-  orderDetailes;
+  allOrders:Array<object>;
   routeLink: string;
 
   constructor(private pharmService: PharmServiceService,
     private router: Router,
     location: Location) { 
-      // track changes of url
+      // -----------------------------------------------
+      // track changes of url and get data according to that
+      // -----------------------------------------------
     router.events.subscribe((val) => {
       if (location.path() != '') {
         this.routeLink = location.path();
@@ -43,7 +44,6 @@ export class PharmOrdersComponent implements OnInit {
         this.pharmService.showDetailsBehavoir.next(false);
       }
     });
-    // this.pharmService.getOrders();
   }
 
   ngOnInit() {

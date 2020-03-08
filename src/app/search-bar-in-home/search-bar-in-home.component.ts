@@ -33,6 +33,8 @@ export class SearchBarInHomeComponent implements OnInit {
     this.router.navigate(["/product",this.itemSelectedID])
     console.log(this.itemSelectedID);
     console.log(e.target.name);
+    e.target.value=""
   }
+
 
 }

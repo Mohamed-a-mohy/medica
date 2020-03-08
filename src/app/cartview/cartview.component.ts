@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { AddtocartService } from "../addtocart.service";
 import { FormBuilder } from "@angular/forms";
+import { Router } from '@angular/router';
 
 @Component({
   selector: "app-cartview",
@@ -21,7 +22,9 @@ export class CartviewComponent implements OnInit {
   scheduleCheckStatus;
   scheduleCheckStatusObj = {};
   roshettaScheduleStatus;
-  constructor(private fb: FormBuilder, private service: AddtocartService) {
+  counter;
+  constructor(private fb: FormBuilder, private service: AddtocartService,
+    private router:Router) {
     this.service.roshettaDetails.subscribe(item => {
       this.roshettaDetails = item;
     });
@@ -55,7 +58,12 @@ export class CartviewComponent implements OnInit {
     ];
     this.scheduleText = `scheduled on ${
       this.daysArray[this.date.getDay()]
-    } of every week`;
+    }`;
+
+
+    this.service.cartCounter.subscribe(arrLength=>{
+      this.counter=arrLength;
+    })
   }
 
   scheduleChecked(e) {
@@ -137,17 +145,20 @@ export class CartviewComponent implements OnInit {
   }
 
   changeScheduleText() {
-    if (this.scheduleForm.value.schedule == "2weeks") {
-      this.scheduleText = `scheduled on ${
-        this.daysArray[this.scheduleForm.value.calendar.getDay()]
-      } of every 2 weeks`;
-    } else if (this.scheduleForm.value.schedule == "month") {
-      this.scheduleText = `scheduled on the ${this.scheduleForm.value.calendar.getDate()}th of every month`;
-    } else {
-      this.scheduleText = `scheduled on ${
-        this.daysArray[this.scheduleForm.value.calendar.getDay()]
-      } of every week`;
-    }
+    // if (this.scheduleForm.value.schedule == "2weeks") {
+    //   this.scheduleText = `scheduled on ${
+    //     this.daysArray[this.scheduleForm.value.calendar.getDay()]
+    //   } of every 2 weeks`;
+    // } else if (this.scheduleForm.value.schedule == "month") {
+    //   this.scheduleText = `scheduled on the ${this.scheduleForm.value.calendar.getDate()}th of every month`;
+    // } else {
+    //   this.scheduleText = `scheduled on ${
+    //     this.daysArray[this.scheduleForm.value.calendar.getDay()]
+    //   } of every week`;
+    // }
+    this.scheduleText = `scheduled on ${
+          this.daysArray[this.scheduleForm.value.calendar.getDay()]
+    }`;
   }
 
   addProductToScheduleList(e) {
@@ -280,5 +291,15 @@ export class CartviewComponent implements OnInit {
       }
     }
     return null;
+  }
+  checkOutClick(){
+    if(!localStorage.getItem('userId')){
+      sessionStorage.setItem('checkOutPath', '/order-summery')
+    }
+  }
+  deletRoshetta() {
+    this.service.setRoshettaDetails(false);
+    this.service.formatRoshettaForm(true);
+    sessionStorage.removeItem("roshettaDetails");
   }
 }

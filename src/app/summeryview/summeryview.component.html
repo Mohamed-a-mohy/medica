@@ -1,12 +1,19 @@
 <div class="container my-5">
   <div class="row">
     <!-- left side: item in cart + map -->
-    <div class="col-7">
+    <div class="col-7 mt-2">
+      <div class="row titalOfOrders px-3">
+          <h2 class="col-6">Order Summary</h2>
+          <p class="col-6 pt-3 text-right">Total Item: {{totalItem}} </p>
+      </div>
       <div id="orders" class="ordersMinHight">
         <app-item-small *ngFor="let item of itemsInCart" [item]='item'></app-item-small>
+        <div class="mx-3 mt-3" *ngIf="cheskRoshetta">
+          <app-roshetta-details></app-roshetta-details>
+        </div>
       </div>
       <div class="map" *ngIf = 'displayMap'>
-        <!-- <app-mapbox></app-mapbox> -->
+        <app-mapbox></app-mapbox>
       </div>
     </div>
 
@@ -79,11 +86,11 @@
         </section>
 
         <!-- payment method (cash on delivery) -->
-        <h3 class="h5">Payment Method</h3>
+        <h3 class="h5">Payment by Cash</h3>
         <p class="note mb-3">(Cash on delivery)</p>
-        <section class="d-flex align-items-center">
+        <!-- <section class="d-flex align-items-center">
           <input class="input_payment" type="radio" checked value="cash"><label class="pl-2 pt-1">Cash</label>
-        </section>
+        </section> -->
 
         <!-- submit button -->
         <div class="Payment_button">

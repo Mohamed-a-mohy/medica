@@ -76,8 +76,12 @@
     justify-content: center;
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
-    margin-right: 0.25rem;
-    margin-left: 0.25em;
+    margin-right: 0.15rem;
+    margin-left: 0.2rem;
+
+    &-logo{
+           max-width: 140px;
+    }
 
     .button {
         background-color: transparent;
@@ -86,33 +90,52 @@
         cursor: pointer;
         border-left: 2px solid #Ffc401;
     }
+    .pointerCursor{
+        cursor: pointer;
+    }
 }
 
 .modal-header{
-    background-color: #01807b;
+    background-color: #f3ebe3;
 }
 
 .modal-title{
-    color: #fff;
+    color: #01807b;
     font-weight: bold;
+
+    i {
+        color: #01807b;
+    }
 }
 
 #setting {
     width: 80%;
     margin: 0 auto;
 
+    input {
+        border: none;
+        border-bottom: 1px solid #9c9c9c;
+        box-shadow: none;
+    }
+
 }
 
 .cancel{
-    border-radius: 3px;
+    border-radius: 5px;
     border: #Ffc401 2px solid;
     color: #Ffc401;
     background-color: transparent;
 }
 
 .save{
-    border-radius: 3px;
+    border-radius: 5px;
     border: #01807b 2px solid;
     color: #fff;
     background-color: #01807b;
+}
+
+.errorMsg{
+    text-align: center;
+    color: #Ffc401;
+    font-weight: bold;
 }

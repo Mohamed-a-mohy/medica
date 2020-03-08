@@ -23,6 +23,8 @@ import { BtntocartComponent } from './btntocart/btntocart.component';
 // guards import here
 import { PharmRoleService } from './guards/pharm-role.service';
 import { NotPharmRoleService } from './guards/not-pharm-role.service';
+import { UserRoleGuardService} from "./user-role-guard.service";
+
 
 // mapbox
 import { NgxMapboxGLModule } from 'ngx-mapbox-gl';
@@ -59,6 +61,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input'
 import {MatCheckboxModule} from '@angular/material';
 import { VarDirective } from './var.directive';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { RoshettaShowComponent } from './roshetta-show/roshetta-show.component';
 
 @NgModule({
   declarations: [
@@ -89,7 +93,9 @@ import { VarDirective } from './var.directive';
     ConfirmItemComponent,
     ConfirmationComponent,
     VarDirective,
-    MapboxComponent
+    MapboxComponent,
+    NotFoundComponent,
+    RoshettaShowComponent
   ],
   imports: [
     BrowserModule,
@@ -121,7 +127,8 @@ import { VarDirective } from './var.directive';
   providers: [
     MatDatepickerModule,
     PharmRoleService,
-    NotPharmRoleService
+    NotPharmRoleService,
+    UserRoleGuardService
   ],
   bootstrap: [AppComponent]
 })

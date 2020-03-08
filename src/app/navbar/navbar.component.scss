@@ -1,37 +1,86 @@
-.navbar{
+nav{
+    padding: 1.5rem 0;
+    background-color: #F9F5F1 !important;
+    z-index: 100;
     width: 100%;
+    position: fixed;
+    
+}
+.navbar-brand img{
+    width: 70%;
+}
+.navbar-wrapper{
+/*     display: flex;
+ */    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
 
-    &-nav{
-        width: 90%;
-        margin: 0 auto;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        
-        &_left, &_mid, &_right{
-            width: 30%;
+.navbar-wrapper li{
 
-            ul{
-              width: 100%;
-              display: flex;
-              align-items: center;  
-            }
-        }
+    display: flex;
+/*  justify-content: center;*/ 
+   align-items: center;
+    flex-direction: row;
+    margin-right: 2%;
+    margin-left: 2%;
+}
+
+.navbar-wrapper ul{
+    width: 100%;
+}
+
+.navbar-wrapper li:last-child{
+    margin-right: 0%;
+    margin-left: 10%;
+}
+
+
+.navbar-wrapper li a{
+    font-size: 1.1rem;
+    font-size: 600;
+    font-weight: 600;
+
+}
+
+.icon-cart-holder{
+    position: relative;
+    
+    span{
+        position: absolute;
+        top: 60%;
+        left: -80%;
+        color: #01807b;
+        font-weight: 600;
     }
 }
 
-ul{
-    li{
-        list-style: none;
-        margin-right: 2rem;
-        
-        a{
-            text-decoration: none;
-            text-transform: capitalize;
-        }
-    }
-    li:last-child{
-        margin-right: 0rem;
-    }
+.active{
+    color: #01807b !important;
+    border-bottom: 1.5px solid #01807b ;
 }
+
+// the yellow line between icones
+
+.accounts{
+    position: relative;
+}
+
+.icon-after::after{
+    content: "";
+    position: absolute;
+    height: 40px;
+    width: 2px;
+    background-color: #ffc401;
+    left: 140%;
+}
+
+.elias-icon{
+    margin-left: 9%;
+}
+
+.icon-profil{
+    margin-left: 37%
+}
+
+

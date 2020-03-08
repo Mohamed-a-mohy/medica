@@ -15,9 +15,9 @@ export class RoshettaDetailsComponent implements OnInit {
   }
 
   ngOnInit() {}
-  deletRoshetta() {
-    this.service.setRoshettaDetails(false);
-    this.service.formatRoshettaForm(true);
-    sessionStorage.removeItem("roshettaDetails");
-  }
+  // deletRoshetta() {
+  //   this.service.setRoshettaDetails(false);
+  //   this.service.formatRoshettaForm(true);
+  //   sessionStorage.removeItem("roshettaDetails");
+  // }
 }

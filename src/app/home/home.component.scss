@@ -11,6 +11,21 @@ h2{
     padding-bottom: 30px;
     font-size: 2.9rem;
     font-weight: 600;
+    margin-bottom: 4rem;
+}
+h2::after{
+    display: block;
+    height: 3px;
+    width: 11%;
+    margin: 0px 3px;
+    margin-top: 20px;
+    background-color: #ffc401;
+    content: " ";
+    -webkit-box-pack: center;
+    justify-content: center;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 h4{
     font-size: 1.3rem;
@@ -19,9 +34,77 @@ h4{
 
 }
 
-.carousel{
-    height: 90vh;
+
+
+///////carosul
+
+.carousel-sec{
+    height: 100vh;
+
+    img{
+        height: 100vh;
+    }
+    
+
 }
+
+.carousel-indicators li{
+    background-color: #01807b;
+    width: 50px;
+    height: 6px;
+    margin-right: 15px;
+    margin-left: 15px;
+    border-radius:11px;
+}
+
+
+.carousel-caption{
+    position: absolute;
+    right: 56%;
+    top: 32%;
+    bottom: 0px;
+ 
+    z-index: 10;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    color: #050505;
+    text-align: start;
+    font-size: 1.7rem;
+    width: 34%;
+
+    h5{
+        color: #01807b;
+        font-size: 3rem;
+        font-weight: 600;
+        margin-bottom: 0;
+        padding-bottom: 10px;
+    }
+    p{
+        font-size: 1.4rem;
+        margin-bottom: 30px;
+    }
+    a{
+        font-size: 1.3rem;
+        font-weight: 600;
+        background-color: orange;
+        color: white;
+        padding: 15px 45px;
+        border-radius: 4px;
+        
+    }
+
+}
+
+
+
+
+
+
+
+
+
+////////////feat
+
 .feat-sec .row{
     margin: auto;
     justify-content: center;
@@ -37,15 +120,38 @@ h4{
 }
 
 .feat-sec{
+    padding-top: 11rem;
     padding-bottom: 11rem;
 }
 .feat-sec-wrapper-container-img{
-    padding-bottom: 20px;
+    width: 40%;
+    margin: 0 auto;
+    padding: 40px 0;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img{
+        z-index: 5;
+    }
+}
+.feat-sec-wrapper-container-img-circle{
+    position: absolute;
+    width: 160%;
+    height: 87%;
+    border-radius: 50%;
+    background-color: #F9F5F1;
 }
 
 .feat-sec-wrapper-container p {
     line-height: 1.7;
     font-size: 1.1rem;
+}
+.feat-sec-wrapper-container{
+    h4{
+        color: #01807b;
+        margin-top: 20px;
+    }
 }
 
 
@@ -59,7 +165,7 @@ h4{
 
 .sec-category{
     text-align: center;
-    padding-bottom: 11rem;
+    
 }
 
 .sec-category-wrapper{
@@ -90,8 +196,12 @@ h4{
 ////////////offers
 
 .sec-offers{
-    padding-bottom: 11rem;
-    padding-top: 11rem;
+    padding-bottom: 9rem;
+    padding-top: 9rem;
+    margin:11rem 0 ;
+    background-image: url(../../assets/Home/PNG/MaskGroup7.png);
+    background-size: cover;
+    background-position: right;
 }
 .sec-offers-wrapper{
     justify-content: center;
@@ -142,6 +252,10 @@ h4{
 
 .sec-partners-wrapper-cont{
     color: gray;
+    img{
+        width: 55%;
+    }
+    margin:0 auto
 }
 
 .sec-partners-wrapper-cont h4{

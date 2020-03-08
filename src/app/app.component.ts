@@ -32,8 +32,8 @@ export class AppComponent {
     private angularFS: AngularFirestore,
     private service: AddtocartService,
     private pharmService: PharmServiceService) {
-      localStorage.setItem('role', 'pharmacy')
-      localStorage.setItem('userId', 'mGl6vFOdgbxGq3NLUqiS')
+      /* localStorage.setItem('role', 'pharmacy')
+      localStorage.setItem('userId', 'mGl6vFOdgbxGq3NLUqiS') */
 
       // check if pharmacy login
       this.role = localStorage.getItem('role');
@@ -58,7 +58,7 @@ export class AppComponent {
         this.service.dataCame(this.arrOfItems);        
       }
 
-      if (!sessionStorage.getItem('cartView')) {
+      if (!sessionStorage.getItem('cartView') || sessionStorage.getItem('checkedOut')) {
         sessionStorage.setItem('cartView', '[]');
       } else {
         this.service.getCartView(JSON.parse(sessionStorage.getItem('cartView')));
@@ -76,6 +76,9 @@ export class AppComponent {
     // observable to know if pharmacy logout
     this.pharmService.logoutObs.subscribe(state => {
       this.pharmLogout = state;
+      if(this.pharmLogout){
+         this.role=""; 
+      }
     })
 
   }

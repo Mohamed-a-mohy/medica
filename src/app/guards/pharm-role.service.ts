@@ -13,6 +13,7 @@ export class PharmRoleService implements CanActivate{
     if (localStorage.getItem('role') == 'pharmacy') {
         return true;
     }else {
+      this.router.navigate(["/home"])
       return false;
     }
   }

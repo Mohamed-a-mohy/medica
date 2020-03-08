@@ -15,6 +15,7 @@ export class PharmServiceService {
   // ----------------------------------------------------------------
   pendingData;
   pharmData;
+  allOrders;
 
   // ----------------------------------------------------------------
   // behavoir subject and observables
@@ -39,8 +40,9 @@ export class PharmServiceService {
     // ----------------------------------------------------------------
     // get orders data from firebase
     // ----------------------------------------------------------------     
-    this.pendingData = this.angularFS.collection('sentOrders').valueChanges({ idField: 'id' });
+    this.pendingData = this.angularFS.collection('currentOrders').valueChanges({ idField: 'id' });
     this.pharmData = this.angularFS.collection('pharmaciesOrders').valueChanges({ idField: 'id' });
+    this.allOrders = this.angularFS.collection('userOrders').valueChanges({ idField: 'id' });
   }
 
   // ----------------------------------------------------------------
@@ -69,7 +71,7 @@ export class PharmServiceService {
   // edit date and time format to match UI Design
   // ----------------------------------------------------------------
 
-  editDateAndTimeFormat(obj){
+  editDateAndTimeFormat(obj:object){
     let date;
     let time;
     let months = {
@@ -87,13 +89,10 @@ export class PharmServiceService {
       12: 'Dec'
     }
 
-    console.log(obj);
-    console.log(obj);
-
     // know what month in characters
-    let firstIndexOfSlash = obj.date.indexOf('/');
-    let lastIndexOfSlash = obj.date.lastIndexOf('/');
-    let monthInNums = obj.date.slice(firstIndexOfSlash+1, lastIndexOfSlash);
+    let firstIndexOfSlash = obj['date'].indexOf('/');
+    let lastIndexOfSlash = obj['date'].lastIndexOf('/');
+    let monthInNums = obj['date'].slice(firstIndexOfSlash+1, lastIndexOfSlash);
     let monthInChars = months[monthInNums];
     if(monthInChars == undefined){
       let secondNumInMonth = monthInNums.slice(1);
@@ -101,21 +100,21 @@ export class PharmServiceService {
     }
 
     // set all date in 'date' variable
-    let dayDate = obj.date.slice(0, firstIndexOfSlash);
+    let dayDate = obj['date'].slice(0, firstIndexOfSlash);
     date = `${dayDate} ${monthInChars}`;
 
     // cut seconds from time
-    let firstIndexOfcolon = obj.time.indexOf(':');
-    let lastIndexOfcolon = obj.time.lastIndexOf(':');
+    let firstIndexOfcolon = obj['time'].indexOf(':');
+    let lastIndexOfcolon = obj['time'].lastIndexOf(':');
     if(firstIndexOfcolon != lastIndexOfcolon){
-      time = obj.time.slice(0, lastIndexOfcolon);
+      time = obj['time'].slice(0, lastIndexOfcolon);
     }else {
-      time = obj.time;
+      time = obj['time'];
     }
 
     //know if it 'am' or 'pm'
-    let hour = parseInt(obj.time.slice(0, firstIndexOfcolon));
-    let min = obj.time.slice(firstIndexOfcolon, lastIndexOfcolon);
+    let hour = parseInt(obj['time'].slice(0, firstIndexOfcolon));
+    let min = obj['time'].slice(firstIndexOfcolon, lastIndexOfcolon);
     let amOrPm;
 
     if(hour - 12 > 0 || hour - 12 == 0){

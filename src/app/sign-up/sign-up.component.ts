@@ -1,7 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { AngularFirestore, AngularFirestoreCollection} from "angularfire2/firestore";
 import { FormBuilder, FormGroup, NgForm, Validators } from "@angular/forms";
-import { LoginService} from '../login.service'
+import { LoginService} from '../login.service';
+import { Router,  NavigationEnd } from '@angular/router';
 
 @Component({
   selector: "app-sign-up",
@@ -19,7 +20,8 @@ export class SignUpComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private angularFS: AngularFirestore,
-    private loginService : LoginService) {
+    private loginService : LoginService,
+    private router: Router) {
     this.itemCollection = this.angularFS.collection("users");
     this.users = this.angularFS.collection("users").valueChanges();
   }
@@ -49,7 +51,7 @@ export class SignUpComponent implements OnInit {
           ]
         ],
         checkInsurance: [false],
-        insuranceNum: ["", [ Validators.pattern(/^\d{5}$/)]],
+        insuranceNum: ["", [ Validators.pattern(/^\d{1,}$/)]],
         image:null
       },
       { validator: MustMatch("password", "passwordConfirm") }
@@ -66,7 +68,7 @@ export class SignUpComponent implements OnInit {
 
   onSubmit(form: NgForm) {
     if(!form.valid){
-      document.getElementsByClassName("mesError")[0].innerHTML = "*please fill your form or sign in";
+      document.getElementsByClassName("mesError")[document.getElementsByClassName("mesError").length-1].innerHTML = "*please fill your form with valid information or sign in";
     }else if (this.checkNewUser()) {
       this.itemCollection.add({
         userName: this.myForm.value.userName,
@@ -77,17 +79,22 @@ export class SignUpComponent implements OnInit {
         image: this.myForm.value.image,
         role: "user"
       });
-      localStorage.setItem("checkLogin", "true");
-      this.loginService.changeLoginStatus(localStorage.getItem('checkLogin'))
+      alert('Thanks for sign up in our website. \n please login to be able to buy products');
+      this.router.navigate(['/sigIn']);
+     /*  localStorage.setItem("checkLogin", "true");
+      this.loginService.changeLoginStatus(localStorage.getItem('checkLogin')) */
     } else {
       document.getElementsByClassName("mesError")[1].innerHTML = "*user is already exist";
     }
+    this.loginService.checkLoginBehavior.next(true);
+
     
   }
   
   readURL(event: any) {
     this.fileData = <File>event.target.files[0];
     this.preview();
+    // document.getElementById('insuranceContainer').children[0].value = this.fileData.name;
   }
   preview() {
     let mimeType = this.fileData.type;
@@ -104,10 +111,7 @@ export class SignUpComponent implements OnInit {
       });
     }
   }
-
-
 }
-
 
 export function MustMatch(controlName: string, matchingControlName: string) {
   return (formGroup: FormGroup) => {
@@ -115,11 +119,9 @@ export function MustMatch(controlName: string, matchingControlName: string) {
     const matchingControl = formGroup.controls[matchingControlName];
 
     if (matchingControl.errors && !matchingControl.errors.mustMatch) {
-      // return if another validator has already found an error on the matchingControl
       return;
     }
 
-    // set error on matchingControl if validation fails
     if (control.value !== matchingControl.value) {
       matchingControl.setErrors({ mustMatch: true });
     } else {

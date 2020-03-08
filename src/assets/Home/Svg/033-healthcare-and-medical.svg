@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="42.939" height="65.42" viewBox="0 0 42.939 65.42">
+    <defs>
+        <style>
+            .prefix__cls-1{fill:#fdbf00}.prefix__cls-2{fill:#ffc401}.prefix__cls-5{fill:#05a19c}.prefix__cls-6{fill:#01807b}
+        </style>
+    </defs>
+    <g id="prefix___033-healthcare-and-medical" data-name="033-healthcare-and-medical" transform="translate(-87.971)">
+        <path id="prefix__Path_5186" d="M174.762 454.1v3.81a1.917 1.917 0 11-3.833 0v-3.81a1.917 1.917 0 113.833 0z" class="prefix__cls-1" data-name="Path 5186" transform="translate(-72.358 -394.404)"/>
+        <path id="prefix__Path_5187" d="M187.846 454.1v3.81a1.916 1.916 0 01-1.917 1.917v-7.647a1.916 1.916 0 011.917 1.92z" class="prefix__cls-2" data-name="Path 5187" transform="translate(-85.442 -394.404)"/>
+        <path id="prefix__Path_5188" d="M112.99 5.415l-2.478 45.455-10.025 6.389-10.025-6.389-2.477-45.454A5.04 5.04 0 0193.011 0h14.952a5.04 5.04 0 015.027 5.415z" data-name="Path 5188" style="fill:#fff"/>
+        <path id="prefix__Path_5189" d="M198.432 5.415l-2.478 45.455-10.025 6.389V0h7.471a5.04 5.04 0 015.027 5.415z" data-name="Path 5189" transform="translate(-85.442)" style="fill:#f2f2f2"/>
+        <path id="prefix__Path_5190" d="M350.683 5.041v12.793a5.046 5.046 0 01-5.039 5.041h-5.705l.958-11.438L341.856 0h3.788a5.046 5.046 0 015.039 5.041z" class="prefix__cls-1" data-name="Path 5190" transform="translate(-219.774)"/>
+        <path id="prefix__Path_5191" d="M350.683 89.51v6.4a5.046 5.046 0 01-5.039 5.041h-5.705l.961-11.441z" class="prefix__cls-2" data-name="Path 5191" transform="translate(-219.774 -78.073)"/>
+        <path id="prefix__Path_5192" d="M328.772 0v63.5a1.917 1.917 0 11-3.833 0V1.917A1.916 1.916 0 01326.856 0z" class="prefix__cls-5" data-name="Path 5192" transform="translate(-206.69)"/>
+        <path id="prefix__Path_5193" d="M127.519 398.13a1.918 1.918 0 01-.166.684l-4.027 8.927a1.916 1.916 0 01-1.747 1.128h-8.17a1.919 1.919 0 01-1.747-1.128l-4.027-8.927a1.911 1.911 0 01-.166-.684z" class="prefix__cls-5" data-name="Path 5193" transform="translate(-17.007 -347.26)"/>
+        <g id="prefix__Group_2778" data-name="Group 2778" transform="translate(100.487 11.437)">
+            <path id="prefix__Path_5194" d="M195.954 398.13a1.918 1.918 0 01-.166.684l-4.027 8.927a1.916 1.916 0 01-1.747 1.128h-4.085V398.13z" class="prefix__cls-6" data-name="Path 5194" transform="translate(-185.929 -358.697)"/>
+            <path id="prefix__Path_5195" d="M328.772 89.51v52.066a1.917 1.917 0 11-3.833 0V89.51z" class="prefix__cls-6" data-name="Path 5195" transform="translate(-307.177 -89.51)"/>
+        </g>
+    </g>
+</svg>

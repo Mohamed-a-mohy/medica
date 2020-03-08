@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 export class SummeryviewComponent implements OnInit {
   myForm: FormGroup;
   itemsInCart;
+  totalItem;
   waringMassege;
 
   address;
@@ -23,6 +24,7 @@ export class SummeryviewComponent implements OnInit {
   displayMap = false;
   notLocated;
   ordersDiv;
+  cheskRoshetta: boolean;
   
   constructor(private service: AddtocartService,
               private locService: UserLocationService,
@@ -32,7 +34,15 @@ export class SummeryviewComponent implements OnInit {
 
   ngOnInit() {
     this.service.cartItems.subscribe(items => {
-      this.itemsInCart = items;})
+      this.itemsInCart = items;
+      this.totalItem =0
+      for (let item of this.itemsInCart){
+        this.totalItem=this.totalItem+item.quantity
+      }}
+      )
+      if(sessionStorage.getItem('roshettaDetails')){
+        this.cheskRoshetta = true ;
+      }
       this.myForm = this.fb.group(
         {
           phone: ["", [Validators.required,Validators.pattern(/^01[0-9]{9}$/)]],
@@ -74,14 +84,10 @@ export class SummeryviewComponent implements OnInit {
       let phone = this.phone.value;
       sessionStorage.setItem("address_user", address)
       sessionStorage.setItem("phone_user", phone)
-      sessionStorage.setItem("lngLat_user", JSON.stringify(this.locService.coordinatesArr))
-
-      // route user to next page
-      if(localStorage.getItem('checkLogin')){
-        this.router.navigate(["/confirm"])
-      }else{
-        this.router.navigate(["/sigIn"])
-      }
+      sessionStorage.setItem("lngLat_user", JSON.stringify(this.locService.coordinatesArr));
+      this.service.emptyCart();
+      sessionStorage.setItem('buy', 'true');
+      this.router.navigate(["/confirm"])
     }
   }
 
