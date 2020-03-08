@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="18.804"
+   height="18.805"
+   viewBox="0 0 18.804 18.805"
+   version="1.1"
+   id="svg4"
+   sodipodi:docname="phoneIcon.svg"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)">
+  <metadata
+     id="metadata10">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs8" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="640"
+     inkscape:window-height="480"
+     id="namedview6"
+     showgrid="false"
+     inkscape:zoom="12.549854"
+     inkscape:cx="9.4020004"
+     inkscape:cy="9.4025002"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg4" />
+  <g
+     id="prefix__Location-Map"
+     transform="translate(-1.769 -43.171)">
+    <path
+       id="prefix__Path_5563"
+       d="M16.421 29.1a1.362 1.362 0 00-1.882 0l-1.255 1.254a.454.454 0 01-.627 0l-3.135-3.136a.443.443 0 010-.628l1.255-1.254a1.33 1.33 0 000-1.881l-3.761-3.763a1.333 1.333 0 00-1.882 0l-2.2 2.2a4 4 0 000 5.644l9.408 9.407a3.991 3.991 0 005.644 0l2.2-2.195a1.33 1.33 0 000-1.882zM5.759 20.322a.443.443 0 01.628 0l3.762 3.763a.443.443 0 010 .628l-.941.941-4.39-4.39zm11.6 15.99a3.1 3.1 0 01-4.39 0L3.564 26.9a3.109 3.109 0 010-4.39l.627-.627 4.448 4.448a1.33 1.33 0 00.256 1.51l3.136 3.136a1.364 1.364 0 001.508.252l4.45 4.451zm2.2-2.2l-.941.941-4.39-4.39.941-.941a.454.454 0 01.627 0l3.763 3.763a.443.443 0 010 .627z"
+       data-name="Path 5563"
+       transform="translate(0 23.868)"
+       style="fill:#ffc401" />
+  </g>
+</svg>
