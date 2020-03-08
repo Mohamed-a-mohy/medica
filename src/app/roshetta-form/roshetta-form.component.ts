@@ -94,10 +94,14 @@ export class RoshettaFormComponent implements OnInit {
       }
       sessionStorage.setItem('roshettaDetails', JSON.stringify({...this.roshettaDtails, imageName: this.roshettaImageName}));
       this.addtocartService.setRoshettaDetails(JSON.parse(sessionStorage.getItem('roshettaDetails')))
-      this.router.navigate(['/order-summery'])
+      // this.router.navigate(['/order-summery'])
       e.target.setAttribute('data-dismiss', 'modal');
       
     }    
     }
-
+    routToCheckOut(form){
+      if(form.valid){
+        this.router.navigate(['/order-summery'])
+      }
+    }
 }

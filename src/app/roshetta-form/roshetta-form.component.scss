@@ -71,11 +71,25 @@ textarea:focus {
 }
 
 .submit-btn {
-  background-color: #01807b;
-  color: white;
+  // background-color: #01807b;
+  color: #01807b;
   font-weight: bold;
-  margin: 0 auto;
-  display: block;
+  border: 1px solid  #01807b;
+  // margin: 0 auto;
+  // display: inline-block;
+}
+.submit-btn:hover{
+  color: white;
+  background-color: #01807b;
+}
+.continue-btn{
+  // display: inline-block;
+  color: #ffc401;
+  border: 1px solid #ffc401;
+}
+.continue-btn:hover{
+  color: white;
+  background-color: #ffc401;
 }
 .cursor{
     cursor: pointer;

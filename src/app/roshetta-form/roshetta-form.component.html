@@ -27,10 +27,9 @@
                         <textarea type="text" class="w-100 border-0" formControlName="roshettaNotes"
                             placeholder="Additional Notes" id="additionalNotes" rows="1"></textarea>
                     </section>
-                    <div class="pb-3 pt-3 w-75 m-auto">
-
-                        <!-- <button type="button" class="btn border" (click)="saveRoshetta(roshettaForm, $event)">continue shopping</button> -->
-                        <button type="submit" class="submit-btn btn border" (click)="saveRoshetta(roshettaForm, $event)">checkout</button>
+                    <div class="pb-3 pt-3 w-75 m-auto d-flex justify-content-around">
+                        <button type="button" class="continue-btn btn" (click)="saveRoshetta(roshettaForm, $event)">continue shopping</button>
+                        <button type="submit" class="submit-btn btn" (click)="saveRoshetta(roshettaForm, $event)" (click)='routToCheckOut(roshettaForm)'>checkout</button>
                     </div>
                 </form>
             </div>
