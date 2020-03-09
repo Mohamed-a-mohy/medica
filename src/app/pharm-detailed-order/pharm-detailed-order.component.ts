@@ -31,7 +31,6 @@ export class PharmDetailedOrderComponent implements OnInit {
 
   constructor(private pharmService: PharmServiceService,
      private angularFS: AngularFirestore) {
-      this.addCollection = this.angularFS.collection('pharmaciesOrders');
   }
 
   ngOnInit() {
@@ -88,10 +87,20 @@ export class PharmDetailedOrderComponent implements OnInit {
   assignTextToVar(e){
     if(this.reportForm.valid){
       this.report = this.reportForm.value.reportMsg;
-      this.reportHandler(this.order, 'currentOrders'); // update currentOrders collection
-      this.reportHandler(this.userOrderInuserOrders, 'userOrders'); //update userOrders collection
-      this.resetValues(); // empty textarea and form object
-      e.target.setAttribute('data-dismiss',"modal"); // close the popup
+
+      // add report property
+      this.reportHandler(this.order); 
+      this.reportHandler(this.userOrderInuserOrders);
+
+      // delete from sentOrders and add to reportedOrders and update it in usersOrders
+      this.deleteItem("sentOrders", this.order['id']);
+      this.addItem(this.order, 'reportedOrders');
+      this.updateItem('userOrders', this.userOrderInuserOrders['id'], this.userOrderInuserOrders);
+
+      // empty textarea and form object and close the popup
+      this.resetValues();
+      e.target.setAttribute('data-dismiss',"modal");
+      
     }else{
       this.noReasonError = true;
     }
@@ -109,7 +118,7 @@ export class PharmDetailedOrderComponent implements OnInit {
   acceptHandler(){
     this.order['status'] = 'onWay';
     this.deleteItem("currentOrders", this.order['id']);
-    this.addItem(this.order);
+    this.addItem(this.order, 'pharmaciesOrders');
     this.pharmService.showDetailsBehavoir.next(false);
   }
 
@@ -121,14 +130,14 @@ export class PharmDetailedOrderComponent implements OnInit {
 
   declineHandler(){
     this.order['nearestPharmId'] = '';
-    this.updateItem('currentOrders', this.order['id'], this.order);
+    this.deleteItem("sentOrders", this.order['id']);
+    this.addItem(this.order, 'currentOrders');
     this.pharmService.showDetailsBehavoir.next(false);
   }
 
-  reportHandler(obj:object, collection:string){
+  reportHandler(obj:object){
     obj['report'] = this.report;
     obj['nearestPharmId'] = '';
-    this.updateItem(collection, obj['id'], obj);
     this.pharmService.showDetailsBehavoir.next(false);
   }
 
@@ -136,16 +145,17 @@ export class PharmDetailedOrderComponent implements OnInit {
   // firebase function
   // ----------------------------------------------------
 
-  deleteItem(collection, id){
+  deleteItem(collection:string, id:string){
     let itemDoc = this.angularFS.doc(collection + '/' + id);
     itemDoc.delete();
   }
 
-  addItem(itemToadd){
-    this.addCollection.add(itemToadd)
+  addItem(itemToadd:object, collectionName:string){
+    this.addCollection = this.angularFS.collection(collectionName);
+    this.addCollection.add(itemToadd);
   }
 
-  updateItem(collection, id, order){
+  updateItem(collection:string, id:string, order:object){
     let itemDoc = this.angularFS.doc(collection + '/' + id);
     itemDoc.update(order);
   }

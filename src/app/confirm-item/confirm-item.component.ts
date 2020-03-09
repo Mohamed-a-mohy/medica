@@ -6,10 +6,16 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./confirm-item.component.scss']
 })
 export class ConfirmItemComponent implements OnInit {
-  @Input() item;
+  @Input() item:object;
+  itemName;
   constructor() { }
 
   ngOnInit() {
+    if(this.item['productName']){
+      this.itemName = this.item['productName'];
+    }else if(this.item['name']){
+      this.itemName = this.item['name'];
+    }
   }
 
 }
