@@ -19,11 +19,10 @@ export class QuantityComponent implements OnInit {
   ngOnInit() { }
 
   addToCart(){
-    this.service.viewCartItems(this.item);
+    this.service.addToCart(this.item);
   }
 
   removeFromCart(){
-    console.log('from - in quantity')
-    this.service.decreaseViewCartItem(this.item);
+  this.service.decreaseQuantity(this.item);
   }
 }

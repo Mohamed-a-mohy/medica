@@ -18,8 +18,8 @@ show;
   ngOnInit() {
   }
 
-  addToCart(){
-    this.service.viewCartItems(this.item);
+  addToCart(e){
+    this.service.addToCart(this.item);
   }
 
 }

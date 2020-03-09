@@ -61,7 +61,7 @@ export class AppComponent {
       if (!sessionStorage.getItem('cartView') || sessionStorage.getItem('checkedOut')) {
         sessionStorage.setItem('cartView', '[]');
       } else {
-        this.service.getCartView(JSON.parse(sessionStorage.getItem('cartView')));
+        this.service.updateCartCounterAndTotalPrice(JSON.parse(sessionStorage.getItem('cartView')));
       }
     })
 
@@ -96,6 +96,7 @@ export class AppComponent {
   addQuantityProp(arr) {
     for (let i = 0; i < arr.length; i++) {
       arr[i].quantity = 0;
+      arr[i].addToCart = 'add to cart';
     }
     return arr;
   }

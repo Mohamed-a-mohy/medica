@@ -33,7 +33,7 @@ export class ConflictWarnningComponent implements OnInit {
 
       if(this.service.ignoreConflictArr[0]){
         for (let i = 0; i< this.service.ignoreConflictArr.length; i++){
-          if(this.item.id == this.service.ignoreConflictArr[i].id){
+          if(this.item.id == this.service.ignoreConflictArr[i]['id']){
             flag = true;
           }
         }
@@ -44,7 +44,7 @@ export class ConflictWarnningComponent implements OnInit {
       }
 
       // call the function of 'add to cart' again
-      this.service.viewCartItems(this.item);
+      this.service.addToCart(this.item);
     }
   }
 

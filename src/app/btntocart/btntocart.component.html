@@ -1,2 +1,2 @@
-<button (click)="addToCart()" class="btn " data-toggle="modal" data-target="#exampleModal">Add to cart</button>
+<button [id] = 'item.id' (click)="addToCart($event)" class="btn " data-toggle="modal" data-target="#exampleModal">{{item.addToCart}}</button>
 <app-conflict-warnning *ngIf='show'></app-conflict-warnning>
