@@ -4,21 +4,10 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ScheduleService {
-  daysArray;
-  constructor() { 
-    this.daysArray = [
-      "Sunday",
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "friday",
-      "Saturday"
-    ];
+  constructor() {
   }
   scheduleChecked(e) {
     if (!e.checked) {
-      // this.scheduledAreaShow = null;
       let editCartView = JSON.parse(sessionStorage.getItem("cartView"));
       for (let i = 0; i < editCartView.length; i++) {
         if (editCartView[i]["scheduleDetails"]) {
@@ -41,7 +30,6 @@ export class ScheduleService {
     }
   }
   changeDate(scheduleForm) {
-    this.changeScheduleText(scheduleForm);
     let editCartView = JSON.parse(sessionStorage.getItem("cartView"));
     for (let i = 0; i < editCartView.length; i++) {
       if (editCartView[i]["scheduleDetails"]) {
@@ -68,7 +56,6 @@ export class ScheduleService {
   }
   changeShedule(e, scheduleForm) {
     scheduleForm.value.schedule = e.target.value;
-    this.changeScheduleText(scheduleForm);
     let editCartView = JSON.parse(sessionStorage.getItem("cartView"));
     for (let i = 0; i < editCartView.length; i++) {
       if (editCartView[i]["scheduleDetails"]) {
@@ -93,11 +80,6 @@ export class ScheduleService {
     }
     sessionStorage.setItem("cartView", JSON.stringify(editCartView));
   }
-  changeScheduleText(scheduleForm) {
-    return `scheduled on ${
-          this.daysArray[scheduleForm.value.calendar.getDay()]
-    }`;
-  }
   addProductToScheduleList(e, scheduleForm) {
     let editCartView = JSON.parse(sessionStorage.getItem("cartView"));
     for (let i = 0; i < editCartView.length; i++) {
@@ -109,9 +91,11 @@ export class ScheduleService {
           };
         }
       } else {
+        if (editCartView[i].id === e.source.id) {
         if (editCartView[i]["scheduleDetails"]) {
           delete editCartView[i]["scheduleDetails"];
         }
+      }
       }
     }
     sessionStorage.setItem("cartView", JSON.stringify(editCartView));

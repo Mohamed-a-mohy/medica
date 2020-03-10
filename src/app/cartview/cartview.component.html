@@ -13,7 +13,7 @@
   <form [formGroup]="scheduleForm">
     <section class="custom-control custom-checkbox w-100 row schedule-item">
       <mat-checkbox class="" id="scheduleCheck1" #scheduleCheck2 (change)="scheduleChecked($event)"
-        [checked]="scheduleCheckStatus">Click here if you
+        [checked]= scheduleCheckStatus>Click here if you
         want to make this order schedule </mat-checkbox>
     </section>
     <section class="scheduleArea pb-3 ml-3" *ngIf="scheduleCheck2.checked">
@@ -30,7 +30,7 @@
             (click)="changeShedule($event, scheduleForm)"> weekly
         </label>
         <label class="btn">
-          <input type="radio" formControlName="schedule" id="twoWeeksCheck" autocomplete="off" value="2weeks"
+          <input type="radio" formControlName="schedule" id="twoWeeksCheck" autocomplete="off" value="twoWeeks"
             (click)="changeShedule($event, scheduleForm)"> 2 weeks
         </label>
         <label class="btn">
@@ -46,11 +46,9 @@
 
   
   <div *ngFor="let item of itemsInCart" class="row col-12 sec-cart-item">
-    <div *ngVar="scheduleCheckStatusObj as variable">
-      <mat-checkbox class=" select" [checked]= variable[item.id] id="{{item.id}}" 
+      <mat-checkbox class=" select" [checked]= item.scheduleDetails id="{{item.id}}" 
         (change)="addProductToScheduleList($event)" *ngIf="scheduleCheck2.checked">
       </mat-checkbox>
-    </div>
     <div class="col col-6 col-sm-5 col-md-3"><img class="w-100 img-cont"  [src]=[item.img]   alt=""></div>
     <div class="col col-10 col-sm-7 col-md-3">
       <h3>
