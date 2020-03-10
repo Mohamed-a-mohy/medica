@@ -7,8 +7,8 @@ import { AddtocartService } from '../addtocart.service';
   styleUrls: ['./conflict-warnning.component.scss']
 })
 export class ConflictWarnningComponent implements OnInit {
-  item;
-  conflictDrugsNames;
+  item:object;
+  conflictDrugsNames:string;
 
   constructor(private service :AddtocartService) { 
   }
@@ -16,6 +16,13 @@ export class ConflictWarnningComponent implements OnInit {
   ngOnInit() { 
     this.service.warnningUpdate.subscribe(obj=>{
       this.item = obj;
+      if(this.item['quantity'] == 0){
+        this.service.warningQuantityObs.subscribe(num => {
+          if(num > 0){
+            this.item['quantity'] = num;
+          }
+        })
+      }
     });
 
     this.service.drugsNamesUpdate.subscribe(str =>{
@@ -23,29 +30,21 @@ export class ConflictWarnningComponent implements OnInit {
     });
   }
 
-  userChoice(e){
-    let flag = false;
-    if(e.target.value == 'add'){
-
-      // update ignore array
-      // first check if this obj pushed before or not
-      // if not --> push it
-
-      if(this.service.ignoreConflictArr[0]){
-        for (let i = 0; i< this.service.ignoreConflictArr.length; i++){
-          if(this.item.id == this.service.ignoreConflictArr[i]['id']){
-            flag = true;
-          }
-        }
-      }
-      if(flag == false){
-        this.service.ignoreConflictArr.push(this.item);
-        sessionStorage.setItem('ignoreArr', JSON.stringify(this.service.ignoreConflictArr));
-      }
-
-      // call the function of 'add to cart' again
-      this.service.addToCart(this.item);
+  userChoice(){
+    // first check if this obj pushed before to ignore array or not, if not --> push it
+    let objExist:Array<object> = [];
+    objExist = this.service.ignoreConflictArr.filter(obj => this.item['id'] == obj['id']);
+    if(objExist.length < 1){
+      this.service.ignoreConflictArr.push(this.item);
+      sessionStorage.setItem('ignoreArr', JSON.stringify(this.service.ignoreConflictArr));
     }
+
+    // call the function of 'add to cart' again
+    let increaseQuantity:boolean;
+    this.item['quantity'] > 0 ? increaseQuantity = false : increaseQuantity = true;
+    this.service.addToCart(this.item, increaseQuantity);
+    this.service.warnningBehavior.next({});
+    this.service.warningQuantityBehavior.next(0);
   }
 
 }

@@ -44,6 +44,10 @@ export class AddtocartService {
   private totalPriceBehavior = new BehaviorSubject(0);
   totalPriceObs = this.totalPriceBehavior.asObservable();
 
+  // change 'add to cart' button background color according to its status --> add to cart / added to cart
+  bgColorBehavior = new BehaviorSubject({});
+  bgColorObs = this.bgColorBehavior.asObservable();
+
   // ----------------- conflict -----------------
 
   // properties of conflict data
@@ -61,8 +65,12 @@ export class AddtocartService {
   ignoreConflictArr: Array<object> = [];
 
   // send the current item to the warning component
-  private warnningBehavior = new BehaviorSubject({});
+  warnningBehavior = new BehaviorSubject({});
   warnningUpdate = this.warnningBehavior.asObservable();
+
+  // send the current quantity to the warning component
+  warningQuantityBehavior = new BehaviorSubject(0);
+  warningQuantityObs = this.warningQuantityBehavior.asObservable();
 
   // send the drugs names which conflict with current item to the warning component
   private drugsNamesBehavior = new BehaviorSubject('');
@@ -105,21 +113,23 @@ export class AddtocartService {
   // ----------------------------------------------------------------
 
   // --------------- function of 'add to card' and '+' buttons ---------------
-  addToCart(obj: object) {
+  addToCart(obj: object, increaseQuantity:boolean) {
     sessionStorage.removeItem('checkedOut');
     if (this.cartArr[0]) { //if to check if array not empty
       if (this.chickIfConflict(obj)) { // true if there is no conflict or user ignore it
         let index: number;
         this.cartArr.filter((item: object, i: number) => { if (item['id'] == obj['id']) { index = i } });
         if (index >= 0) { // if the item exist in the array
-          this.cartArr[index]['quantity']++;
+          if(increaseQuantity){this.cartArr[index]['quantity']++;}
         } else { // if the item not exist in the array
-          obj['quantity']++;
+          if(increaseQuantity){obj['quantity']++;}
+          this.changebtnToCartBgAndFunctionality(obj, 'added to cart');
           this.cartArr.push(obj);
         }
       }
     } else { //if the arry empty push 1st item in it
-      obj['quantity']++;
+      if(increaseQuantity){obj['quantity']++;}
+      this.changebtnToCartBgAndFunctionality(obj, 'added to cart');
       this.cartArr.push(obj);
     }
     this.updateCartCounterAndObsAndStorage();
@@ -137,6 +147,7 @@ export class AddtocartService {
         this.cartArr[index]['quantity']--;
         if (this.cartArr[index]['quantity'] == 0) {
           this.cartArr.splice(index, 1);
+          this.changebtnToCartBgAndFunctionality(obj, 'add to cart');
         }
         this.updateCartCounterAndObsAndStorage();
       }
@@ -147,6 +158,7 @@ export class AddtocartService {
   cancelOrderFromCart(obj: object) {
     this.cartArr = this.cartArr.filter((item: object) => item['id'] != obj['id']);
     obj['quantity'] = 0;
+    this.changebtnToCartBgAndFunctionality(obj, 'add to cart');
     this.updateCartCounterAndObsAndStorage();
   }
 
@@ -155,6 +167,7 @@ export class AddtocartService {
     if (this.cartArr[0]) {
       for (let i = 0; i < this.cartArr.length; i++) {
         this.cartArr[i]['quantity'] = 0;
+        this.changebtnToCartBgAndFunctionality(this.cartArr[i], 'add to cart');
       }
       this.cartArr = []; // empty the cart
       this.updateCartCounterAndTotalPrice(this.cartArr) // update cart counter in navbar
@@ -217,6 +230,7 @@ export class AddtocartService {
     }
     if (names.length) {
       this.warnningBehavior.next(obj);
+      this.warningQuantityBehavior.next(obj['quantity']);
       this.drugsNamesBehavior.next(names.join(' / ')); // send names seperated by ' / ';
       this.isConflictBehavior.next(true); // update warning observable
       return false; // if there is a conflict --> don't complete 'add to cart' function
@@ -230,7 +244,6 @@ export class AddtocartService {
   isIgnored(obj: object): number {
     let isIgnored: Array<object> = [];
     isIgnored = this.ignoreConflictArr.filter(item => item['id'] == obj['id']);
-    console.log(isIgnored.length);
     return isIgnored.length; // true (1) if ignored and that mean don't complete check for conflict
   }
 
@@ -244,6 +257,18 @@ export class AddtocartService {
   }
   formatRoshettaForm(flag) {
     this.roshettaFlagBehavior.next(flag);
+  }
+
+  // ----------------------------------------------------------------
+  // change 'add to cart' button background according to its status
+  // ----------------------------------------------------------------
+
+  changebtnToCartBgAndFunctionality(obj:object, status:string){
+    // update obj status to change its color and functionality
+    obj['addToCart'] = status; 
+    this.bgColorBehavior.next(obj);
+    // update data to keep current color and functionality after refresh
+    this.dataCame(this.dbData);
   }
 
   // ----------------------------------------------------------------
