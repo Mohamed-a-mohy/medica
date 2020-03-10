@@ -195,6 +195,8 @@ export class AddtocartService {
       this.getCartView(this.cartArr) // update cart counter in navbar
       this.cartBehavior.next(this.cartArr);
       sessionStorage.setItem('checkedOut', "true");
+      sessionStorage.removeItem('roshettaDetails');
+      this.roshettaDetailsBehavior.next(null);
     }
   }
 

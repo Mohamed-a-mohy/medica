@@ -47,7 +47,7 @@
   
   <div *ngFor="let item of itemsInCart" class="row col-12 sec-cart-item">
     <div *ngVar="scheduleCheckStatusObj as variable">
-      <mat-checkbox class=" select" [checked]= variable[item.id] [id]="item.id" 
+      <mat-checkbox class=" select" [checked]= variable[item.id] id="{{item.id}}" 
         (change)="addProductToScheduleList($event)" *ngIf="scheduleCheck2.checked">
       </mat-checkbox>
     </div>
