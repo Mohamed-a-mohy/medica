@@ -63,6 +63,7 @@ import {MatCheckboxModule} from '@angular/material';
 import { VarDirective } from './var.directive';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { RoshettaShowComponent } from './roshetta-show/roshetta-show.component';
+import { CancelWarningComponent } from './cancel-warning/cancel-warning.component';
 
 @NgModule({
   declarations: [
@@ -95,7 +96,8 @@ import { RoshettaShowComponent } from './roshetta-show/roshetta-show.component';
     VarDirective,
     MapboxComponent,
     NotFoundComponent,
-    RoshettaShowComponent
+    RoshettaShowComponent,
+    CancelWarningComponent
   ],
   imports: [
     BrowserModule,

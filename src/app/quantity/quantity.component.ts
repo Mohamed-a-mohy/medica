@@ -27,7 +27,7 @@ export class QuantityComponent implements OnInit {
   }
 
   removeFromCart(){
-    if(this.item['addToCart'] == 'add to cart' && this.item['quantity'] > 0){
+    if(this.item['addToCart'] == 'add to cart' && this.item['quantity'] > 0){      
       this.item['quantity']--;
     }else{
       this.service.decreaseQuantity(this.item);

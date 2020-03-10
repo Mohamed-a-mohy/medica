@@ -13,8 +13,8 @@ export class CancelfromcartComponent implements OnInit {
   ngOnInit() {
   }
 
-  cancelFromCart(){
-    this.service.cancelOrderFromCart(this.item);
+  sendItemToCancelPopup(){
+    this.service.cancelPopupBehavior.next(this.item);
   }
 
 }

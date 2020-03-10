@@ -1,0 +1,24 @@
+.modal-header{
+    border: none;
+}
+
+.modal-footer{
+    border: none;
+    justify-content: center;
+}
+
+.btn-primary, .btn-secondary{
+    color: #fff;
+    text-transform: capitalize;
+    border-radius: 3px;
+}
+
+.btn-primary{
+    background-color: #ffc401;
+    border: 2px solid #ffc401;
+}
+
+.btn-secondary{
+    background-color: #01807b;
+    border: 2px solid #01807b;
+}

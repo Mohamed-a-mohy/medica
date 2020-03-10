@@ -47,4 +47,8 @@ export class ConflictWarnningComponent implements OnInit {
     this.service.warningQuantityBehavior.next(0);
   }
 
+  dontShow(){
+    this.service.isConflictBehavior.next(false);
+  }
+
 }

@@ -48,6 +48,10 @@ export class AddtocartService {
   bgColorBehavior = new BehaviorSubject({});
   bgColorObs = this.bgColorBehavior.asObservable();
 
+  // the observable of cancel popup
+  cancelPopupBehavior = new BehaviorSubject({});
+  cancelPopupObs = this.cancelPopupBehavior.asObservable();
+
   // ----------------- conflict -----------------
 
   // properties of conflict data
@@ -58,7 +62,7 @@ export class AddtocartService {
   confObs = this.confBehavior.asObservable();
 
   // observable for confirm user about conflict
-  private isConflictBehavior = new BehaviorSubject(false);
+  isConflictBehavior = new BehaviorSubject(false);
   isConflict = this.isConflictBehavior.asObservable();
 
   // if user decieded to add a kind of drug even if it conflict with others in the cart
@@ -144,10 +148,10 @@ export class AddtocartService {
         this.cartArr[index]['quantity']--;
         this.updateCartCounterAndObsAndStorage();
       } else if (index >= 0 && this.routeLink.includes("product/") && this.cartArr[index]['quantity'] > 0) {
-        this.cartArr[index]['quantity']--;
+        this.cartArr[index]['quantity']--;   
         if (this.cartArr[index]['quantity'] == 0) {
+          this.changebtnToCartBgAndFunctionality(this.cartArr[index], 'add to cart');
           this.cartArr.splice(index, 1);
-          this.changebtnToCartBgAndFunctionality(obj, 'add to cart');
         }
         this.updateCartCounterAndObsAndStorage();
       }
@@ -268,6 +272,13 @@ export class AddtocartService {
     obj['addToCart'] = status; 
     this.bgColorBehavior.next(obj);
     // update data to keep current color and functionality after refresh
+    for(let i = 0; i<this.dbData.length; i++){
+      if(this.dbData[i]['id'] == obj['id']){
+        this.dbData[i] = obj;
+        this.dataCame(this.dbData);
+        return;
+      }
+    }
     this.dataCame(this.dbData);
   }
 
