@@ -19,7 +19,6 @@ export class BtntocartComponent implements OnInit {
 
   ngOnInit() {
     this.id = 'addbtn_' + this.item['id'];
-    console.log(this.id);
   }
 
   ngAfterViewInit() {

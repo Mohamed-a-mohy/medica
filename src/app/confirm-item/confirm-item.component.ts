@@ -7,7 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ConfirmItemComponent implements OnInit {
   @Input() item:object;
-  itemName;
+  itemName:string;
   constructor() { }
 
   ngOnInit() {

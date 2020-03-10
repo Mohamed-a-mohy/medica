@@ -7,7 +7,7 @@ import { AddtocartService } from '../addtocart.service';
   styleUrls: ['./cancelfromcart.component.scss']
 })
 export class CancelfromcartComponent implements OnInit {
-  @Input() item;
+  @Input() item:object;
   constructor(private service: AddtocartService) { }
 
   ngOnInit() {

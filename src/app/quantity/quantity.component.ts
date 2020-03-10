@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { AddtocartService } from '../addtocart.service';
-import { log } from 'util';
 
 
 @Component({
