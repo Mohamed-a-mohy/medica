@@ -66,7 +66,7 @@ export class SignUpComponent implements OnInit {
     return true;
   }
 
-  onSubmit(form: NgForm) {
+  onSubmit(form) {
     if(!form.valid){
       document.getElementsByClassName("mesError")[document.getElementsByClassName("mesError").length-1].innerHTML = "*please fill your form with valid information or sign in";
     }else if (this.checkNewUser()) {

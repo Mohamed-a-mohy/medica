@@ -1,8 +1,8 @@
     <div class="row sec-detailed" *ngIf = 'show'>
         <div class="col-12">
             <div class="sec-detailed-idWNameWtotItems d-flex justify-content-between align-items-center mb-5">
-                <span class="sec-detailed-idWNameWtotItems-idWName">#{{orderId}} - {{order.userName}}</span>
-                <span class="sec-detailed-idWNameWtotItems-totItems">Total items: {{order.totalItems}}</span>
+                <span class="sec-detailed-idWNameWtotItems-idWName">#{{orderId}} - {{order['userName']}}</span>
+                <span class="sec-detailed-idWNameWtotItems-totItems">Total items: {{order['totalItems']}}</span>
             </div>
             <div class="sec-detailed-userInfo-container mb-5">
                 <div class="sec-detailed-userInfo-container-cont row">
@@ -15,14 +15,14 @@
                         <span>Cash on delivery</span>
                     </span>
                 </div>
-                <div class="sec-detailed-userInfo-container-cont row" *ngIf = 'order.status'>
+                <div class="sec-detailed-userInfo-container-cont row" *ngIf = 'order["status"]'>
                     <span class="col-8 d-flex align-items-center">
                         <img src="../../assets/pharmDashboardIcones/addressIcon.svg" alt="" class="mr-2">
-                        <span>{{order.userAddress}}</span>
+                        <span>{{order['userAddress']}}</span>
                     </span>
                     <span class="col-4 d-flex align-items-center">
                         <img src="../../assets/pharmDashboardIcones/phoneIcon.svg" alt="" class="mr-2">
-                        <span>+2 {{order.userPhone}}</span>
+                        <span>+2 {{order['userPhone']}}</span>
                     </span>
                 </div>
             </div>
@@ -34,23 +34,23 @@
                 </div>
                 <div class="row products_details py-4 mb-4">
                     <div class="col-12">
-                        <app-confirm-item *ngFor = 'let item of order.order' [item] = 'item'></app-confirm-item>
+                        <app-confirm-item *ngFor = 'let item of order["order"]' [item] = 'item'></app-confirm-item>
                     </div>
-                    <app-roshetta-show class="col-12" *ngIf="order.roshetta.image" [roshetta] = 'order.roshetta'></app-roshetta-show>
+                    <app-roshetta-show class="col-12" *ngIf="order['roshetta']['image']" [roshetta] = "order['roshetta']"></app-roshetta-show>
                 </div>
             </div>
             <div class="d-flex justify-content-end align-items-center">
-                <div class="sec-detailed-insurance" *ngIf = 'order.insuranceNum > 10'>
-                    <p><span class="sec-detailed-insurance-word">insurance number : </span><span class="sec-detailed-insurance-num">{{order.insuranceNum}}</span></p>
+                <div class="sec-detailed-insurance" *ngIf = 'order["insuranceNum"] > 10'>
+                    <p><span class="sec-detailed-insurance-word">insurance number : </span><span class="sec-detailed-insurance-num">{{order['insuranceNum']}}</span></p>
                 </div>
                 <div class="sec-detailed-totalprice">
-                    <p><span class="sec-detailed-totalprice-word">total price : </span><span class="sec-detailed-totalprice-amount">{{order.totalPrice}} EGP</span></p>
+                    <p><span class="sec-detailed-totalprice-word">total price : </span><span class="sec-detailed-totalprice-amount">{{order['totalPrice']}} EGP</span></p>
                 </div>
             </div>
-            <div class="sec-detailed-btnContainer text-center" *ngIf = 'order.status == "onWay"'>
+            <div class="sec-detailed-btnContainer text-center" *ngIf = 'order["status"] == "onWay"'>
                 <button class="mr-3" (click) = 'confirmHandler()' >confirm</button>
             </div>
-            <div class="sec-detailed-btnContainer text-center" *ngIf = '!order.status'>
+            <div class="sec-detailed-btnContainer text-center" *ngIf = '!order["status"]'>
                 <button class="mr-3" (click) = 'acceptHandler()'>accept</button>
                 <button class="mr-3" (click) = 'declineHandler()'>decline</button>
                 <button data-toggle="modal" data-target="#reportModal">report</button>

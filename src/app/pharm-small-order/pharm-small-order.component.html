@@ -12,9 +12,9 @@
                 <img src="../../assets/pharmDashboardIcones/dateIcon.svg" alt="" class="mr-2">
                 <span>{{dateTimeStr}}</span>
             </div>
-            <div class="sec-smallOrder-lowerCont d-flex align-items-center" *ngIf = 'order.status'>
+            <div class="sec-smallOrder-lowerCont d-flex align-items-center" *ngIf = 'order["status"]'>
                 <img src="../../assets/pharmDashboardIcones/addressIcon.svg" alt="" class="mr-2">
-                <span>{{order.userAddress}}</span>
+                <span>{{order['userAddress']}}</span>
             </div>
 
         </div>

@@ -1,14 +1,9 @@
 <div class="container sec-cart" *ngIf='itemsInCart[0] || roshettaDetails else elseBlock'>
-  
-  
   <div class="row col-12 sec-cart-header">
     <h2>Cart</h2>
     <p>Total items : {{counter}}</p>
   </div>
 
-
-  <!-- ----------schedule--------- -->
-  <!-- ----------schedule--------- -->
   <!-- ----------schedule--------- -->
   <form [formGroup]="scheduleForm">
     <section class="custom-control custom-checkbox w-100 row schedule-item">
@@ -21,30 +16,25 @@
         <input matInput [matDatepicker]="picker" formControlName="calendar" class="width-0 border-0"
           (dateChange)="changeDate($event)">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker [dateClass]="dateClass" #picker></mat-datepicker>
-        <!-- <span id="scheduledSpan">{{scheduleText}}</span> -->
-      
+        <mat-datepicker  #picker></mat-datepicker>
       <div class="btn-group btn-group-toggle" data-toggle="buttons">
         <label class="btn active">
           <input type="radio" formControlName="schedule" id="weeklyCheck" autocomplete="off" value="week"
-            (click)="changeShedule($event, scheduleForm)"> weekly
+            (click)="changeShedule($event)"> weekly
         </label>
         <label class="btn">
           <input type="radio" formControlName="schedule" id="twoWeeksCheck" autocomplete="off" value="twoWeeks"
-            (click)="changeShedule($event, scheduleForm)"> 2 weeks
+            (click)="changeShedule($event)"> 2 weeks
         </label>
         <label class="btn">
           <input type="radio" formControlName="schedule" id="monthlyCheck" autocomplete="off" value="month"
-            (click)="changeShedule($event, scheduleForm)"> monthly
+            (click)="changeShedule($event)"> monthly
         </label>
       </div>
     </section>
     </section>
   </form>
 
-
-
-  
   <div *ngFor="let item of itemsInCart" class="row col-12 sec-cart-item">
       <mat-checkbox class=" select" [checked]= item.scheduleDetails id="{{item.id}}" 
         (change)="addProductToScheduleList($event)" *ngIf="scheduleCheck2.checked">
@@ -87,15 +77,7 @@
  <button class="btn btn-primary checkbtn" routerLink="/order-summery" (click)="checkOutClick()">CheckOut</button>
 </div>
 
-
-
-
-
 <!---------------- emptyCArt Block--------------->
-<!---------------- emptyCArt Block--------------->
-<!---------------- emptyCArt Block--------------->
-
-
 <ng-template #elseBlock>
   <div class="emptyCart">
     <div>
