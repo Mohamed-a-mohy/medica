@@ -86,7 +86,7 @@ export class SignUpComponent implements OnInit {
     } else {
       document.getElementsByClassName("mesError")[1].innerHTML = "*user is already exist";
     }
-    this.loginService.checkLoginBehavior.next(true);
+    this.loginService.checkLoginBehavior.next('user');
 
     
   }

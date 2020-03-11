@@ -30,9 +30,6 @@ export class PharmServiceService {
   showDetailsBehavoir = new BehaviorSubject(false);
   showDetailsObs = this.showDetailsBehavoir.asObservable();
 
-  logoutBehavoir = new BehaviorSubject(true);
-  logoutObs = this.logoutBehavoir.asObservable();
-
   // ----------------------------------------------------------------
 
   constructor(private angularFS: AngularFirestore) {

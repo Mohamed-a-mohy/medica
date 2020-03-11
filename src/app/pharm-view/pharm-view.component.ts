@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PharmServiceService } from '../pharm-service.service';
+import { LoginService } from '../login.service';
 // firebase imports starts here
 import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
@@ -28,7 +29,8 @@ export class PharmViewComponent implements OnInit {
 
   constructor(private angularFS: AngularFirestore,
     private router: Router,
-    private pharmService: PharmServiceService) {
+    private pharmService: PharmServiceService,
+    private loginService: LoginService) {
 
     // --------------------------------------------------
     // get pharmacy data from database --> change pharmacy password from setting
@@ -63,8 +65,7 @@ export class PharmViewComponent implements OnInit {
   onLogout(){
     localStorage.removeItem('userId');
     localStorage.removeItem('role');
-    this.pharmService.logoutBehavoir.next(true);
-    this.router.navigate(['/home']);
+    this.loginService.changeLoginStatus('logout');
   }
 
   // --------------------------------------------------

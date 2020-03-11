@@ -47,7 +47,6 @@ export class NavbarComponent implements OnInit {
   onLogout(){
     localStorage.removeItem('userId');
     localStorage.removeItem('role');
-    this.loginService.checkLoginBehavior.next(false);
-    this.router.navigate(['/home']); 
+    this.loginService.checkLoginBehavior.next('logout');
   }
 }

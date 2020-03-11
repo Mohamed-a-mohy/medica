@@ -44,6 +44,5 @@ export class SignInComponent implements OnInit {
       document.getElementsByClassName("mesError")[1].innerHTML =
         "please enter your email and password";
     }
-    this.loginService.checkLoginBehavior.next(true); // display login / logout icon in navbar
   }
 }

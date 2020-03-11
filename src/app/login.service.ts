@@ -10,18 +10,20 @@ import { parse } from 'querystring';
 export class LoginService {
   users;
   pharmacies;
-  checkLoginBehavior = new BehaviorSubject(false);
-  checkLogin$ = this.checkLoginBehavior.asObservable();
   userIdBehavior = new BehaviorSubject('');
   userId$ = this.userIdBehavior.asObservable();
   previousUrl: string;
   currentUrl: string;
+  
+  // login and logout behavior update
+  checkLoginBehavior = new BehaviorSubject('logout');
+  checkLogin$ = this.checkLoginBehavior.asObservable();
 
   constructor(
     private angularFS: AngularFirestore,
     private router: Router) { 
     this.users = this.angularFS.collection("users").valueChanges({idField:'id'});
-    this.changeLoginStatus(localStorage.getItem('role')); // show 'logout'icon or 'sign in' icon in navbar
+    this.changeLoginStatus(localStorage.getItem('role')); // login and logout behavior update
     this.users.subscribe(items => {
       this.users = items;
     });
@@ -49,12 +51,10 @@ export class LoginService {
           pharmacy["email"] == form.value.email &&
           pharmacy["password"] == form.value.password
         ) {
-         /*  localStorage.setItem("checkLogin", "true");
-          this.changeLoginStatus(localStorage.getItem("checkLogin")); */
           localStorage.setItem('userId', pharmacy.id);
           this.addUserId(localStorage.getItem('userId'));
           localStorage.setItem('role', pharmacy['role']);
-          
+          this.changeLoginStatus(pharmacy['role']);
           return;
         }
       }
@@ -64,16 +64,10 @@ export class LoginService {
           user["email"] == form.value.email &&
           user["password"] == form.value.password
         ) {
-          /* localStorage.setItem("checkLogin", "true");
-          this.changeLoginStatus(localStorage.getItem("checkLogin")); */
           localStorage.setItem('userId', user.id);
           this.addUserId(localStorage.getItem('userId'));
           localStorage.setItem('role', user['role']);
-          if(sessionStorage.getItem('checkOutPath')){
-            this.router.navigate([sessionStorage.getItem('checkOutPath')]);
-          } else{
-            this.router.navigate(['/home']);
-          }
+          this.changeLoginStatus(user['role']);
           return;
         }
       }
@@ -89,13 +83,24 @@ export class LoginService {
   }
 
   // ----------------------------------------------------------
-  // show 'logout'icon or 'sign in' icon in navbar
+  // login and logout behavior update
   // ---------------------------------------------------------- 
-  changeLoginStatus(userstatus){
+  changeLoginStatus(userstatus:string){
     if(userstatus == 'user'){
-      this.checkLoginBehavior.next(true);
+      this.checkLoginBehavior.next('user');
+      if(sessionStorage.getItem('checkOutPath')){
+        this.router.navigate([sessionStorage.getItem('checkOutPath')]);
+      } else{
+        this.router.navigate(['/home']);
+      }
+
+    }else if(userstatus == 'pharmacy'){
+      this.checkLoginBehavior.next('pharmacy');
+      this.router.navigate(['/pharmview']);
+
     }else{
-      this.checkLoginBehavior.next(false)
+      this.checkLoginBehavior.next('logout');
+      this.router.navigate(['/home']);
     }
   }
 }

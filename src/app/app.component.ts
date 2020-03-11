@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AddtocartService } from './addtocart.service';
-import { PharmServiceService } from './pharm-service.service';
+import { LoginService } from './login.service';
 
 // firebase imports starts here
 import { AngularFireDatabase } from 'angularfire2/database';
@@ -25,21 +25,25 @@ export class AppComponent {
   confCollection;
   conflictArr;
 
-  role;
-  pharmLogout;
+  role:string;
+  pharmacy:boolean;
 
   constructor(db: AngularFireDatabase,
     private angularFS: AngularFirestore,
     private service: AddtocartService,
-    private pharmService: PharmServiceService) {
+    private loginService: LoginService) {
       /* localStorage.setItem('role', 'pharmacy')
       localStorage.setItem('userId', 'mGl6vFOdgbxGq3NLUqiS') */
 
-      // check if pharmacy login
-      this.role = localStorage.getItem('role');
-      if(this.role){
-        this.pharmService.logoutBehavoir.next(false)
+    // know if user/pharmacy login or logout
+    this.loginService.checkLogin$.subscribe(state => {
+      this.role = state;
+      if(state == 'pharmacy'){
+        this.pharmacy = true;
+      }else{
+        this.pharmacy = false;
       }
+    })
 
     // get data from database
     this.items = this.angularFS.collection('products').valueChanges({ idField: 'id' });
@@ -72,14 +76,6 @@ export class AppComponent {
       this.conflictArr = items;
       this.service.getConflictData(items);
     });
-
-    // observable to know if pharmacy logout
-    this.pharmService.logoutObs.subscribe(state => {
-      this.pharmLogout = state;
-      if(this.pharmLogout){
-         this.role=""; 
-      }
-    })
 
   }
   ngOnInit() {
