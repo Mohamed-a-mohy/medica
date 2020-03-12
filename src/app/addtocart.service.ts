@@ -122,13 +122,13 @@ export class AddtocartService {
           if(increaseQuantity){this.cartArr[index]['quantity']++;}
         } else { // if the item not exist in the array
           if(increaseQuantity){obj['quantity']++;}
-          this.changebtnToCartBgAndFunctionality(obj, 'added successfully');
+          this.changebtnToCartBgAndFunctionality(obj, 'item in cart');
           this.cartArr.push(obj);
         }
       }
     } else { //if the arry empty push 1st item in it
       if(increaseQuantity){obj['quantity']++;}
-      this.changebtnToCartBgAndFunctionality(obj, 'added successfully');
+      this.changebtnToCartBgAndFunctionality(obj, 'item in cart');
       this.cartArr.push(obj);
     }
     this.updateCartCounterAndObsAndStorage();

@@ -13,8 +13,23 @@ button:hover{
 
 .yellowBg{
     background-color: #ffc401;
+    animation-name: yellowBg;
+    animation-duration: 1500ms;
 }
 
 .greenBg{
     background-color: #01807b;
+    animation-name: greenBg;
+    animation-duration: 1500ms;
+}
+
+
+@keyframes yellowBg {
+    from {background-color: rgba($color: #ffc401, $alpha: 0.5)}
+    to {background-color: rgba($color: #ffc401, $alpha: 1.0)}
+}
+    
+@keyframes greenBg {
+    from {background-color: rgba($color: #01807b, $alpha: 0.5)}
+    to {background-color: rgba($color: #01807b, $alpha: 1.0)}
 }
