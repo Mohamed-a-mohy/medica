@@ -1,5 +1,4 @@
 button{
-    background-color: #ffc401;
     color: white;
     padding: 10px 22px;
     border-radius: 4px;
@@ -7,7 +6,15 @@ button{
     box-shadow: 2px 4px 5px -4px grey;
 }
 button:hover{
-    background-color: #be9303;
-    transition: 1s;
+    // background-color: #be9303;
+    // transition: 1s;
     color: white;
+}
+
+.yellowBg{
+    background-color: #ffc401;
+}
+
+.greenBg{
+    background-color: #01807b;
 }

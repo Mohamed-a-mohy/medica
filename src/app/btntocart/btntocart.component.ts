@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { AddtocartService } from "../addtocart.service";
 
 @Component({
@@ -19,28 +19,6 @@ export class BtntocartComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.id = 'addbtn_' + this.item['id'];
-  }
-
-  ngAfterViewInit() {
-    // change the background color of the btn on itialization and after refresh
-    this.element = document.getElementById(this.id);
-    if (this.element.innerText == 'add to cart') {
-      this.element.style.backgroundColor = '#ffc401';
-    } else {
-      this.element.style.backgroundColor = '#01807b';
-    }
-
-    // change the background color of the btn when user click 'add to cart' or cancel the item from cart
-    this.service.bgColorObs.subscribe(obj => {
-      if (`addbtn_${obj['id']}` == this.id) {
-        if (obj['addToCart'] == 'add to cart') {
-          this.element.style.backgroundColor = '#ffc401';
-        } else {
-          this.element.style.backgroundColor = '#01807b';
-        }
-      }
-    });
   }
 
   addToCart() {

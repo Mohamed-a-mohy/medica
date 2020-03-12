@@ -43,10 +43,6 @@ export class AddtocartService {
   private totalPriceBehavior = new BehaviorSubject(0);
   totalPriceObs = this.totalPriceBehavior.asObservable();
 
-  // change 'add to cart' button background color according to its status --> add to cart / added to cart
-  bgColorBehavior = new BehaviorSubject({});
-  bgColorObs = this.bgColorBehavior.asObservable();
-
   // the observable of cancel popup
   cancelPopupBehavior = new BehaviorSubject({});
   cancelPopupObs = this.cancelPopupBehavior.asObservable();
@@ -126,13 +122,13 @@ export class AddtocartService {
           if(increaseQuantity){this.cartArr[index]['quantity']++;}
         } else { // if the item not exist in the array
           if(increaseQuantity){obj['quantity']++;}
-          this.changebtnToCartBgAndFunctionality(obj, 'added to cart');
+          this.changebtnToCartBgAndFunctionality(obj, 'added successfully');
           this.cartArr.push(obj);
         }
       }
     } else { //if the arry empty push 1st item in it
       if(increaseQuantity){obj['quantity']++;}
-      this.changebtnToCartBgAndFunctionality(obj, 'added to cart');
+      this.changebtnToCartBgAndFunctionality(obj, 'added successfully');
       this.cartArr.push(obj);
     }
     this.updateCartCounterAndObsAndStorage();
@@ -269,8 +265,6 @@ export class AddtocartService {
   changebtnToCartBgAndFunctionality(obj:object, status:string){
     // update obj status to change its color and functionality
     obj['addToCart'] = status; 
-    this.bgColorBehavior.next(obj);
-
     // update data to keep current color and functionality after refresh
     for(let i = 0; i<this.dbData.length; i++){
       if(this.dbData[i]['id'] == obj['id']){

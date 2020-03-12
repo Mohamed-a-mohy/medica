@@ -35,8 +35,6 @@ export class ProductdetailsComponent implements OnInit {
     this.route.queryParamMap.subscribe(params => {      
       this.queryParamObj = { ...params.keys, ...params };
       this.productID = this.queryParamObj['params']['id'];
-      console.log(document.getElementById('btntocartProDetails'));
-      console.log(document.getElementById('sec-alts-items'));
       
       // --------------------------------------------------------
       // get data from service
