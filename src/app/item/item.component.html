@@ -3,7 +3,7 @@
     <img [src]=[item.img] class="card-img-top" alt="...">
     <div class="card-body">
       <div>
-        <a class="childone" [routerLink]="['/product',item.id]">
+        <a class="childone" href="/product?id={{item.id}}">
           <p class="card-title">{{item.name}}</p>
         </a>
         <p class="card-text price">{{item.price}} EGP</p>

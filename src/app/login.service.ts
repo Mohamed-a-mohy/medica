@@ -100,7 +100,6 @@ export class LoginService {
 
     }else{
       this.checkLoginBehavior.next('logout');
-      this.router.navigate(['/home']);
     }
   }
 }

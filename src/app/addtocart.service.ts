@@ -24,7 +24,6 @@ export class AddtocartService {
   //track changes of url
   routeLink: string;
 
-
   // ----------------------------------------------------------------
   // observables of cart functionanilty
   // ----------------------------------------------------------------
@@ -147,7 +146,7 @@ export class AddtocartService {
       if (index >= 0 && (this.routeLink.includes("shop") || this.routeLink.includes("order-summery")) && this.cartArr[index]['quantity'] > 1) {
         this.cartArr[index]['quantity']--;
         this.updateCartCounterAndObsAndStorage();
-      } else if (index >= 0 && this.routeLink.includes("product/") && this.cartArr[index]['quantity'] > 0) {
+      } else if (index >= 0 && this.routeLink.includes("product") && this.cartArr[index]['quantity'] > 0) {
         this.cartArr[index]['quantity']--;   
         if (this.cartArr[index]['quantity'] == 0) {
           this.changebtnToCartBgAndFunctionality(this.cartArr[index], 'add to cart');
@@ -271,6 +270,7 @@ export class AddtocartService {
     // update obj status to change its color and functionality
     obj['addToCart'] = status; 
     this.bgColorBehavior.next(obj);
+
     // update data to keep current color and functionality after refresh
     for(let i = 0; i<this.dbData.length; i++){
       if(this.dbData[i]['id'] == obj['id']){

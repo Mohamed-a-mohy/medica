@@ -1,9 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 // route import
 import { ActivatedRoute } from '@angular/router';
-import { Router } from '@angular/router';
-import { Location } from '@angular/common';
 
 // serve import
 import { AddtocartService } from '../addtocart.service';
@@ -16,89 +14,50 @@ import { AddtocartService } from '../addtocart.service';
 
 export class ProductdetailsComponent implements OnInit {
 
-  // catch id from url
-  indexOflastSlash;
-  routeLink;
-  productID;
-  quantity;
-
-  // itemObj which hold item info
-  itemObj;
-  itemsInCart;
-
-  // get item alternatives
-  alter = [];
-
-  flag = false;
+  queryParamObj: object;
+  productID:string;
+  arrayOfProducts: Array<object> = [];
+  itemObj:object;
+  alter: Array<object> = [];
+  currentQuantity: number;
+  allAddedToCartBtns: Array<string>;
+  currentLink: string;
 
   constructor(
-    private route: ActivatedRoute,
     private service: AddtocartService,
-    private router: Router,
-    location: Location) {
+    private route: ActivatedRoute) { }
 
-    // track id changes/ url changes and send id to the service
-    router.events.subscribe((val) => {
-      if (location.path() != '') {
-        this.routeLink = location.path();
-      } else {
-        this.routeLink = 'Home'
-      }
-      if (this.routeLink.includes("product/")) {
-        this.indexOflastSlash = this.routeLink.lastIndexOf("/");
-        if (this.routeLink[this.indexOflastSlash + 1]) {
-          this.productID = this.cutString(this.routeLink, this.indexOflastSlash);
-          this.service.trackIdChanges(this.productID);
-        }
-      }
-
-      // if url changes, all data should be changed
-      this.service.getData.subscribe(items=>{
-        // get item to show it's details
-        for(let i = 0 ; i < items.length; i++){
-          if(this.productID == items[i].id){
-            this.itemObj = items[i]
-          }
-        }
-        this.alter = [];
-        // get its alternatives
-        for(let i = 0; i < items.length; i++){
-          if(this.itemObj.active == items[i].active && this.itemObj.id != items[i].id){
-            this.alter.push(items[i]);
-          }
+  ngOnInit() {
+    
+    // --------------------------------------------------------
+    // track id changes in url 
+    // --------------------------------------------------------
+    this.route.queryParamMap.subscribe(params => {      
+      this.queryParamObj = { ...params.keys, ...params };
+      this.productID = this.queryParamObj['params']['id'];
+      console.log(document.getElementById('btntocartProDetails'));
+      console.log(document.getElementById('sec-alts-items'));
+      
+      // --------------------------------------------------------
+      // get data from service
+      // --------------------------------------------------------
+      this.service.getData.subscribe(items => {
+        // update data in the component
+        if (items[0]) {
+          this.itemObj = items.filter(item => this.productID == item['id'])[0];
+          this.alter = items.filter(item => this.itemObj['active'] == item['active'] && this.itemObj['id'] != item['id']);
         }
       });
-  });
+    });
 
-    
-  }
-
-  ngOnInit() {  
-
-    this.service.cartItems.subscribe(items=>{
-      this.itemsInCart=items;
-      // update quantity on change
-      if(this.itemsInCart[0]){
-        for(let i = 0; i< this.itemsInCart.length; i++){
-          if(this.itemsInCart[i].id == this.itemObj.id){
-            this.flag = true;
-            this.itemObj.quantity = this.itemsInCart[i].quantity;
-          }
-        }
-        if(this.flag == false){
-          this.itemObj.quantity = 0;
-        }
+    // --------------------------------------------------------
+    // update quantity on change
+    // --------------------------------------------------------
+    this.service.cartItems.subscribe(items => {
+      if (items[0]) {
+        this.currentQuantity = items.filter(item => item['id'] == this.itemObj['id'])[0]['quantity'];
+        this.currentQuantity ? this.itemObj['quantity'] = this.currentQuantity : this.itemObj['quantity'] = 0;
       }
-    })
-   }
-
-
-  cutString(str, index) {
-    let arr = str.split('');
-    let arr2 = [];
-    for (let i = index + 1; i < arr.length; i++) {
-      arr2.push(arr[i]);
-    }
-    return arr2.join("");
+    });
   }
 }

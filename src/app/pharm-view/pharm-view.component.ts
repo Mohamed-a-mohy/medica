@@ -66,6 +66,7 @@ export class PharmViewComponent implements OnInit {
     localStorage.removeItem('userId');
     localStorage.removeItem('role');
     this.loginService.changeLoginStatus('logout');
+    this.router.navigate(['/home']);
   }
 
   // --------------------------------------------------
