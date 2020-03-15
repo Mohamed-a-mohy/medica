@@ -547,16 +547,16 @@ count=0;
   onChangePage(pageOfItems) {
     // update current page of items
     this.pageOfItems = pageOfItems;
-    console.log(pageOfItems);
+    console.log('pagenation ', pageOfItems);
     this.sortCheck()
   }
 
-  onChangePageF(pageOfItems) {
-    // update current page of items
-    this.pageOfItemsF = pageOfItems;
-    console.log(pageOfItems);
-    this.sortCheck()
-  }
+  // onChangePageF(pageOfItems) {
+  //   // update current page of items
+  //   this.pageOfItemsF = pageOfItems;
+  //   console.log(pageOfItems);
+  //   this.sortCheck()
+  // }
 
  
 

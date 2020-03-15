@@ -5,9 +5,15 @@ button{
     border: none;
     box-shadow: 2px 4px 5px -4px grey;
 }
-button:hover{
-    // background-color: #be9303;
-    // transition: 1s;
+.yellowBg:hover{
+    background-color: #be9303;
+    transition: 1s;
+    color: white;
+}
+
+.greenBg:hover{
+    background-color: #05a19c;
+    transition: 1s;
     color: white;
 }
 
