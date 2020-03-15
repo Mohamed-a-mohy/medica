@@ -1,14 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AddtocartService } from './addtocart.service';
-import { PharmServiceService } from './pharm-service.service';
-
-// firebase imports starts here
-import { AngularFireDatabase } from 'angularfire2/database';
-import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from 'angularfire2/firestore';
-import { Observable } from 'rxjs';
-//endhere
-
-
+import { LoginService } from './login.service';
+import { GetProductsDataService } from './get-products-data.service';
 
 @Component({
   selector: 'app-root',
@@ -16,87 +8,35 @@ import { Observable } from 'rxjs';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'medica';
-  itemCollection;
-  arrOfItems;
-  items;
+  // -----------------------------------------------------------
+  // properties
+  // -----------------------------------------------------------
+  title:string = 'medica';
+  arrOfItems:Array<object>;
+  conflictArr:Array<object>;
+  pharmacy:boolean;
 
-  conflict;
-  confCollection;
-  conflictArr;
+  constructor(
+    private loginService: LoginService,
+    private getDataService: GetProductsDataService) {
 
-  role;
-  pharmLogout;
-
-  constructor(db: AngularFireDatabase,
-    private angularFS: AngularFirestore,
-    private service: AddtocartService,
-    private pharmService: PharmServiceService) {
-      /* localStorage.setItem('role', 'pharmacy')
-      localStorage.setItem('userId', 'mGl6vFOdgbxGq3NLUqiS') */
-
-      // check if pharmacy login
-      this.role = localStorage.getItem('role');
-      if(this.role){
-        this.pharmService.logoutBehavoir.next(false)
+    // ------------------------------------------------------
+    // know if user/pharmacy login or logout
+    // ------------------------------------------------------
+    this.loginService.checkLogin$.subscribe(state => {
+      if(state == 'pharmacy'){
+        this.pharmacy = true;
+      }else{
+        this.pharmacy = false;
       }
-
-    // get data from database
-    this.items = this.angularFS.collection('products').valueChanges({ idField: 'id' });
-    this.itemCollection = this.angularFS.collection('products');
-    this.getItems().subscribe(items => {
-      
-      // check sesttion storage
-      if (sessionStorage.getItem('allData')) { // if data already exist
-        // send data to service and store it in behavour subject
-        this.service.dataCame(JSON.parse(sessionStorage.getItem('allData')));
-      }else{ // if data not exist
-
-        /* 1- add quantity proparty to each item = 0;
-        2- send data to service and store it in behavour subject */
-        this.arrOfItems = this.addQuantityProp(items);
-        this.service.dataCame(this.arrOfItems);        
-      }
-
-      if (!sessionStorage.getItem('cartView') || sessionStorage.getItem('checkedOut')) {
-        sessionStorage.setItem('cartView', '[]');
-      } else {
-        this.service.getCartView(JSON.parse(sessionStorage.getItem('cartView')));
-      }
-    })
-
-    // get data of conflict from database
-    this.conflict = this.angularFS.collection('interactions').valueChanges({ idField: 'id' });
-    this.confCollection = this.angularFS.collection('interactions');
-    this.getConfliict().subscribe(items => {
-      this.conflictArr = items;
-      this.service.getConflictData(items);
     });
 
-    // observable to know if pharmacy logout
-    this.pharmService.logoutObs.subscribe(state => {
-      this.pharmLogout = state;
-      if(this.pharmLogout){
-         this.role=""; 
-      }
-    })
-
-  }
-  ngOnInit() {
-   }
-
-  getItems() {
-    return this.items;
+    // ------------------------------------------------------
+    // get data from database
+    // ------------------------------------------------------
+    this.getDataService.productDataObs.subscribe(arr => this.arrOfItems = arr);
+    this.getDataService.conflictDataObs.subscribe(arr => this.conflictArr = arr);
   }
 
-  getConfliict() {
-    return this.conflict;
-  }
-
-  addQuantityProp(arr) {
-    for (let i = 0; i < arr.length; i++) {
-      arr[i].quantity = 0;
-    }
-    return arr;
-  }
+  ngOnInit() { }
 }

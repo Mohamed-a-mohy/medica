@@ -1,2 +1,7 @@
-<button (click)="addToCart()" class="btn " data-toggle="modal" data-target="#exampleModal">Add to cart</button>
+<div *ngIf = 'item["addToCart"] == "add to cart" else addedSuccessfully'>
+    <button (click)="addToCart()" class="btn yellowBg" data-toggle="modal" data-target="#exampleModal">{{item['addToCart']}}</button>
+</div>
+<ng-template #addedSuccessfully>
+    <button (click)="addToCart()" class="btn greenBg" data-toggle="modal" data-target="#exampleModal">{{item['addToCart']}}</button>
+</ng-template>
 <app-conflict-warnning *ngIf='show'></app-conflict-warnning>

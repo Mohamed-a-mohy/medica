@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { AddtocartService } from '../addtocart.service';
-import { log } from 'util';
 
 
 @Component({
@@ -9,8 +8,8 @@ import { log } from 'util';
   styleUrls: ['./quantity.component.scss']
 })
 export class QuantityComponent implements OnInit {
-  @Input() item;
-  show;
+  @Input() item:object;
+  show:boolean;
   constructor(private service :AddtocartService) { 
     this.service.isConflict.subscribe(showStatus=>{
       this.show= showStatus;
@@ -19,11 +18,18 @@ export class QuantityComponent implements OnInit {
   ngOnInit() { }
 
   addToCart(){
-    this.service.viewCartItems(this.item);
+    if(this.item['addToCart'] == 'add to cart'){
+      this.item['quantity']++;
+    }else{
+      this.service.addToCart(this.item, true);
+    }
   }
 
   removeFromCart(){
-    console.log('from - in quantity')
-    this.service.decreaseViewCartItem(this.item);
+    if(this.item['addToCart'] == 'add to cart' && this.item['quantity'] > 0){      
+      this.item['quantity']--;
+    }else{
+      this.service.decreaseQuantity(this.item);
+    }
   }
 }

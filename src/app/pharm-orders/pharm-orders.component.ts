@@ -11,7 +11,7 @@ import { Location } from '@angular/common';
 })
 export class PharmOrdersComponent implements OnInit {
 
-  allOrders:Array<object>;
+  allOrders:Array<object> = [];
   routeLink: string;
 
   constructor(private pharmService: PharmServiceService,

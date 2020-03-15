@@ -10,7 +10,7 @@ import { UserLocationService } from '../user-location.service';
 })
 export class MapboxComponent implements OnInit {
 
-  searchWord;
+  searchWord:string;
   map: Map;
 
   constructor(private locService: UserLocationService) { }
@@ -40,7 +40,6 @@ export class MapboxComponent implements OnInit {
     this.coordinates = event.lngLat.toArray();
     this.locService.coordinatesArr = this.coordinates;
     this.locService.coordinatesArrBehavior.next(this.coordinates);
-    console.log(this.coordinates)
   }
 
 }

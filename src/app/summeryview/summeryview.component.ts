@@ -100,7 +100,9 @@ export class SummeryviewComponent implements OnInit {
     }
   }
 
+  // -------------------------------------------------
   // locations functions
+  // -------------------------------------------------
   getCurrentPosition(){
     this.displayMap = false;
     this.notLocated = false;

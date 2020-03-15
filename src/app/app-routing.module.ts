@@ -27,16 +27,20 @@ const routes: Routes = [
   {path: "products/:cat", component: ProductsComponent,canActivate: [NotPharmRoleService],children:[
     {path: ":sCat", component: ProductsComponent,canActivate: [NotPharmRoleService]},
   ]},
-  {path: "shop", component: CartviewComponent, canActivate: [NotPharmRoleService]},
+  {path: "product", component: ProductdetailsComponent, canActivate: [NotPharmRoleService]},
+
   {path:"signUp", component: SignUpComponent, canActivate: [NotPharmRoleService]},
   {path:"sigIn", component: SignInComponent, canActivate: [NotPharmRoleService]},
-  {path: "product/:id", component: ProductdetailsComponent, canActivate: [NotPharmRoleService]},
+
   {path: "home" ,component:HomeComponent, canActivate: [NotPharmRoleService]},
-{path: "order-summery", component:SummeryviewComponent, canActivate: [UserRoleGuardService]},
+  {path: "shop", component: CartviewComponent, canActivate: [NotPharmRoleService]},
+  {path: "order-summery", component:SummeryviewComponent, canActivate: [UserRoleGuardService]},
+  {path: "confirm", component:ConfirmationComponent ,canActivate: [UserRoleGuardService]},
+
   {path: "pharmview/pending", component:PharmOrdersComponent, canActivate: [PharmRoleService]},
   {path: "pharmview/inprogress", component:PharmOrdersComponent, canActivate: [PharmRoleService]},
   {path: "pharmview/orders", component:PharmOrdersComponent, canActivate: [PharmRoleService]},
-  {path: "confirm", component:ConfirmationComponent ,canActivate: [UserRoleGuardService]},
+
   {path: "**", component: NotFoundComponent},
 ];
 

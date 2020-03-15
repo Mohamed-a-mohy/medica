@@ -1,13 +1,41 @@
 button{
-    background-color: #ffc401;
     color: white;
     padding: 10px 22px;
     border-radius: 4px;
     border: none;
     box-shadow: 2px 4px 5px -4px grey;
 }
-button:hover{
+.yellowBg:hover{
     background-color: #be9303;
     transition: 1s;
     color: white;
+}
+
+.greenBg:hover{
+    background-color: #05a19c;
+    transition: 1s;
+    color: white;
+}
+
+.yellowBg{
+    background-color: #ffc401;
+    animation-name: yellowBg;
+    animation-duration: 1500ms;
+}
+
+.greenBg{
+    background-color: #01807b;
+    animation-name: greenBg;
+    animation-duration: 1500ms;
+}
+
+
+@keyframes yellowBg {
+    from {background-color: rgba($color: #ffc401, $alpha: 0.5)}
+    to {background-color: rgba($color: #ffc401, $alpha: 1.0)}
+}
+    
+@keyframes greenBg {
+    from {background-color: rgba($color: #01807b, $alpha: 0.5)}
+    to {background-color: rgba($color: #01807b, $alpha: 1.0)}
 }

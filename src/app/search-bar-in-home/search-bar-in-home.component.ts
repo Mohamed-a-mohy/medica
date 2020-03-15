@@ -30,9 +30,7 @@ export class SearchBarInHomeComponent implements OnInit {
         this.itemSelectedID = this.listOfProducts[i].id
       }
     }
-    this.router.navigate(["/product",this.itemSelectedID])
-    console.log(this.itemSelectedID);
-    console.log(e.target.name);
+    this.router.navigate(['/product'], { queryParams: {id: this.itemSelectedID}});
     e.target.value=""
   }
 
