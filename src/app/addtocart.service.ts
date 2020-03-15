@@ -269,11 +269,11 @@ export class AddtocartService {
     for(let i = 0; i<this.dbData.length; i++){
       if(this.dbData[i]['id'] == obj['id']){
         this.dbData[i] = obj;
-        this.dataCame(this.dbData);
+        sessionStorage.setItem('allData', JSON.stringify(this.dbData));
         return;
       }
     }
-    this.dataCame(this.dbData);
+    sessionStorage.setItem('allData', JSON.stringify(this.dbData));
   }
 
   // ----------------------------------------------------------------
