@@ -41,11 +41,13 @@ export class CartviewComponent implements OnInit, AfterViewChecked {
       this.totalPrice = totalPrice;
     });
     //check if there is a schedule in session
-    if(sessionStorage.getItem("roshettaDetails") && sessionStorage.getItem("roshettaDetails")["scheduleDetails"]){
+    if(sessionStorage.getItem("roshettaDetails") && 
+    JSON.parse(sessionStorage.getItem("roshettaDetails"))["scheduleDetails"]){
       this.roshettaScheduleStatus = JSON.parse(
         sessionStorage.getItem("roshettaDetails")
       )["scheduleDetails"];
     }
+    
     if (this.scheduleInSession() != null) {
       this.scheduleForm = this.fb.group({
         schedule: this.scheduleInSession().schedule,
