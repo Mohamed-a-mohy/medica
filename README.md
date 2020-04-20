@@ -1,27 +1,44 @@
 # Medica
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.24.
+We introduce a website that connects between patient and many pharmacies without any speculator. 
+customers can order medicines online anywhere, whether for him or for others, at his address or at another address, by selecting products or uploading prescription.
 
-## Development server
+- [Live Demo 1](https://medica-iti.firebaseapp.com/) or [Live Demo 2](https://medica-iti.web.app/).
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Team Members
 
-## Code scaffolding
+- [Mohamed-a-mohy](https://github.com/Mohamed-a-mohy) : Team Leader.
+- [NorhanAhmedAbdelhammed](https://github.com/NorhanAhmedAbdelhammed).
+- [EmanAboSeada](https://github.com/EmanAboSeada).
+- [alaa-abdelrahim](https://github.com/alaa-abdelrahim).
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Used Tools
 
-## Build
+- Framework
+    - Angular 8.
+- Packages
+    - Angular material.
+    - JW pagination.
+    - Map Box: using ngx-mapbox-gl package.
+    - Firebase Cloud : using Firestore package (angularfire2).
+- Libraries
+    - Bootstrap 4 (CDN).
+    - JQuery (CDN).
+- Tools
+    - Vs Code.
+    - Git and GitHub.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## How To Run The Project
 
-## Running unit tests
+- Choose to: Download the project in .zip or Use the URL to clone it by git.
+- Open "medica" folder.
+- Open terminal or CMD in the current directory.
+- Run the following command:
+    `npm i`
+-  Run the following command:
+    `ng s -o`
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## How to see or use code
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+- By using code editor (It is preferred to use VS code).
+- Open the "medica" folder in your code editor.
